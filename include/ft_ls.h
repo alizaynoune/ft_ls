@@ -6,6 +6,9 @@
 # include <dirent.h>
 # include <stdio.h>
 # include <errno.h>
+# include <time.h>
+# include <pwd.h>
+# include <grp.h>
 
 # define _SUCCESS	(0)
 # define _FAILURE	(1)
@@ -16,6 +19,11 @@
 # define _R		(4)
 # define _A		(8)
 # define _T		(16)
+# define _U		(32)
+
+# define X_		(1)
+# define W_		(2)
+# define R_		(4)
 
 # define DEF		("\e[0m")
 # define RED		("\e[1;31m")
@@ -31,8 +39,11 @@ typedef struct			s_content
 {
 	char			*n_file;
 	char			*parent;
+	char			*time;
 	struct stat		st;
-	unsigned char		type;
+	//struct passwd		*passwd;
+	char			*owner;
+	char			*group;
 	struct dirent		*dirent;
 	struct s_content	*next;
 	struct s_content	*prev;

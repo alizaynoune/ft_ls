@@ -10,6 +10,9 @@ void	free_content(t_content *content)
 		ptr = content;
 		content = content->next;
 		ptr->n_file ? ft_strdel(&ptr->n_file) : 0;
+		ptr->time ? ft_strdel(&ptr->time) : 0;
+		ptr->owner ? ft_strdel(&ptr->owner) : 0;
+		ptr->group ? ft_strdel(&ptr->group) : 0;
 		free(ptr);
 	}
 }
@@ -45,8 +48,8 @@ void	_error(t_struct *d, char *str, int error)
 		d->dir ? free_dir(d->dir) : 0;
 		free(d);
 	}
-	ft_dprintf(1, "%s\n", str);
-	ft_strdel(&str);
+	str ? ft_dprintf(1, "%s\n", str) : ft_dprintf(1, "ft_ls : unkown error\n");
+	str ? ft_strdel(&str) : 0 ;
 	exit(_TROUBLE);
 }
 
@@ -79,6 +82,8 @@ void	parse_options(char *options, t_struct *d)
 			d->options |= _A;
 		else if (options[i] == 't')
 			d->options |= _T;
+		else if (options[i] == 'U')
+			d->options |= _U;
 		else
 			_invalid(d, options[i]);
 		i++;
@@ -97,12 +102,11 @@ void	parse_arg(int ac, char **av, t_struct *d)
 	i = 0;
 	while (++i < ac)
 	{
-		if (!(av[i][0] == '-' && av[i][1]))
+		if (av[i][0] != '-' || av[i][0] == '-' && !av[i][1])
 		{
 			read_dir(d, ft_strdup(av[i]));
 			curr_dir = 0;
 		}
-		i++;
 	}
 	curr_dir ? read_dir(d, ft_strdup(".")) : 0;
 }
