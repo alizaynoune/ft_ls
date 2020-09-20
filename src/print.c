@@ -1,86 +1,149 @@
-#include "ft_ls.h"
+# include "ft_ls.h"
 
-char	*_color(unsigned char type)
+void		_print_type(unsigned int type)
 {
-	if (type == DT_REG)
-		return (DEF);
-	if (type == DT_DIR)
-		return (PURPLE);
-	if (type == DT_LNK)
-		return (BLUE);
-	if (type == DT_CHR)
-		return (YELLOW);
-	return (DEF);
+	if (type == S_IFREG)
+		ft_dprintf(1, "-");
+	else if (type == S_IFBLK)
+		ft_dprintf(1, "b");
+	else if (type == S_IFCHR)
+		ft_dprintf(1, "c");
+	else if (type == S_IFIFO)
+		ft_dprintf(1, "p");
+	else if (type == S_IFLNK)
+		ft_dprintf(1, "l");
+	else if (type == S_IFSOCK)
+		ft_dprintf(1, "s");
+	else if (type == S_IFDIR)
+		ft_dprintf(1, "d");
+	else
+		ft_dprintf(1, "?");
+
 }
 
-void		_mode(t_struct *d, int mode)
+void		_print_mod(unsigned int mode)
 {
-	char	*ptr;
-	int	i;
+	int8_t	sheft;
+	int8_t	perm;
 
-	i = 0;
-	if (!(ptr = ft_itoa_base(mode, 8)))
-		_error(d, ft_strdup(strerror(errno)), _TROUBLE);
-	while (ptr[i] && i < 3)
+	sheft = 2;
+	_print_type(mode & S_IFMT);
+	while (sheft >= 0)
 	{
-		((ptr[i] - '0') & R_) ? ft_dprintf(1, "r") : ft_dprintf(1, "-");
-		((ptr[i] - '0') & W_) ? ft_dprintf(1, "w") : ft_dprintf(1, "-");
-		((ptr[i] - '0') & X_) ? ft_dprintf(1, "x") : ft_dprintf(1, "-");
-		i++;
+		perm = (mode & (0x7 << (sheft * 3))) >> (sheft * 3);
+		(perm & R_) ? ft_dprintf(1, "r") : ft_dprintf(1, "-");
+		(perm & W_) ? ft_dprintf(1, "w") : ft_dprintf(1, "-");
+		if (sheft || (!sheft && !(mode & S_ISVTX)))
+			(perm & X_) ? ft_dprintf(1, "x") : ft_dprintf(1, "-");
+		sheft--;
 	}
-	ft_dprintf(1, " ");
-	free(ptr);
+	if ((mode & S_ISVTX))
+		((mode & S_IFMT) == S_IFREG) && !(perm & X_) ? ft_dprintf(1, "T") : ft_dprintf(1, "t");
 }
 
-void		_type(t_struct *d, unsigned int type)
+void		_print_date(t_all *all, time_t date)
 {
-	(type == DT_REG) ? ft_dprintf(1, "-") : 0 ;
-	(type == DT_BLK) ? ft_dprintf(1, "b") : 0 ;
-	(type == DT_CHR) ? ft_dprintf(1, "c") : 0 ;
-	(type == DT_DIR) ? ft_dprintf(1, "d") : 0 ;
-	(type == DT_LNK) ? ft_dprintf(1, "l") : 0 ;
-	(type == DT_FIFO) ? ft_dprintf(1, "p") : 0 ;
-	(type == DT_SOCK) ? ft_dprintf(1, "s") : 0 ;
-	(type == DT_UNKNOWN) ? ft_dprintf(1, "?") : 0;
+	char	*time;
+
+	if ((time = ctime(&date)))
+		ft_dprintf(1, " %.12s ", time + 4);
+	else
+	{
+		perror("mtime");
+		all->ret = _FAILURE;
+	}
 }
 
-void		_list_print(t_struct *d, t_content *ptr)
+void		_print_color(unsigned int mode, char *name, size_t len)
 {
-	_type(d, ptr->dirent->d_type);
-	_mode(d, ptr->st.st_mode & (~S_IFMT));
-	ft_dprintf(1, "%ld ", ptr->st.st_nlink);
-	ft_dprintf(1, "%-4s %-4s  %7lld   %s ", ptr->owner, ptr->group, ptr->st.st_size, ptr->time);
+	unsigned int type;
+
+	type = mode & S_IFMT;
+	if (type == S_IFBLK)
+		ft_dprintf(1, "%s", C_BLK);
+	else if (type == S_IFCHR)
+		ft_dprintf(1, "%s", C_CHR);
+	else if (type == S_IFIFO)
+		ft_dprintf(1, "%s", C_FIFO);
+	else if (type == S_IFLNK)
+		ft_dprintf(1, "%s", C_LNK);
+	else if (type == S_IFSOCK)
+		ft_dprintf(1, "%s", C_SOCK);
+	else if (type == S_IFDIR)
+		ft_dprintf(1, "%s", C_DIR);
+	else if (type == S_IFREG)
+		((mode & S_IXUSR) && (mode & S_IXGRP) && (mode & S_IXOTH)) ? ft_dprintf(1, "%s", C_EXE) : 0;
+	ft_dprintf(1, "%-*s%s", len, name, C_DEF);
 }
 
-void		print_content(t_struct *d, t_content *content, unsigned char options)
+void		_is_link(t_all *all, char *path, struct stat *st)
 {
-	t_content	*ptr;
-	struct stat	st;
-	unsigned long long total;
+	char	*name;
 
-	total = 0;
+	if (!(name = (char *)malloc((sizeof(char)) * st->st_size + 1)))
+		_failed(all, strerror(errno));
+	if ((readlink(path, name, st->st_size + 1)) < 0)
+	{
+		perror("readlink");
+		all->ret = _FAILURE;
+	}
+	name[st->st_size] = 0;
+	if (!(all->options & _G))
+		ft_dprintf(1, " -> %s", name);
+	else
+	{
+		if (stat(name, st))
+			all->ret = _FAILURE;
+		ft_dprintf(1, " -> ");
+		_print_color(st->st_mode, name, 0);
+	}
+	ft_memdel((void *)&name);
+}
+
+void		_print_long(t_all *all, t_dir *dir, t_content *ptr)
+{
+	_print_mod(ptr->st->st_mode);
+	ft_dprintf(1, " %*lu ", dir->len[LINK_], ptr->st->st_nlink);
+	ft_dprintf(1, "%-*s %-*s", dir->len[OWNER_], ptr->owner, dir->len[GROUP_], ptr->group);
+	ft_dprintf(1, " %*ld", dir->len[SIZE_], ptr->st->st_size);
+	_print_date(all, ptr->st->st_mtime);
+	(all->options & _G) ? _print_color(ptr->st->st_mode, ptr->name, dir->len[NAME_]) : ft_dprintf(1, " %s", ptr->name);
+	((ptr->st->st_mode & S_IFMT) == S_IFLNK) ? _is_link(all, ptr->path, ptr->st) : 0;
+	ft_dprintf(1, "\n");
+}
+
+void		_print_simple(t_all *all, t_content *ptr, size_t len)
+{
+	(all->options & _G) ? _print_color(ptr->st->st_mode, ptr->name, len) : ft_dprintf(1, "[%-*s]", len + 2, ptr->name);
+	//ft_dprintf(1, "  ");
+}
+
+void		_print_out(t_all *all)
+{
+	t_dir		*dir;
+	t_content	*content;
+
+	content = NULL;
+	if (all->files)
+		content = (all->options & _R) ? all->files->lst_content : all->files->content;
 	while (content)
 	{
-		ptr = content;
-		content = content->next;
-		(d->options & _L) ? _list_print(d, ptr) : 0;
-		ft_dprintf(1, "%s%s%s", _color(ptr->dirent->d_type), ptr->dirent->d_name, DEF);
-//		ft_dprintf(1, " ---%llu---", total);
-		(d->options & _L) ? ft_dprintf(1, "\n") : ft_dprintf(1, " ");
-		total += ptr->st.st_blocks;
+		(all->options & _L) ? _print_long(all, all->files, content) : _print_simple(all, content, all->files->len[NAME_]);
+		content = (all->options & _R) ? content->prev : content->next;
 	}
-	(!(d->options & _L)) ? ft_dprintf(1, "\n", total) : 0;
-}
-
-void		print_ls(t_struct *d)
-{
-	t_dir	*ptr;
-
-	ptr = d->dir;
-	while (ptr)
+	!(all->options & _L) && all->files ? ft_dprintf(1, "\n") : 0;
+	dir = (all->options & _R)  ? all->lst_dir : all->dir;
+	while (dir)
 	{
-		(d->options & R_R) ? ft_dprintf(1, "%s:\n", ptr->n_dir) : 0;
-		print_content(d, ptr->content, d->options);
-		(ptr = ptr->next) ? ft_dprintf(1, "\n") : 0;
+		(all->dir->next || all->files) ? ft_dprintf(1, "\n%s:\n", dir->name) : 0;
+		(all->options & _L) ? ft_dprintf(1, "total %llu\n", dir->total) : 0;
+		content = (all->options & _R) ? dir->lst_content : dir->content;
+		while (content)
+		{
+			(all->options & _L) ? _print_long(all, dir, content) : _print_simple(all, content, dir->len[NAME_]);
+			content = (all->options & _R) ? content->prev : content->next;
+		}
+		!(all->options & _L) ? ft_dprintf(1, "\n") : 0;
+		dir = (all->options & _R) ? dir->prev : dir->next;
 	}
 }

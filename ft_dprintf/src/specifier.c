@@ -26,20 +26,47 @@ size_t		_ato_unsint(const char *str)
 	return (num);
 }
 
+void	_width(t_data *d)
+{
+	if (d->str[d->i] == '*')
+	{
+		d->wid_pre.width = va_arg(d->ap, unsigned int);
+		d->i++;
+	}
+	else
+	{
+		d->wid_pre.width = _ato_unsint(&d->str[d->i]);
+		while (ft_isdigit(d->str[d->i]))
+			d->i++;
+
+	}
+
+}
+
+void	_precision(t_data *d)
+{
+	if (d->str[d->i] == '*')
+	{
+		d->wid_pre.precision = va_arg(d->ap, unsigned int);
+		d->i++;
+	}
+	else
+	{	d->wid_pre.precision = _ato_unsint(&d->str[d->i]);
+		while (ft_isdigit(d->str[d->i]))
+			d->i++;
+	}
+}
+
 void	width_precision(t_data *d)
 {
-	d->wid_pre.width = _ato_unsint(&d->str[d->i]);
-	while (ft_isdigit(d->str[d->i]))
-		d->i++;
+	_width(d);
 	if (d->str[d->i] == '.')
 	{
 		d->flag |= _dot;
 		d->i++;
 		d->flag -= (d->flag & _zero);
 	}
-	d->wid_pre.precision = _ato_unsint(&d->str[d->i]);
-	while (ft_isdigit(d->str[d->i]))
-		d->i++;
+	_precision(d);
 	d->flag & _zero && d->flag & _left ? d->flag -= (d->flag & _zero) : 0;
 }
 

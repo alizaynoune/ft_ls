@@ -91,6 +91,7 @@ LIBFT_SRCH = 		ft_strchr.c				\
 
 LIBFT_STR = 		ft_strcat.c				\
 	    		ft_strcmp.c				\
+			ft_strhcmp.c				\
 	    		ft_strcpy.c				\
 	    		ft_strdup.c				\
 	    		ft_strequ.c				\

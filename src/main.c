@@ -1,125 +1,258 @@
 #include "ft_ls.h"
-#include <stdio.h>
 
-void	free_content(t_content *content)
+void		_free_start(t_all *all)
 {
-	t_content		*ptr;
+	t_start		*ptr;
 
-	while (content)
+	while (all->start_dir)
 	{
-		ptr = content;
-		content = content->next;
-		ptr->n_file ? ft_strdel(&ptr->n_file) : 0;
-		ptr->time ? ft_strdel(&ptr->time) : 0;
-		ptr->owner ? ft_strdel(&ptr->owner) : 0;
-		ptr->group ? ft_strdel(&ptr->group) : 0;
-		free(ptr);
+		ptr = all->start_dir;
+		all->start_dir = all->start_dir->next;
+		(ptr->st) ? ft_memdel((void *)&ptr->st) : 0;
+		(ptr->name) ? ft_memdel((void *)&ptr->name) : 0;
+		ft_memdel((void *)&ptr);
 	}
 }
 
-void	free_dir(t_dir *dir)
+void		_free_content(t_content *content)
 {
-	t_dir	*ptr;
+	content->name ? ft_memdel((void *)&content->name) : 0;
+	content->path ? ft_memdel((void *)&content->path) : 0;
+	content->st ? ft_memdel((void *)&content->st) : 0;
+	content->owner ? ft_memdel((void *)&content->owner) : 0;
+	content->group ? ft_memdel((void *)&content->group) : 0;
+	ft_memdel((void *)&content);
 
-	while(dir)
-	{
-		ptr = dir;
-		dir = dir->next;
-		ptr->content ? free_content(ptr->content) : 0;
-		ptr->n_dir ? ft_strdel(&ptr->n_dir) : 0;
-		closedir(ptr->p_dir);
-		free(ptr);
-	}
 }
 
-void	_success(t_struct *d)
+void		_free_files(t_all *all)
 {
-	if (d)
+	t_content	*content;
+
+       while (all->files->content)
 	{
-		d->dir ? free_dir(d->dir) : 0;
-		free(d);
+		content = all->files->content;
+		all->files->content = all->files->content->next;
+		_free_content(content);
 	}
+	all->files ? ft_memdel((void *)&all->files) : 0;
 }
 
-void	_error(t_struct *d, char *str, int error)
-{
-	if (d)
+void		_free_all(t_all *all)
+{	
+	t_dir	*dir;
+	t_content	*content;
+
+	while (all->dir)
 	{
-		d->dir ? free_dir(d->dir) : 0;
-		free(d);
+		dir = all->dir;
+		all->dir = all->dir->next;
+		while (dir->content)
+		{
+			content = dir->content;
+			dir->content = dir->content->next;
+			_free_content(content);
+		}
+		dir->name ? ft_memdel((void *)&dir->name) : 0;
+		ft_memdel((void *)&dir);
 	}
-	str ? ft_dprintf(1, "%s\n", str) : ft_dprintf(1, "ft_ls : unkown error\n");
-	str ? ft_strdel(&str) : 0 ;
+	_free_start(all);
+	all->files ? _free_files(all) : 0;
+	ft_memdel((void *)&all);
+}
+
+void		_failed(t_all *all, char *err)
+{
+	all ? _free_all(all) : 0;
+	ft_dprintf(1, "%s\n", err);
 	exit(_TROUBLE);
 }
 
-
-void	_invalid(t_struct *d, char c)
+void		_invalid(t_all *all, char op)
 {
-	if (d)
-	{
-		d->dir ? free_dir(d->dir) : 0;
-		free(d);
-	}
-	ft_dprintf(1, "ft_ls: invalid option -- '%c'\n", c);
-	exit(_TROUBLE);
+	_free_all(all);
+	ft_dprintf(1, "ft_ls: invalid option -- '%c'\n", op);
+	exit(_FAILURE);
 }
 
-void	parse_options(char *options, t_struct *d)
+void		_swap_nodes(t_start *frst, t_start *lst)
+{
+	void		*ptr;
+
+	ptr = (void *)frst->name;
+	frst->name = lst->name;
+	lst->name = (char *)ptr;
+	ptr = (void *)frst->st;
+	frst->st = lst->st;
+	lst->st = (struct stat *)ptr;
+}
+
+void		_link_dir(t_all *all, t_start *ptr)
+{
+	struct stat	*new;
+
+	if (!(new = (struct stat *)malloc(sizeof(struct stat))))
+		_failed(all, strerror(errno));
+	if (stat(ptr->name, new))
+	{
+		ft_memdel((void *)&new);
+		all->ret = _FAILURE;
+		perror("stat");
+	}
+	else if ((new->st_mode & S_IFMT) == S_IFDIR)
+	{
+		ft_memdel((void *)&ptr->st);
+		ptr->st = new;
+	}
+	else
+		ft_memdel((void *)&new);
+}
+
+void		_sort_start(t_all *all)
+{
+	t_start		*frst;
+	t_start		*lst;
+
+	frst = all->start_dir;
+	while(frst && !(all->options & _L))
+	{
+		(frst->st->st_mode & S_IFMT) == S_IFLNK ? _link_dir(all, frst) : 0;
+		frst = frst->next;
+	}
+	frst = all->start_dir;
+	while (frst)
+	{
+		lst = frst->next;
+		while (lst)
+		{
+			if (all->options & _T)
+			{
+				if (frst->st->st_mtime < lst->st->st_mtime)
+					_swap_nodes(frst, lst);
+				else if (frst->st->st_mtime == lst->st->st_mtime)
+					(_ls_cmp(frst->name, lst->name) > 0) ? _swap_nodes(frst, lst) : 0;
+			}
+			else if (_ls_cmp(frst->name, lst->name) > 0)
+				_swap_nodes(frst, lst);
+			lst = lst->next;
+		}
+		frst = frst->next;
+	}
+}
+
+void		_push_start_dir(t_all *all, t_start *new)
+{
+	t_start		*ptr;
+
+	ptr = all->start_dir;
+	if (!all->start_dir)
+		all->start_dir = new;
+	else
+	{
+		while (ptr->next)
+			ptr = ptr->next;
+		ptr->next = new;
+		new->prev = ptr;
+	}
+}
+
+int		_existing(t_all *all, t_start *new)
+{
+	if (!(new->st = (struct stat *)malloc(sizeof(struct stat))))
+	{
+		ft_memdel((void *)&new->name);
+		ft_memdel((void *)&new);
+		_failed(all, strerror(errno));
+	}
+	if (lstat(new->name, new->st))
+	{
+		ft_dprintf(1, "ft_ls: cannot access '%s': %s\n", new->name, strerror(errno));
+		ft_memdel((void *)&new->name);
+		ft_memdel((void *)&new->st);
+		ft_memdel((void *)&new);
+		all->ret = _FAILURE;
+		return (_FAILURE);
+	}
+	return (_SUCCESS);
+}
+
+void		start_dir(char *name, t_all *all)
+{
+	t_start		*new;
+	size_t		len;
+
+	if (!(new = (t_start *)ft_memalloc(sizeof(t_start))))
+		_failed(all, strerror(errno));
+	if (!(new->name = ft_strdup(name)))
+	{
+		ft_memdel((void *)&new);
+		_failed(all, strerror(errno));
+	}
+	if (_existing(all, new) == _SUCCESS)
+	{
+		_push_start_dir(all, new);
+		len = ft_strlen(new->name);
+		if (new->name[len - 1] == '/' && len > 1)
+			new->name[len - 1] = 0;
+	}
+}
+
+void		parse_options(char *str, t_all *all)
 {
 	int	i;
 
 	i = 1;
-	while (options[i])
+	while (str[i])
 	{
-		if (options[i] == 'l')
-			d->options |= _L;
-		else if (options[i] == 'R')
-			d->options |= R_R;
-		else if (options[i] == 'r')
-			d->options |= _R;
-		else if (options[i] == 'a')
-			d->options |= _A;
-		else if (options[i] == 't')
-			d->options |= _T;
-		else if (options[i] == 'U')
-			d->options |= _U;
+		if (str[i] == 'l')
+			all->options |= _L;
+		else if (str[i] == 'R')
+			all->options |= R_R;
+		else if (str[i] == 'r')
+			all->options |= _R;
+		else if (str[i] == 'a')
+			all->options |= _A;
+		else if (str[i] == 't')
+			all->options |= _T;
+		else if (str[i] == 'U')
+			all->options |= _U;
+		else if (str[i] == 'G')
+			all->options |= _G;
 		else
-			_invalid(d, options[i]);
+			_invalid(all, str[i]);
+		i++;
+	}
+	i == 1 ? start_dir(str, all) : 0;
+}
+
+void		_options(t_all *all, char **str, int l)
+{
+	int	i;
+
+	i = 0;
+	while (i < l)
+	{
+		str[i][0] == '-' ? parse_options(str[i], all) : start_dir(str[i], all);
 		i++;
 	}
 }
 
-void	parse_arg(int ac, char **av, t_struct *d)
+
+int		main(int ac, char **av)
 {
-	size_t		i;
-	int		curr_dir;
+	t_all	*all;
+	int	ret;
 
-	i = 0;
-	curr_dir = 1;
-	while (++i < ac)
-		av[i][0] == '-' && av[i][1] ? parse_options(av[i], d) : 0;
-	i = 0;
-	while (++i < ac)
-	{
-		if (av[i][0] != '-' || av[i][0] == '-' && !av[i][1])
-		{
-			read_dir(d, ft_strdup(av[i]));
-			curr_dir = 0;
-		}
-	}
-	curr_dir ? read_dir(d, ft_strdup(".")) : 0;
-}
-
-int	main(int ac, char **av)
-{
-	t_struct	*data;
-
-	data = NULL;
-	if (!(data = (t_struct *)ft_memalloc(sizeof(t_struct))))
-		_error(data, ft_strdup(strerror(errno)), _TROUBLE);
-	ac > 1 ? parse_arg(ac, av, data) : read_dir(data, ft_strdup("."));
-	print_ls(data);
-	_success(data);
-	return (_SUCCESS);
+	if (!(all = (t_all *)ft_memalloc(sizeof(t_all))))
+		_failed(NULL, strerror(errno));
+	all->ret = _SUCCESS;
+	ac > 1 ? _options(all, &av[1], ac - 1) : 0;
+	(all->start_dir) && !(all->options & _U) ? _sort_start(all) : 0;
+	!all->start_dir && all->ret == _SUCCESS ? start_dir(".", all) : 0;
+	(all->options & _U) ? all->options -= (all->options & _R) : 0;
+	_loop_dir(all);
+	_print_out(all);
+	ret = all->ret;
+	_free_all(all);
+	return (ret);
 }
