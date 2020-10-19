@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   start_end_words.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/15 20:31:55 by alzaynou          #+#    #+#             */
+/*   Updated: 2020/10/15 20:32:51 by alzaynou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-static	void	helper(int **tab, char *str, char *c)
+static void		helper(int **tab, char *str, char *c)
 {
 	size_t	i;
-	int	words;
-	int	len;
+	int		words;
+	int		len;
 
 	i = 0;
 	words = 1;
@@ -21,11 +33,11 @@ static	void	helper(int **tab, char *str, char *c)
 	}
 }
 
-int		**start_end_words(char *str, char *c)
+int				**start_end_words(char *str, char *c)
 {
-	size_t	i;
-	size_t	words;
-	int	**tab;
+	size_t		i;
+	size_t		words;
+	int			**tab;
 
 	i = 0;
 	words = count_words(str, c);

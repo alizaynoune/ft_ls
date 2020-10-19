@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 02:42:25 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/01/20 02:45:35 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/15 20:30:26 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int			count_words(char *str, char *c)
 {
 	size_t		i;
-	int		words;
+	int			words;
 	char		*chr;
 
 	i = 0;

@@ -1,15 +1,25 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/10/18 12:00:15 by alzaynou          #+#    #+#              #
+#    Updated: 2020/10/18 12:07:38 by alzaynou         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = ft_ls
-GCC = gcc -g
-INC =  includes/
-INC_L = ft_dprintf/includes
-P_LIB = ft_dprintf/
-P_SRC = src/
+GCC = gcc
+LIB = -lftdprintf
+P_LIB = ./ft_dprintf/
+INC_LIB = ./ft_dprintf/includes/
+INC = ./includes/
+P_SRC = ./src/
+
 SRC = main.c \
-      open_dir.c\
-      print.c	\
-      sort.c
-
-OBJ = $(addprefix $(P_SRC), $(SRC))
-
+	  error.c
+OBJ =  $(addprefix $(P_SRC), $(SRC))
 all:
-	$(GCC) $(OBJ) -L $(P_LIB) -lftdprintf -I $(INC) -I $(INC_L) -o $(NAME)
+	$(GCC) $(OBJ) -I $(INC) -I $(INC_LIB) -L $(P_LIB) $(LIB) -o $(NAME)

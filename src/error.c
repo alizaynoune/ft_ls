@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atol_all.c                                      :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/15 20:17:11 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/15 20:17:17 by alzaynou         ###   ########.fr       */
+/*   Created: 2020/10/18 11:53:05 by alzaynou          #+#    #+#             */
+/*   Updated: 2020/10/18 12:08:18 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_ls.h"
 
-long		ft_atol_all(char *str)
+int		error_ls(t_all *d, char *err)
 {
-	size_t	i;
-
-	i = ft_skip_char(str, "\t ");
-	str[i] == '-' || str[i] == '+' ? i += 1 : 0;
-	while (ft_isdigit(str[i]))
-		i++;
-	i += ft_skip_char(&str[i], "\t ");
-	if (str[i])
-		return (0);
-	return (ft_atol(str));
+	ft_dprintf(0, "%s\n", err);
+	free(d);
+	exit(_TROUBLE);
 }

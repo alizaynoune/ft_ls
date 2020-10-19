@@ -1,76 +1,90 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_dprintf.h                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/15 17:16:38 by alzaynou          #+#    #+#             */
+/*   Updated: 2020/10/16 17:51:24 by alzaynou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_DPRINTF_H
 # define FT_DPRINTF_H
 
 # include "libft.h"
 # include <stdarg.h>
 
-# define _c	1
-# define _s	2
-# define _p	4
-# define _di	8
-# define _o	16
-# define _u	32
-# define _x	64
-# define _X	128
-# define _MOD	256
-# define _b	512
+# define C_		1
+# define S_		2
+# define P_		4
+# define DI_	8
+# define O_		16
+# define U_		32
+# define X_		64
+# define X_X	128
+# define MOD_	256
+# define B_		512
 
-# define _h	1
-# define _hh	2
-# define _l	4
-# define _ll	8
+# define H_		1
+# define HH_	2
+# define L_		4
+# define LL_	8
 
-# define _left	1
-# define _hash	2
-# define _plus	4
-# define _zero	8
-# define _space	16
-# define _dot	32
+# define LEFT_	1
+# define HASH_	2
+# define PLUS_	4
+# define ZERO_	8
+# define SPACE_	16
+# define DOT_	32
 
 typedef struct			s_width_precision
 {
-	size_t			width;
-	size_t			precision;
-}				t_width_precision;
+	size_t				width;
+	size_t				precision;
+}						t_width_precision;
 
 typedef struct			s_data
 {
-	va_list			ap;
-	int			fd;
-	const char		*str;
-	size_t			len;
-	size_t			i;
-	int			ret;
-	int			flag;
-	short			specif;
-	short			length;
+	va_list				ap;
+	int					fd;
+	const char			*str;
+	size_t				len;
+	size_t				i;
+	int					ret;
+	int					flag;
+	short				specif;
+	short				length;
 	t_width_precision	wid_pre;
-}				t_data;
+}						t_data;
 
-int	ft_dprintf(int fd, const char *format, ...);
-void	get_arg(t_data *d);
-void	_flags(t_data *d);
-void	width_precision(t_data *d);
-void	_length(t_data *d);
-void	_specifier(t_data *d);
-void	_string(t_data *d, char *str);
-void	_char(t_data *d, int c);
-void	_octal(t_data *d);
-void	_binary(t_data *d);
-char	*_unsigned_str(t_data *d, unsigned long long int value);
-char	*_base_str(t_data *d, unsigned long long int v, char *s_, size_t base);
-void	_fix_len_decimal(t_data *d, char *str);
-void	_fix_len_octal(t_data *d, char *str);
-void	_fix_p(t_data *d, char **str);
-void	loop_char(t_data *d, char c, int loop);
-void	_put_hash(t_data *d);
-void	_put_str(t_data *d, char *str);
-void	_put_octal(t_data *d, char *str);
-void	_put_decimal(t_data *d, char *str);
-void	_put_decimal(t_data *d, char *str);
-void	_put_flag(t_data *d, char c);
-void	_put_hexa(t_data *d, char *str);
-void	_exit_error(t_data *d);
-void	reset_data(t_data *d);
-
+int						ft_dprintf(int fd, const char *format, ...);
+void					get_arg(t_data *d);
+void					flags_(t_data *d);
+void					width_precision(t_data *d);
+void					length_(t_data *d);
+void					specifier_(t_data *d);
+void					string_(t_data *d, char *str);
+void					char_(t_data *d, int c);
+void					octal_(t_data *d);
+void					binary_(t_data *d);
+char					*unsigned_str_(t_data *d, unsigned long long int value);
+char					*base_str_(t_data *d, unsigned long long int v,
+						char *s_, size_t base);
+void					fix_len_decimal_(t_data *d, char *str);
+void					fix_len_octal_(t_data *d, char *str);
+void					fix_p_(t_data *d, char **str);
+void					loop_char(t_data *d, char c, int loop);
+void					put_hash_(t_data *d);
+void					put_str_(t_data *d, char *str);
+void					put_octal_(t_data *d, char *str);
+void					put_decimal_(t_data *d, char *str);
+void					put_decimal_(t_data *d, char *str);
+void					put_flag_(t_data *d, char c);
+void					put_hexa_(t_data *d, char *str);
+void					exit_error_(t_data *d);
+void					reset_data(t_data *d);
+size_t					ato_unsint_(const char *str);
+int						ft_printf(const char *format, ...);
 #endif

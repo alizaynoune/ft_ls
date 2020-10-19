@@ -1,43 +1,55 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dprintf.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/15 17:59:29 by alzaynou          #+#    #+#             */
+/*   Updated: 2020/10/16 17:52:09 by alzaynou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_dprintf.h"
 
-void	_putformat(t_data *d)
+void		putformat_(t_data *d)
 {
 	ft_putchar_fd(d->str[d->i++], d->fd);
 	d->ret++;
 }
 
-void	_unkown(t_data *d)
+void		unkown_(t_data *d)
 {
 	write(d->fd, "%", 1);
-	(d->flag & _space) ? write(d->fd, " ", 1) : 0;
-	(d->flag & _space) ? d->ret += 2: d->ret++;
+	(d->flag & SPACE_) ? write(d->fd, " ", 1) : 0;
+	(d->flag & SPACE_) ? d->ret += 2 : d->ret++;
 }
 
-void	read_format(t_data *d)
+void		read_format(t_data *d)
 {
 	size_t	cp;
-	
+
 	cp = ++d->i;
 	if (d->str[d->i])
 	{
-		_flags(d);
+		flags_(d);
 		width_precision(d);
-		_length(d);
+		length_(d);
 		d->length ? cp = d->i : 0;
-		_specifier(d);
-		!(d->specif & _di) && !(d->specif & _p) ?\
-			(d->flag -= (d->flag & _plus)) : 0;
-		!(d->specif & _x) && !(d->specif & _X) && !(d->specif & _o) ?\
-			(d->flag -= (d->flag & _hash)) : 0;
-		(!(d->specif & _di) && !(d->specif & _p)) ||\
-			(d->flag & _plus) ? (d->flag -= (d->flag & _space)) : 0;
-		!d->specif && (d->i = cp) ? _unkown(d): get_arg(d);
+		specifier_(d);
+		!(d->specif & DI_) && !(d->specif & P_) ?\
+			(d->flag -= (d->flag & PLUS_)) : 0;
+		!(d->specif & X_) && !(d->specif & X_X) && !(d->specif & O_) ?\
+			(d->flag -= (d->flag & HASH_)) : 0;
+		(!(d->specif & DI_) && !(d->specif & P_)) ||\
+			(d->flag & PLUS_) ? (d->flag -= (d->flag & SPACE_)) : 0;
+		!d->specif && (d->i = cp) ? unkown_(d) : get_arg(d);
 	}
 	else
 		d->ret = -1;
 }
 
-int	ft_dprintf(int fd, const char *format, ...)
+int			ft_dprintf(int fd, const char *format, ...)
 {
 	t_data		*d;
 
@@ -48,7 +60,24 @@ int	ft_dprintf(int fd, const char *format, ...)
 	d->fd = fd;
 	va_start(d->ap, format);
 	while (d->str[d->i] && d->ret != -1)
-		d->str[d->i] == '%' ? read_format(d): _putformat(d);
+		d->str[d->i] == '%' ? read_format(d) : putformat_(d);
+	va_end(d->ap);
+	free(d);
+	return (d->ret);
+}
+
+int			ft_printf(const char *format, ...)
+{
+	t_data		*d;
+
+	if (!(d = (t_data *)ft_memalloc(sizeof(t_data))))
+		return (-1);
+	ft_bzero(&d->wid_pre, sizeof(t_width_precision));
+	d->str = format;
+	d->fd = 0;
+	va_start(d->ap, format);
+	while (d->str[d->i] && d->ret != -1)
+		d->str[d->i] == '%' ? read_format(d) : putformat_(d);
 	va_end(d->ap);
 	free(d);
 	return (d->ret);

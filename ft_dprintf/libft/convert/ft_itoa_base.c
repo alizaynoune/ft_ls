@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/15 20:28:12 by alzaynou          #+#    #+#             */
+/*   Updated: 2020/10/15 20:29:44 by alzaynou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-int	len_value(int value, int base)
+int		len_value(int value, int base)
 {
-	int	len;
+	int		len;
 
 	len = value < 0 && base == 10 ? 1 : 0;
 	value = value < 0 ? -value : value;
@@ -16,7 +28,7 @@ int	len_value(int value, int base)
 
 char	*get_sum(char *sum, int len, int value, int base)
 {
-	int	sign;
+	int		sign;
 
 	sign = value < 0 && base == 10 ? 1 : 0;
 	value = value < 0 ? -value : value;
@@ -35,7 +47,7 @@ char	*get_sum(char *sum, int len, int value, int base)
 char	*ft_itoa_base(int value, int base)
 {
 	char	*sum;
-	int	len;
+	int		len;
 
 	if (base >= 2 && base <= 16)
 	{

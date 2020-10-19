@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_ls.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/17 16:45:13 by alzaynou          #+#    #+#             */
+/*   Updated: 2020/10/18 12:25:43 by alzaynou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_LS_H
 # define FT_LS_H
 
@@ -11,89 +23,94 @@
 # include <sys/ioctl.h>
 # include <grp.h>
 
-# define _SUCCESS	(1)
-# define _FAILURE	(2)
-# define _TROUBLE	(3)
+/*
+ ** return
+ */
 
-# define _L		(1)
-# define R_R		(2)
-# define _R		(4)
-# define _A		(8)
-# define _T		(16)
-# define _U		(32)
-# define _G		(64)
+# define _SUCCESS	0
+# define _FAILURE	1
+# define _TROUBLE	2
 
-# define X_		(1)
-# define W_		(2)
-# define R_		(4)
+/*
+ ** flags
+ */
 
-# define LINK_		(0)
-# define OWNER_		(1)
-# define GROUP_		(2)
-# define SIZE_		(3)
-# define NAME_		(4)
+# define _L			1
+# define _R_		2
+# define _R			4
+# define _A			8
+# define _T			16
+# define _G			32
+# define _U			64
+# define _S			128
+# define _NO_SORT	256
 
 
-# define C_BLK		("")
-# define C_CHR		("\e[1;33m")
-# define C_DIR		("\e[1;34m")
-# define C_FIFO		("\e[1;90m")
-# define C_LNK		("\e[1;96m")
-# define C_SOCK		("\e[1;35m")
-# define C_EXE		("\e[1;32m")
-# define C_DEF		("\e[1;0m")
-# define C_ERROR	("\e[1;31m")
+/*
+ * index in tab lens
+ * */
+# define _LINK		0
+# define _OWNER		1
+# define _GROUP		2
+# define _SIZE		3
+# define _NAME		4
 
-typedef struct			s_content
+/*
+ ** colors
+ */
+
+# define C_BLK		""
+# define C_CHR		"\e[1;33m"
+# define C_DIR		"\e[1;34m"
+# define C_FIFO		"\e[1;90m"
+# define C_LNK		"\e[1;96m"
+# define C_SOCK		"\e[1;35m"
+# define C_EXE		"\e[1;32m"
+# define C_DEF		"\e[1;0m"
+# define C_ERROR	"\e[1;32m"
+
+
+/*
+ * struct
+ */
+
+typedef struct			s_waiting
 {
-	char			*path;
-	char			*name;
-	struct stat		*st;
-	char			*owner;
-	char			*group;
-	struct s_content	*prev;
-	struct s_content	*next;
-}				t_content;
+	//char				*name;
+	char				*path;
+	struct dirent		*dirent;
+	struct s_waiting	*next;
+}						t_waiting;
 
-typedef struct		s_dir
+typedef struct			s_files
 {
-	t_content	*content;
-	char		*name;
-	unsigned long long total;
-	struct s_dir	*next;
-	struct s_dir	*prev;
-	size_t		len[5];
-	t_content	*lst_content;
-}			t_dir;
+	//struct dirent		*dirent;
+	struct stat			*stat;
+	struct s_files		*next;
+//	struct s_files		*prev;
+}						t_files;
 
-typedef struct		s_start
+typedef struct			s_dir
 {
-	char		*name;
-	struct stat	*st;
-	struct s_start	*next;
-	struct s_start	*prev;
-}			t_start;
+	char				*path;
+	struct dirent		*dirent;
+	t_files				*l_files;
+}						t_dir;
 
-typedef struct		s_all
+typedef struct			s_all
 {
-	int		options;
-	int		ret;
-	t_dir		*dir;
-	t_dir		*files;
-	t_dir		*lst_files;
-	t_start		*start_dir;
-	t_dir		*lst_dir;
-	t_dir		*curr;
-}			t_all;
+	int					ret;
+	int					options;
+	t_waiting			*head_waiting;
+//	t_waiting			*lst_waiting;
+	t_dir				*l_dir;
+}						t_all;
+
+
+int						error_ls(t_all *d, char *err);
 
 
 
 
 
-void		_loop_dir(t_all *all);
-void		_failed(t_all *all, char *err);
-void		_free_content(t_content *content);
-void		_print_out(t_all *all);
-int		_ls_cmp(const char *s1, const char *s2);
-
-# endif
+#endif

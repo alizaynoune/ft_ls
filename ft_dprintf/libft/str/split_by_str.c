@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   split_by_str.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/16 16:26:53 by alzaynou          #+#    #+#             */
+/*   Updated: 2020/10/16 16:33:23 by alzaynou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 static void	copy_words(char **tab, char *str, int **l_w)
@@ -15,7 +27,7 @@ static void	copy_words(char **tab, char *str, int **l_w)
 
 char		**ft_split_by_str(char *str, char *c)
 {
-	char		**tab;
+	char	**tab;
 	int		n_words;
 	int		**l_w;
 	int		i;
