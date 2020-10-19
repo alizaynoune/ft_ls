@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 16:45:13 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/18 12:25:43 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/19 19:42:19 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define _U			64
 # define _S			128
 # define _NO_SORT	256
-
+# define _OPTIONS	"lRratGUSh"
 
 /*
  * index in tab lens
@@ -85,7 +85,8 @@ typedef struct			s_waiting
 typedef struct			s_files
 {
 	//struct dirent		*dirent;
-	struct stat			*stat;
+	struct stat			*st;
+	struct stat			*l_st;
 	struct s_files		*next;
 //	struct s_files		*prev;
 }						t_files;
@@ -101,6 +102,7 @@ typedef struct			s_all
 {
 	int					ret;
 	int					options;
+	t_files				*arg_file;
 	t_waiting			*head_waiting;
 //	t_waiting			*lst_waiting;
 	t_dir				*l_dir;

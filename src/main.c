@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:28:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/18 14:31:33 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/19 19:51:34 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 void		usage_ls(t_all *d, char c, char *str)
 {
 	if (str)
-		ft_dprintf(0, "ls : illegal option -- %s\n", str);
+		ft_dprintf(0, "ft_ls : illegal option %s\n", str);
 	else if (c)
-		ft_dprintf(0, "ls : illegal option -- %c\n", c);
-	ft_dprintf(0, "usage: ls [-larRt --no-sort] [file ...]\n");
+		ft_dprintf(0, "ft_ls : illegal option -- %c\n", c);
+	ft_dprintf(0, "usage: ./ft_ls [-%s --no-sort] [file ...]\n", _OPTIONS);
 	free(d); // dont forget free all data (^_^);
 	exit(_FAILURE);
 }
 
 void		help_ls(t_all *d)
 {
-	ft_dprintf(0, "ls :[options] [file ...]\n");
-	ft_dprintf(0, "\toptions => -larRt --no-sort\n");
+	ft_dprintf(0, "./ft_ls :[options] [file ...]\n");
+	ft_dprintf(0, "\toptions => -%s --no-sort\n", _OPTIONS);
 	ft_dprintf(0, "\t-l : list in long format\n");
 	ft_dprintf(0, "\t-a : include directory or file enties whoes %s",
 			"names begin whit a dot (.)\n");
@@ -41,6 +41,8 @@ void		help_ls(t_all *d)
 
 int			pars_word_option(char *flag, t_all *d)
 {
+	if (!(ft_strcmp(flag, "--")))
+		return (_SUCCESS);
 	if (!(ft_strcmp(flag, "--no-sort")))
 		d->options |= _NO_SORT;
 	else if (!(ft_strcmp(flag, "--help")))
@@ -52,20 +54,75 @@ int			pars_word_option(char *flag, t_all *d)
 
 int			pars_char_option(char c, t_all *d)
 {
-	if (c == 'h')
-		help_ls(d);
+	if (!(ft_strchr(_OPTIONS, c)))
+		return (_FAILURE);
+	(c == 'h') ? help_ls(d) : 0;
+	(c == 'l') ? d->options |= _L : 0;
+	(c == 'a') ? d->options |= _A : 0;
+	(c == 'r') ? d->options |= _R : 0;
+	(c == 'R') ? d->options |= _R_ : 0;
+	(c == 't') ? d->options |= _T : 0;
+	(c == 'G') ? d->options |= _G : 0;
+	(c == 'U') ? d->options |= _U : 0;
+	(c == 'S') ? d->options |= _S : 0;
 	return (_SUCCESS);
 }
 
 void		parsing_option(char *flag, t_all *d)
 {
 	int		i;
+	int		loop;
 
 	i = 1;
-	if (flag[i] == '-' && (pars_word_option(flag, d) == _SUCCESS))
-		return ;
-	while (flag[i])
-		(pars_char_option(flag[i], d)) == _SUCCESS ? i++ : error_ls(d, flag);
+	loop = _SUCCESS;
+	if (flag[i] == '-')
+	{
+		loop = pars_word_option(flag, d);
+		(loop == _FAILURE) ? usage_ls(d, 0, flag) : 0;
+	}
+	else
+	{
+		while (flag[i])
+		(pars_char_option(flag[i], d)) == _SUCCESS ? i++ : usage_ls(d, flag[i], NULL);
+	}
+}
+
+int			stat_file(t_all *d, char *f, struct stat *st)
+{
+	if ((lstat(f, st)) == -1)
+	{
+		perror(f);
+		return (_FAILURE);
+	}
+	return (_SUCCESS);
+}
+
+int			lstat_file(t_all *d, char *f, struct stat *l_st)
+{
+	if ((lstat(f, l_st)) == -1)
+	{
+		perror(f);
+		return (_FAILURE);
+	}
+	return (_SUCCESS);
+}
+
+void		parsing_files(t_all *d, char *f)
+{
+	struct stat		*st;
+
+	if (!(st = (struct stat *)ft_memalloc(sizeof(struct stat))))
+		error_ls(d, strerror(errno));
+	if ((stat_file(d, f, st)) == _SUCCESS)
+	{
+		if (((st->st_mode & S_IFMT) & S_IFDIR))
+			ft_dprintf(0, "d==>");
+		else if (((st->st_mode & S_IFMT) & S_IFLNK))
+			ft_dprintf(0, "L===>");
+		ft_dprintf(0, "%s\n", f);
+	}
+	else
+		free(st);
 }
 
 void		parsing_arg(int ac, char **av, t_all *d)
@@ -74,7 +131,7 @@ void		parsing_arg(int ac, char **av, t_all *d)
 
 	i = -1;
 	while (++i < ac)
-		(av[i][0] == '-') ? parsing_option(av[i], d) : 0;
+		(av[i][0] == '-') ? parsing_option(av[i], d) : parsing_files(d, av[i]);
 }
 
 int			main(int ac, char **av)
@@ -83,7 +140,7 @@ int			main(int ac, char **av)
 	t_all	*d;
 
 	ret = _SUCCESS;
-	if (!(d = ft_memalloc(sizeof(t_all))))
+	if (!(d = (t_all *)ft_memalloc(sizeof(t_all))))
 		error_ls(NULL, strerror(errno));
 	if (ac > 1)
 		parsing_arg(ac - 1, &av[1], d);
