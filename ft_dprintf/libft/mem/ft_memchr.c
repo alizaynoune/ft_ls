@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 13:24:16 by alzaynou          #+#    #+#             */
-/*   Updated: 2019/12/26 19:09:15 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/15 20:06:09 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	fnd = 0;
 	while (fnd < n)
 	{
-		if (((U_CHAR *)s)[fnd] != (U_CHAR)c)
+		if (((t_char *)s)[fnd] != (t_char)c)
 			fnd++;
 		else
-			return (&((U_CHAR *)s)[fnd]);
+			return (&((t_char *)s)[fnd]);
 	}
 	return (NULL);
 }

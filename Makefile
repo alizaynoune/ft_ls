@@ -12,4 +12,4 @@ SRC = main.c \
 OBJ = $(addprefix $(P_SRC), $(SRC))
 
 all:
-	$(GCC) $(OBJ) -L $(P_LIB) -lftdprintf -I $(INC) -I $(INC_L) -o $(NAME)
+	$(GCC) $(OBJ) -L $(P_LIB) -lftprintf -I $(INC) -I $(INC_L) -o $(NAME)

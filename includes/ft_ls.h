@@ -11,9 +11,9 @@
 # include <sys/ioctl.h>
 # include <grp.h>
 
-# define _SUCCESS	(1)
-# define _FAILURE	(2)
-# define _TROUBLE	(3)
+# define _SUCCESS	(0)
+# define _FAILURE	(1)
+# define _TROUBLE	(2)
 
 # define _L		(1)
 # define R_R		(2)
@@ -23,7 +23,7 @@
 # define _U		(32)
 # define _G		(64)
 
-# define X_		(1)
+# define _X_		(1)
 # define W_		(2)
 # define R_		(4)
 

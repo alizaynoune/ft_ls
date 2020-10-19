@@ -1,37 +1,47 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   helper_args.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/10/15 18:13:43 by alzaynou          #+#    #+#             */
+/*   Updated: 2020/10/15 18:13:48 by alzaynou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_dprintf.h"
 
-void	_octal(t_data *d)
+void	octal_(t_data *d)
 {
-	char	*s_;
+	char	*str;
 
-	s_ = "01234567";
-	!(d->length) ? _put_octal(d,\
-			_base_str(d, va_arg(d->ap, unsigned int), s_, 8)) : 0;
-	(d->length & _l) ? _put_octal(d, _base_str(d,\
-				va_arg(d->ap, unsigned long int), s_, 8)) : 0;
-	(d->length & _ll) ? _put_octal(d, _base_str(d,\
-			va_arg(d->ap, unsigned long long int), s_, 8)) : 0;
-	(d->length & _h) ? _put_octal(d, _base_str(d,\
-		(unsigned short int)(va_arg(d->ap, unsigned int)), s_, 8)) : 0;
-	(d->length & _hh) ? _put_octal(d, _base_str(d,\
-		(unsigned char)(va_arg(d->ap, unsigned int)), s_, 8)) : 0;
+	str = "01234567";
+	!(d->length) ? put_octal_(d,\
+			base_str_(d, va_arg(d->ap, unsigned int), str, 8)) : 0;
+	(d->length & L_) ? put_octal_(d, base_str_(d,\
+				va_arg(d->ap, unsigned long int), str, 8)) : 0;
+	(d->length & LL_) ? put_octal_(d, base_str_(d,\
+			va_arg(d->ap, unsigned long long int), str, 8)) : 0;
+	(d->length & H_) ? put_octal_(d, base_str_(d,\
+		(unsigned short int)(va_arg(d->ap, unsigned int)), str, 8)) : 0;
+	(d->length & HH_) ? put_octal_(d, base_str_(d,\
+		(unsigned char)(va_arg(d->ap, unsigned int)), str, 8)) : 0;
 }
 
-void	_binary(t_data *d)
+void	binary_(t_data *d)
 {
-	char	*s_;
+	char	*str;
 
-	s_ = "01";
-	!(d->length) ? _put_decimal(d, _base_str(d,\
-				va_arg(d->ap, unsigned int), s_, 2)) : 0;
-	(d->length & _l) ? _put_decimal(d, _base_str(d,\
-				va_arg(d->ap, unsigned long int), s_, 2)) : 0;
-	(d->length & _ll) ? _put_decimal(d, _base_str(d, va_arg(d->ap,\
-					unsigned long long int), s_, 2)) : 0;
-	(d->length & _h) ? _put_decimal(d, _base_str(d,\
-		(unsigned short int)(va_arg(d->ap, unsigned int)), s_, 2)) : 0;
-	(d->length & _hh) ? _put_decimal(d, _base_str(d,\
-		(unsigned char)(va_arg(d->ap, unsigned int)), s_, 2)) : 0;
+	str = "01";
+	!(d->length) ? put_decimal_(d, base_str_(d,\
+				va_arg(d->ap, unsigned int), str, 2)) : 0;
+	(d->length & L_) ? put_decimal_(d, base_str_(d,\
+				va_arg(d->ap, unsigned long int), str, 2)) : 0;
+	(d->length & LL_) ? put_decimal_(d, base_str_(d, va_arg(d->ap,\
+					unsigned long long int), str, 2)) : 0;
+	(d->length & H_) ? put_decimal_(d, base_str_(d,\
+		(unsigned short int)(va_arg(d->ap, unsigned int)), str, 2)) : 0;
+	(d->length & HH_) ? put_decimal_(d, base_str_(d,\
+		(unsigned char)(va_arg(d->ap, unsigned int)), str, 2)) : 0;
 }
-
-

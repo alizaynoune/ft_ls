@@ -5,7 +5,7 @@ flag1=("0" "+" "-" "#" "N")
 flag2=("0" "+" "-" "#" "S" "N")
 dot=("." "0")
 length=("0" "l" "ll" "h" "hh")
-gcc main.c -L ../ -lftdprintf -I ../includes -o dprintf
+gcc main.c -L ../ -lftprintf -I ../includes -o dprintf
 echo "" >error
 if [ "$specifier" == "" ]
 then
@@ -69,12 +69,12 @@ do
 							line2=$(tail -1 diff)
 							if [ "$line" != "$line2" ]
 							then
-								echo -e "\e[31m \"test %${f2}${f1}${preci}${dot_}${wid}${preci}${len}${specif}\" "$nb"  [KO]\e[0m"
+								echo "\e[31m \"test %${f2}${f1}${preci}${dot_}${wid}${preci}${len}${specif}\" "$nb"  [KO]\x1B[0m"
 								echo "\"test %${f2}${f1}${preci}${dot_}${wid}${preci}${len}${specif} end\" "$nb"" >> error
 								echo "   your out :[$line]" >>error
 								echo "   sys out  :[$line2]" >>error
 							else
-								echo -e "\e[32m \"test %${f2}${f1}${preci}${dot_}${wid}${preci}${len}${specif} end\" "$nb"  [OK]\e[0m"
+								echo "\e[32m \"test %${f2}${f1}${preci}${dot_}${wid}${preci}${len}${specif} end\" "$nb"  [OK]\x1B[0m"
 							fi
 #							sleep 0.05
 						done
@@ -93,6 +93,6 @@ done
 err=$(cat error | grep "sys" | wc -l)
 if [ $err != 0 ]
 then
-	echo -e "\n\e[31m you have $err error\n\e[32mfor more ditail \"cat file error\"\e[0m\n"
+	echo "\n\x1B[31m you have $err error\n\x1B[32mfor more ditail \"cat file error\"\x1B[0m\n"
 fi
 rm -f diff

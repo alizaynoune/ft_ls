@@ -34,11 +34,11 @@ void		_print_mod(unsigned int mode)
 		(perm & R_) ? ft_dprintf(1, "r") : ft_dprintf(1, "-");
 		(perm & W_) ? ft_dprintf(1, "w") : ft_dprintf(1, "-");
 		if (sheft || (!sheft && !(mode & S_ISVTX)))
-			(perm & X_) ? ft_dprintf(1, "x") : ft_dprintf(1, "-");
+			(perm & _X_) ? ft_dprintf(1, "x") : ft_dprintf(1, "-");
 		sheft--;
 	}
 	if ((mode & S_ISVTX))
-		((mode & S_IFMT) == S_IFREG) && !(perm & X_) ? ft_dprintf(1, "T") : ft_dprintf(1, "t");
+		((mode & S_IFMT) == S_IFREG) && !(perm & _X_) ? ft_dprintf(1, "T") : ft_dprintf(1, "t");
 }
 
 void		_print_date(t_all *all, time_t date)

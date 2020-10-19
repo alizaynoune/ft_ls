@@ -1,4 +1,5 @@
-NAME =			libftdprintf.a
+#NAME =			libftdprintf.a
+NAME =			libftprintf.a
 GCC = 			gcc -g -Wall -Werror -Wextra -c
 OBJS = 			objs/
 
@@ -122,7 +123,7 @@ DPRINTF = 		dprintf.c				\
 	  		get_args.c				\
 	  		helper_args.c				\
 	  		convert_args.c				\
-	  		_put.c					\
+	  		put.c					\
 	  		helper_put.c				\
 	  		tools.c		
 
@@ -147,13 +148,13 @@ OBJ_ALL := $(LIB_OBJ) $(addprefix $(OBJS), $(DPRINTF:.c=.o))
 #*** colors
 #*
 
-DEF = 		\e[1;0m
-RED = 		\e[1;31m
-PURPLE =	\e[1;34m
-BLUE = 		\e[1;96m
-GREEN = 	\e[1;32m
-SILVER = 	\e[1;90m
-YELLOW = 	\e[1;33m
+DEF = 		\x1B[1;0m
+RED = 		\x1B[1;31m
+PURPLE =	\x1B[1;34m
+BLUE = 		\x1B[1;96m
+GREEN = 	\x1B[1;32m
+SILVER = 	\x1B[1;90m
+YELLOW = 	\x1B[1;33m
 
 #*
 #*** functions
@@ -207,16 +208,16 @@ $(OBJS)%.o: $(PATH_LIBFT_PUT)%.c $(LIB_INC)
 	@$(call compile,$<, $@)
 
 $(OBJS)%.o: $(PATH_LIBFT_STR)%.c $(LIB_INC)
-	$(call compile,$<, $@)
+	@$(call compile,$<, $@)
 
 $(OBJS)%.o: $(PATH_LIBFT_FREE)%.c $(LIB_INC)
-	$(call compile, $<, $@)
+	@$(call compile, $<, $@)
 
 $(OBJS)%.o: $(PATH_LIBFT_SRCH)%.c $(LIB_INC)
-	$(call compile, $<, $@)
+	@$(call compile, $<, $@)
 
 $(OBJS)%.o: $(PATH_DPRINTF)%.c $(DPRINTF_INC)
-	$(call compile,$<, $@)
+	@$(call compile,$<, $@)
 
 clean:
 	@rm -rf $(OBJS)

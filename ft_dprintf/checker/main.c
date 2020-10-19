@@ -25,6 +25,6 @@ int	main(int ac, char **av)
 		prec = atoll(av[2]);
 		str = av[3];
 		dprintf(fd, "[ret %d]\n",ft_dprintf(fd, str, prec, av[3]));
-		dprintf(fd, "[ret %d]\n",dprintf(fd, str, pre, av[3]));
+		dprintf(fd, "[ret %d]\n",dprintf(fd, str, prec, av[3]));
 	}
 }

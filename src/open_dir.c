@@ -31,7 +31,7 @@ void		_sort_content_time(t_all *all, t_content *new)
 	{
 		if (ptr->st->st_mtime <= new->st->st_mtime)
 		{
-			if ((ptr->st->st_mtime == new->st->st_mtime) && (_ls_cmp(ptr->name, new->name)) <= 0)
+			if ((ptr->st->st_mtime == new->st->st_mtime) && (ft_strcmp(ptr->name, new->name)) <= 0)
 			{
 				(ptr->next) ? ptr->next->prev = new : 0;
 				new->next = ptr->next;
@@ -72,7 +72,7 @@ void		_sort_content_alpha(t_all *all, t_content *new)
 	}
 	while (ptr)
 	{
-		if (_ls_cmp(ptr->name, new->name) >= 0)
+		if (ft_strcmp(ptr->name, new->name) >= 0)
 		{
 			(ptr->prev) ? ptr->prev->next = new : 0;
 			new->prev = ptr->prev;
@@ -287,8 +287,8 @@ void		_loop_dir(t_all *all)
 		content = all->lst_dir->content;
 		while (content)
 		{
-			((content->st->st_mode & S_IFMT) == S_IFDIR) && (_ls_cmp(content->name, "."))
-				&& (_ls_cmp(content->name, "..")) ? _open_dir(all, content->path) : 0;
+			((content->st->st_mode & S_IFMT) == S_IFDIR) && (ft_strcmp(content->name, "."))
+				&& (ft_strcmp(content->name, "..")) ? _open_dir(all, content->path) : 0;
 			content = content->next;
 		}
 	}

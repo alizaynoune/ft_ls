@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/03 11:29:04 by alzaynou          #+#    #+#             */
-/*   Updated: 2019/12/26 19:18:46 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/15 19:54:39 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	U_INT cnt;
+	t_int cnt;
 
 	cnt = 0;
 	if (s && f)

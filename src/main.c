@@ -130,9 +130,9 @@ void		_sort_start(t_all *all)
 				if (frst->st->st_mtime < lst->st->st_mtime)
 					_swap_nodes(frst, lst);
 				else if (frst->st->st_mtime == lst->st->st_mtime)
-					(_ls_cmp(frst->name, lst->name) > 0) ? _swap_nodes(frst, lst) : 0;
+					(ft_strcmp(frst->name, lst->name) > 0) ? _swap_nodes(frst, lst) : 0;
 			}
-			else if (_ls_cmp(frst->name, lst->name) > 0)
+			else if (ft_strcmp(frst->name, lst->name) > 0)
 				_swap_nodes(frst, lst);
 			lst = lst->next;
 		}
