@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:28:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/19 19:51:34 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/20 19:33:10 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void		parsing_option(char *flag, t_all *d)
 	}
 }
 
-int			stat_file(t_all *d, char *f, struct stat *st)
+int			stat_file(char *f, struct stat *st)
 {
 	if ((lstat(f, st)) == -1)
 	{
@@ -97,7 +97,7 @@ int			stat_file(t_all *d, char *f, struct stat *st)
 	return (_SUCCESS);
 }
 
-int			lstat_file(t_all *d, char *f, struct stat *l_st)
+int			lstat_file(char *f, struct stat *l_st)
 {
 	if ((lstat(f, l_st)) == -1)
 	{
@@ -110,15 +110,29 @@ int			lstat_file(t_all *d, char *f, struct stat *l_st)
 void		parsing_files(t_all *d, char *f)
 {
 	struct stat		*st;
+	struct stat		*l_st;
+	DIR				*test;
 
 	if (!(st = (struct stat *)ft_memalloc(sizeof(struct stat))))
 		error_ls(d, strerror(errno));
-	if ((stat_file(d, f, st)) == _SUCCESS)
+	if ((stat_file(f, st)) == _SUCCESS)
 	{
-		if (((st->st_mode & S_IFMT) & S_IFDIR))
-			ft_dprintf(0, "d==>");
-		else if (((st->st_mode & S_IFMT) & S_IFLNK))
-			ft_dprintf(0, "L===>");
+		if (((st->st_mode & S_IFMT) == S_IFDIR))
+			ft_dprintf(0, "d==>");// push to dir list
+		else if (((st->st_mode & S_IFMT) == S_IFLNK))
+		{
+			if (!(l_st = (struct stat *) ft_memalloc(sizeof(struct stat))))
+				error_ls(d, strerror(errno));
+			if ((lstat_file(f, l_st) == _FAILURE))
+				free(l_st);
+			else
+			{
+				if ((test = opendir(f)))
+					ft_dprintf(0, "open  ");
+				ft_dprintf(0, "l==>"); // if dir push to dir list else push to file list
+			}
+			// dont forget the name of file (^_^)
+		}
 		ft_dprintf(0, "%s\n", f);
 	}
 	else

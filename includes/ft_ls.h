@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 16:45:13 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/19 19:42:19 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/20 19:43:02 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@
 
 typedef struct			s_waiting
 {
-	//char				*name;
+	char				*name;
 	char				*path;
-	struct dirent		*dirent;
+	//struct dirent		*dirent;
 	struct s_waiting	*next;
 }						t_waiting;
 
