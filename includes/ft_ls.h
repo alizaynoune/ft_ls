@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 16:45:13 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/20 19:43:02 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/21 19:40:49 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,16 @@ typedef struct			s_waiting
 {
 	char				*name;
 	char				*path;
+	struct stat			*st;
+	struct stat			*l_st;
 	//struct dirent		*dirent;
 	struct s_waiting	*next;
 }						t_waiting;
 
 typedef struct			s_files
 {
-	//struct dirent		*dirent;
+	char				*name;
+	struct dirent		*dirent;
 	struct stat			*st;
 	struct stat			*l_st;
 	struct s_files		*next;
@@ -103,15 +106,15 @@ typedef struct			s_all
 	int					ret;
 	int					options;
 	t_files				*arg_file;
+	t_files				*files;
 	t_waiting			*head_waiting;
 //	t_waiting			*lst_waiting;
-	t_dir				*l_dir;
+//	t_dir				*dir;
 }						t_all;
 
 
 int						error_ls(t_all *d, char *err);
-
-
+void					free_files(t_files *lst);
 
 
 

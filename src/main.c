@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:28:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/21 16:34:58 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/21 19:47:26 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,21 +87,23 @@ void		parsing_option(char *flag, t_all *d)
 	}
 }
 
-int			stat_file(char *f, struct stat *st)
+int			stat_file(t_all *d, char *f, struct stat *st)
 {
-	if ((lstat(f, st)) == -1)
+	if ((stat(f, st)) == -1)
 	{
 		perror(f);
+		d->ret = _FAILURE;
 		return (_FAILURE);
 	}
 	return (_SUCCESS);
 }
 
-int			lstat_file(char *f, struct stat *l_st)
+int			lstat_file(t_all *d, char *f, struct stat *l_st)
 {
 	if ((lstat(f, l_st)) == -1)
 	{
 		perror(f);
+		d->ret = _FAILURE;
 		return (_FAILURE);
 	}
 	return (_SUCCESS);
@@ -109,34 +111,43 @@ int			lstat_file(char *f, struct stat *l_st)
 
 void		parsing_files(t_all *d, char *f)
 {
-	struct stat		*st;
-	struct stat		*l_st;
-	DIR				*test;
+	t_files			*file;
 
-	if (!(st = (struct stat *)ft_memalloc(sizeof(struct stat))))
+	if (!(file = (t_files *)ft_memalloc(sizeof(t_files))))
 		error_ls(d, strerror(errno));
-	if ((stat_file(f, st)) == _SUCCESS)
+	if (!(file->l_st = (struct stat *)ft_memalloc(sizeof(struct stat))))
 	{
-		if (((st->st_mode & S_IFMT) == S_IFDIR))
-			ft_dprintf(0, "d==>");// push to dir list
-		else if (((st->st_mode & S_IFMT) == S_IFLNK))
+		free(file);
+		error_ls(d, strerror(errno));
+	}
+	if ((lstat_file(d, f, file->l_st)) == _SUCCESS)
+	{
+		if (((file->l_st->st_mode & S_IFMT) == S_IFDIR))
+			ft_printf("d---%s\n", f); // push to arg_files;
+		else if (((file->l_st->st_mode & S_IFMT) == S_IFLNK))
 		{
-			if (!(l_st = (struct stat *) ft_memalloc(sizeof(struct stat))))
+			if (!(file->st = (struct stat *) ft_memalloc(sizeof(struct stat))))
+			{
+				free_files(file);
 				error_ls(d, strerror(errno));
-			if ((lstat_file(f, l_st) == _FAILURE))
-				free(l_st);
+			}
+			if ((stat_file(d, f, file->st) == _FAILURE))
+				ft_voidfree((void *)&file->st);
 			else
 			{
-				if ((test = opendir(f)))
-					ft_dprintf(0, "open  ");
-				ft_dprintf(0, "l==> "); // if dir push to dir list else push to file list
+				if ((file->st->st_mode & S_IFMT) == S_IFDIR)
+					ft_printf("ld---%s\n", f);
+				else
+					ft_printf("l--%s\n", f);
 			}
-			// dont forget the name of file (^_^)
+			if (!file->st)
+				ft_printf("done2\n");
 		}
-		ft_dprintf(0, "%s\n", f);
+		else
+			ft_printf("?---%s\n", f);
 	}
 	else
-		free(st);
+		free_files(file);
 }
 
 void		parsing_arg(int ac, char **av, t_all *d)
@@ -158,6 +169,7 @@ int			main(int ac, char **av)
 		error_ls(NULL, strerror(errno));
 	if (ac > 1)
 		parsing_arg(ac - 1, &av[1], d);
+	ret = d->ret;
 	free(d);//
 	return (ret);
 }

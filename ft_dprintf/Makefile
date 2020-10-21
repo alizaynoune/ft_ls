@@ -6,7 +6,7 @@
 #    By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/17 13:12:14 by alzaynou          #+#    #+#              #
-#    Updated: 2020/10/17 13:19:55 by alzaynou         ###   ########.fr        #
+#    Updated: 2020/10/21 19:42:49 by alzaynou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -127,7 +127,8 @@ LIBFT_STR = 		ft_strcat.c				\
 
 LIBFT_FREE = 		free_rev.c				\
 					free_tab_char.c			\
-					ft_strdel.c
+					ft_strdel.c				\
+					ft_voidfree.c
 
 DPRINTF = 			dprintf.c				\
 					specifier.c				\

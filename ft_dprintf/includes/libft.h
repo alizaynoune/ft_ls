@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 14:42:11 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/15 20:14:03 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/21 19:42:16 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,5 +178,6 @@ char					*ft_nstrjoin(size_t n, ...);
 void					ft_free_rev(void **tab, int len);
 void					ft_free_tab_char(char **tab);
 void					ft_strdel(char **as);
+void					ft_voidfree(void **ptr);
 
 #endif
