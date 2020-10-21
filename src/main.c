@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:28:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/20 19:33:10 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/21 16:34:58 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void		parsing_files(t_all *d, char *f)
 			{
 				if ((test = opendir(f)))
 					ft_dprintf(0, "open  ");
-				ft_dprintf(0, "l==>"); // if dir push to dir list else push to file list
+				ft_dprintf(0, "l==> "); // if dir push to dir list else push to file list
 			}
 			// dont forget the name of file (^_^)
 		}
