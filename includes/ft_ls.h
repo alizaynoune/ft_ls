@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 16:45:13 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/21 19:40:49 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/22 19:34:25 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,9 @@ typedef struct			s_all
 	int					ret;
 	int					options;
 	t_files				*arg_file;
+	t_files				*l_arg_file;
 	t_files				*files;
+	t_files				*l_files;
 	t_waiting			*head_waiting;
 //	t_waiting			*lst_waiting;
 //	t_dir				*dir;
@@ -115,7 +117,7 @@ typedef struct			s_all
 
 int						error_ls(t_all *d, char *err);
 void					free_files(t_files *lst);
-
+void					free_all(t_all *d);
 
 
 #endif

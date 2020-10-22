@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:28:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/21 19:47:26 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/22 19:32:54 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,22 +109,33 @@ int			lstat_file(t_all *d, char *f, struct stat *l_st)
 	return (_SUCCESS);
 }
 
+t_files		*init_files(t_all *d, char *name)
+{
+	t_files		*new;
+
+	if (!(new = (t_files *)ft_memalloc(sizeof(t_files))))
+		error_ls(d, strerror(errno));
+	if (!(new->l_st = (struct stat *)ft_memalloc(sizeof(struct stat))))
+	{
+		free(new);
+		error_ls(d, strerror(errno));
+	}
+	if (!(new->name = ft_strdup(name)))
+	{
+		free_files(new);
+		error_ls(d, strerror(errno));
+	}
+	return (new);
+}
+
 void		parsing_files(t_all *d, char *f)
 {
 	t_files			*file;
 
-	if (!(file = (t_files *)ft_memalloc(sizeof(t_files))))
-		error_ls(d, strerror(errno));
-	if (!(file->l_st = (struct stat *)ft_memalloc(sizeof(struct stat))))
-	{
-		free(file);
-		error_ls(d, strerror(errno));
-	}
+	file = init_files(d, f);
 	if ((lstat_file(d, f, file->l_st)) == _SUCCESS)
 	{
-		if (((file->l_st->st_mode & S_IFMT) == S_IFDIR))
-			ft_printf("d---%s\n", f); // push to arg_files;
-		else if (((file->l_st->st_mode & S_IFMT) == S_IFLNK))
+		if (((file->l_st->st_mode & S_IFMT) == S_IFLNK))
 		{
 			if (!(file->st = (struct stat *) ft_memalloc(sizeof(struct stat))))
 			{
@@ -133,18 +144,8 @@ void		parsing_files(t_all *d, char *f)
 			}
 			if ((stat_file(d, f, file->st) == _FAILURE))
 				ft_voidfree((void *)&file->st);
-			else
-			{
-				if ((file->st->st_mode & S_IFMT) == S_IFDIR)
-					ft_printf("ld---%s\n", f);
-				else
-					ft_printf("l--%s\n", f);
-			}
-			if (!file->st)
-				ft_printf("done2\n");
 		}
-		else
-			ft_printf("?---%s\n", f);
+//		push_files(file);
 	}
 	else
 		free_files(file);
@@ -156,7 +157,10 @@ void		parsing_arg(int ac, char **av, t_all *d)
 
 	i = -1;
 	while (++i < ac)
-		(av[i][0] == '-') ? parsing_option(av[i], d) : parsing_files(d, av[i]);
+		(av[i][0] == '-') ? parsing_option(av[i], d) : 0;
+	i = -1;
+	while (++i < ac)
+	(av[i][0] != '-') ?  parsing_files(d, av[i]) : 0;
 }
 
 int			main(int ac, char **av)
@@ -170,6 +174,6 @@ int			main(int ac, char **av)
 	if (ac > 1)
 		parsing_arg(ac - 1, &av[1], d);
 	ret = d->ret;
-	free(d);//
+	free_all(d);
 	return (ret);
 }
