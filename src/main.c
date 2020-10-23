@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:28:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/22 19:32:54 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/23 19:44:14 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,11 @@ int			pars_char_option(char c, t_all *d)
 void		parsing_option(char *flag, t_all *d)
 {
 	int		i;
-	int		loop;
 
 	i = 1;
-	loop = _SUCCESS;
 	if (flag[i] == '-')
 	{
-		loop = pars_word_option(flag, d);
-		(loop == _FAILURE) ? usage_ls(d, 0, flag) : 0;
+		((pars_word_option(flag, d)  == _FAILURE)) ? usage_ls(d, 0, flag) : 0;
 	}
 	else
 	{
@@ -145,7 +142,7 @@ void		parsing_files(t_all *d, char *f)
 			if ((stat_file(d, f, file->st) == _FAILURE))
 				ft_voidfree((void *)&file->st);
 		}
-//		push_files(file);
+		push_files(d, file, &d->arg_file, &d->l_arg_file);
 	}
 	else
 		free_files(file);

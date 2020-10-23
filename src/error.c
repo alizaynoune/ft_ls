@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 11:53:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/22 16:50:45 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/23 16:53:30 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void		free_files(t_files *lst)
 	{
 		tmp = lst;
 		lst = lst->next;
+		ft_printf("%s\n", tmp->name);
 		(tmp->name) ? free(tmp->name) : 0;
 		(tmp->dirent) ? free(tmp->dirent) : 0;
 		(tmp->st) ? free(tmp->st) : 0;
@@ -46,6 +47,7 @@ void		free_waiting(t_waiting *lst)
 
 void		free_all(t_all *d)
 {
+	(d->arg_file) ? free_files(d->arg_file) : 0;
 	(d->files) ? free_files(d->files) : 0;
 	(d->head_waiting) ? free_waiting(d->head_waiting) : 0;
 	free(d);
@@ -54,6 +56,7 @@ void		free_all(t_all *d)
 int			error_ls(t_all *d,  char *err)
 {
 	ft_dprintf(0, "%s\n", err);
+	(d->arg_file) ? free_files(d->arg_file) : 0;
 	(d->files) ? free_files(d->files) : 0;
 	(d->head_waiting) ? free_waiting(d->head_waiting) : 0;
 	free(d);

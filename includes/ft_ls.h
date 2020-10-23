@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 16:45:13 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/22 19:34:25 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/23 19:44:23 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ typedef struct			s_files
 	struct stat			*st;
 	struct stat			*l_st;
 	struct s_files		*next;
-//	struct s_files		*prev;
+	struct s_files		*prev;
 }						t_files;
 
 typedef struct			s_dir
@@ -118,6 +118,6 @@ typedef struct			s_all
 int						error_ls(t_all *d, char *err);
 void					free_files(t_files *lst);
 void					free_all(t_all *d);
-
+void					push_files(t_all *d, t_files *f, t_files **lst, t_files **l_lst);
 
 #endif
