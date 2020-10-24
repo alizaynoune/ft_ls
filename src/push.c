@@ -78,16 +78,44 @@ t_files		*cmp_mtime(t_files *f, t_files *lst)
 	return (NULL);
 }
 
+t_files     *cmp_size(t_files *f, t_files *lst)
+{
+    t_files     *tmp;
+
+    tmp = lst;
+    while (tmp)
+    {
+        if (f->l_st->st_size > tmp->l_st->st_size)
+            return (tmp);
+        tmp = tmp->next;
+    }
+    return (NULL);
+}
+
+t_files     *cmp_ctime(t_files *f, t_files *lst)
+{
+    t_files     *tmp;
+
+    tmp = lst;
+    while (tmp)
+    {
+        if (f->l_st->st_ctime > tmp->l_st->st_ctime)
+            return (tmp);
+        tmp = tmp->next;
+    }
+    return (NULL);
+}
+
 t_files		*get_position(t_all *d, t_files *f, t_files *lst)
 {
 	if ((d->options & _T))
 		return (cmp_mtime(f, lst));
-/*	else if ((d->options & _U))
+	else if ((d->options & _U))
 		return (cmp_ctime(f, lst));
 	else if ((d->options & _S))
 		return (cmp_size(f, lst));
 	 else
-*/		 return (cmp_ascii(f, lst));
+		 return (cmp_ascii(f, lst));
 }
 
 void		push_sort(t_all *d, t_files *f, t_files **lst, t_files **l_lst)
