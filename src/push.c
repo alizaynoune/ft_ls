@@ -12,42 +12,11 @@
 
 #include "ft_ls.h"
 
-void		push_to_head(t_files *f, t_files **lst, t_files **l_lst)
-{
-	if (!*lst)
-	{
-		*lst = f;
-		*l_lst = f;
-	}
-	else
-	{
-		f->next = *lst;
-		(*lst)->prev = f;
-		*lst = f;
-	}
-}
-
 void		push_to_tail(t_files *f, t_files **l_lst)
 {
 	(*l_lst)->next = f;
 	f->prev = *l_lst;
 	*l_lst = f;
-}
-
-int			cmp_head(t_all *d, t_files *f, t_files *head)
-{
-	int		ret;
-
-	ret = 0;
-	if (d->options & _T)
-		ret = (f->l_st->st_mtime > head->l_st->st_mtime) ? -1 : 0;
-	else if (d->options & _U)
-	   ret = (f->l_st->st_ctime > head->l_st->st_ctime) ? -1 : 0;
-	else if (d->options & _S)
-		ret = (f->l_st->st_size > head->l_st->st_size) ? -1 : 0;
-	else
-		ret = (ft_strcmp(f->name, head->name));
-	return (ret);
 }
 
 t_files		*cmp_ascii(t_files *f, t_files *lst)
@@ -73,6 +42,11 @@ t_files		*cmp_mtime(t_files *f, t_files *lst)
 	{
 		if (f->l_st->st_mtime > tmp->l_st->st_mtime)
 			return (tmp);
+        else if (f->l_st->st_mtime == tmp->l_st->st_mtime)
+        {
+            if (ft_strcmp(f->name, tmp->name) < 0)
+                return (tmp);
+        }
 		tmp = tmp->next;
 	}
 	return (NULL);
@@ -87,6 +61,11 @@ t_files     *cmp_size(t_files *f, t_files *lst)
     {
         if (f->l_st->st_size > tmp->l_st->st_size)
             return (tmp);
+        else if (f->l_st->st_size == tmp->l_st->st_size)
+        {
+            if (ft_strcmp(f->name, tmp->name) < 0)
+                return (tmp);
+        }
         tmp = tmp->next;
     }
     return (NULL);
@@ -101,6 +80,11 @@ t_files     *cmp_ctime(t_files *f, t_files *lst)
     {
         if (f->l_st->st_ctime > tmp->l_st->st_ctime)
             return (tmp);
+        else if (f->l_st->st_ctime == tmp->l_st->st_ctime)
+        {
+            if (ft_strcmp(f->name, tmp->name) < 0)
+                return (tmp);
+        }
         tmp = tmp->next;
     }
     return (NULL);
@@ -123,14 +107,12 @@ void		push_sort(t_all *d, t_files *f, t_files **lst, t_files **l_lst)
 	t_files		*tmp;
 	t_files		*prev;
 	
-	if (!*lst)
-		push_to_head(f, lst, l_lst);
-	else if (cmp_head(d, f, *lst) < 0)
-		push_to_head(f, lst, l_lst);
-	else if ((tmp = get_position(d, f, *lst)))
-	{
+
+    if ((tmp = get_position(d, f, *lst)))
+    {
 		prev = tmp->prev;
-		prev->next = f;
+		(prev) ? prev->next = f : 0;
+        (!prev) ? *lst = f : 0;
 		f->prev = prev;
 		f->next = tmp;
 		tmp->prev = f;
@@ -141,7 +123,12 @@ void		push_sort(t_all *d, t_files *f, t_files **lst, t_files **l_lst)
 
 void		push_files(t_all *d, t_files *f, t_files **lst, t_files **l_lst)
 {
-	if ((d->options & _NO_SORT))
+    if (!*lst)
+    {
+		*lst = f;
+		*l_lst = f;
+    }
+    else if ((d->options & _NO_SORT))
 		push_to_tail(f, l_lst);
 	else
 		push_sort(d, f, lst, l_lst);

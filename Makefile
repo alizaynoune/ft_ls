@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = ft_ls
-GCC = gcc
+GCC = gcc -Wall -Werror -Wextra
 LIB = -lftdprintf
 P_LIB = ./ft_dprintf/
 INC_LIB = ./ft_dprintf/includes/
