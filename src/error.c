@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 11:53:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/23 16:53:30 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/25 19:18:55 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void		free_files(t_files *lst)
 	{
 		tmp = lst;
 		lst = lst->next;
-		ft_printf("%s\n", tmp->name);
 		(tmp->name) ? free(tmp->name) : 0;
 		(tmp->dirent) ? free(tmp->dirent) : 0;
 		(tmp->st) ? free(tmp->st) : 0;

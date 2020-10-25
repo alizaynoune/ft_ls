@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 16:45:13 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/23 19:44:23 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/25 20:16:27 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@
 # define _G			32
 # define _U			64
 # define _S			128
-# define _NO_SORT	256
-# define _OPTIONS	"lRratGUSh"
+# define _F			256
+
+# define _MAX_		10
 
 /*
  * index in tab lens
@@ -73,6 +74,14 @@
 /*
  * struct
  */
+
+typedef struct			s_op
+{
+	char				c;
+	char				*str;
+	char				*desc;
+	int					valu;
+}						t_op;
 
 typedef struct			s_waiting
 {
@@ -114,10 +123,11 @@ typedef struct			s_all
 //	t_dir				*dir;
 }						t_all;
 
+extern t_op				g_op[];
 
 int						error_ls(t_all *d, char *err);
 void					free_files(t_files *lst);
 void					free_all(t_all *d);
 void					push_files(t_all *d, t_files *f, t_files **lst, t_files **l_lst);
-
+void					print_files(t_all *d, t_files *f);
 #endif

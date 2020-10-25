@@ -6,11 +6,25 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:28:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/23 19:44:14 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/25 20:16:23 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+t_op	g_op[_MAX_] =
+{
+	{'l', "--long", "list in long format", _L},
+	{'R', "--Recursuvely", "Recursuvely list", _R_},
+	{'r', "--reverse", "reverse list", _R},
+	{'a', "--all", "include dir/files whose name begin with a dot (.)", _A},
+	{'t', "--sort_mtime", "sort by time modifies", _T},
+	{'G', "--color", "enable colorzed output", _G},
+	{'u', "--sort_atime", "sort by time last access", _U},
+	{'S', "--sort_size", "sort by size", _S},
+	{'f', "--no_sort", "output is no sorted", _F},
+	{0, 0, 0, 0}
+};
 
 void		usage_ls(t_all *d, char c, char *str)
 {
@@ -18,54 +32,61 @@ void		usage_ls(t_all *d, char c, char *str)
 		ft_dprintf(0, "ft_ls : illegal option %s\n", str);
 	else if (c)
 		ft_dprintf(0, "ft_ls : illegal option -- %c\n", c);
-	ft_dprintf(0, "usage: ./ft_ls [-%s --no-sort] [file ...]\n", _OPTIONS);
-	free(d); // dont forget free all data (^_^);
+	ft_dprintf(0, "try ft_ls -h or ft_ls --help\n");
+	free_all(d);
 	exit(_FAILURE);
 }
 
 void		help_ls(t_all *d)
 {
+	int		i;
+
+	i = -1;
 	ft_dprintf(0, "./ft_ls :[options] [file ...]\n");
-	ft_dprintf(0, "\toptions => -%s --no-sort\n", _OPTIONS);
-	ft_dprintf(0, "\t-l : list in long format\n");
-	ft_dprintf(0, "\t-a : include directory or file enties whoes %s",
-			"names begin whit a dot (.)\n");
-	ft_dprintf(0, "\t-r : reverse the order listing\n");
-	ft_dprintf(0, "\t-R : recursively list subdirectories encountered\n");
-	ft_dprintf(0, "\t-t : sort by time modified\n");
-	ft_dprintf(0, "\t-G : colorize the output\n");
-	ft_dprintf(0, "\t--no-sort : do not sort\n");
-	free(d); ///dont forget free all data (^_^)
+	while (++i < _MAX_ - 1)
+		ft_printf("\t%c\t%-13s\t:%s\n", g_op[i].c, g_op[i].str, g_op[i].desc);
+	free_all(d);
 	exit(_SUCCESS);
 }
 
 int			pars_word_option(char *flag, t_all *d)
 {
+	int		i;
+
+	i = -1;
 	if (!(ft_strcmp(flag, "--")))
 		return (_SUCCESS);
-	if (!(ft_strcmp(flag, "--no-sort")))
-		d->options |= _NO_SORT;
 	else if (!(ft_strcmp(flag, "--help")))
 		help_ls(d);
 	else
-		return (_FAILURE);
-	return (_SUCCESS);
+	{
+		while (++i < _MAX_ - 1)
+		{
+			if (!(ft_strcmp(flag, g_op[i].str)))
+			{
+				d->options |= g_op[i].valu;
+				return (_SUCCESS);
+			}
+		}
+	}
+	return (_FAILURE);
 }
 
 int			pars_char_option(char c, t_all *d)
 {
-	if (!(ft_strchr(_OPTIONS, c)))
-		return (_FAILURE);
+	int			i;
+
+	i = -1;
 	(c == 'h') ? help_ls(d) : 0;
-	(c == 'l') ? d->options |= _L : 0;
-	(c == 'a') ? d->options |= _A : 0;
-	(c == 'r') ? d->options |= _R : 0;
-	(c == 'R') ? d->options |= _R_ : 0;
-	(c == 't') ? d->options |= _T : 0;
-	(c == 'G') ? d->options |= _G : 0;
-	(c == 'U') ? d->options |= _U : 0;
-	(c == 'S') ? d->options |= _S : 0;
-	return (_SUCCESS);
+	while (++i < _MAX_ - 1)
+	{
+		if (c == g_op[i].c)
+		{
+			d->options |= g_op[i].valu;
+			return (_SUCCESS);
+		}
+	}
+	return (_FAILURE);
 }
 
 void		parsing_option(char *flag, t_all *d)
@@ -148,6 +169,28 @@ void		parsing_files(t_all *d, char *f)
 		free_files(file);
 }
 
+void		parsing_dir(t_all *d)
+{
+	t_files		*tmp;
+
+	tmp = ((d->options & _R)) ?  d->l_arg_file : d->arg_file;
+	while (tmp)
+	{
+		if (!(d->options & _L) && ((tmp->l_st->st_mode & S_IFMT) == S_IFLNK))
+		{
+			if (((tmp->st->st_mode & S_IFMT) == S_IFDIR))
+				ft_printf("dd  %s\n", tmp->name);
+			else
+				print_files(d, tmp);
+		}
+		else if (((tmp->l_st->st_mode & S_IFMT) == S_IFDIR))
+			ft_printf("dd %s\n", tmp->name);
+		else
+			print_files(d, tmp);
+		tmp = ((d->options & _R)) ? tmp->prev : tmp->next;
+	}
+}
+
 void		parsing_arg(int ac, char **av, t_all *d)
 {
 	int		i;
@@ -158,6 +201,8 @@ void		parsing_arg(int ac, char **av, t_all *d)
 	i = -1;
 	while (++i < ac)
 	(av[i][0] != '-') ?  parsing_files(d, av[i]) : 0;
+	if (d->arg_file)
+		parsing_dir(d);
 }
 
 int			main(int ac, char **av)

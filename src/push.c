@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 16:58:04 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/23 19:44:18 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/25 19:08:12 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,16 +71,16 @@ t_files     *cmp_size(t_files *f, t_files *lst)
     return (NULL);
 }
 
-t_files     *cmp_ctime(t_files *f, t_files *lst)
+t_files     *cmp_atime(t_files *f, t_files *lst)
 {
     t_files     *tmp;
 
     tmp = lst;
     while (tmp)
     {
-        if (f->l_st->st_ctime > tmp->l_st->st_ctime)
+        if (f->l_st->st_atime > tmp->l_st->st_atime)
             return (tmp);
-        else if (f->l_st->st_ctime == tmp->l_st->st_ctime)
+        else if (f->l_st->st_atime == tmp->l_st->st_atime)
         {
             if (ft_strcmp(f->name, tmp->name) < 0)
                 return (tmp);
@@ -95,7 +95,7 @@ t_files		*get_position(t_all *d, t_files *f, t_files *lst)
 	if ((d->options & _T))
 		return (cmp_mtime(f, lst));
 	else if ((d->options & _U))
-		return (cmp_ctime(f, lst));
+		return (cmp_atime(f, lst));
 	else if ((d->options & _S))
 		return (cmp_size(f, lst));
 	 else
@@ -128,7 +128,7 @@ void		push_files(t_all *d, t_files *f, t_files **lst, t_files **l_lst)
 		*lst = f;
 		*l_lst = f;
     }
-    else if ((d->options & _NO_SORT))
+    else if ((d->options & _F))
 		push_to_tail(f, l_lst);
 	else
 		push_sort(d, f, lst, l_lst);
