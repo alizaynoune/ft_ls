@@ -146,7 +146,7 @@ t_files		*init_files(t_all *d, char *name)
 	return (new);
 }
 
-void		parsing_files(t_all *d, char *f)
+void		parsing_files(t_all *d, char *f, t_files **lst, t_files **l_lst)
 {
 	t_files			*file;
 
@@ -163,7 +163,7 @@ void		parsing_files(t_all *d, char *f)
 			if ((stat_file(d, f, file->st) == _FAILURE))
 				ft_voidfree((void *)&file->st);
 		}
-		push_files(d, file, &d->arg_file, &d->l_arg_file);
+		push_files(d, file, lst, l_lst);
 	}
 	else
 		free_files(file);
@@ -191,7 +191,7 @@ void		parsing_dir(t_all *d)
             push_waiting(d, tmp);
         }
 		else
-			print_files(d, tmp);
+			print_files(d, tmp);// remove et;
 		tmp = ((d->options & _R)) ? tmp->prev : tmp->next;
 	}
 }
@@ -205,12 +205,12 @@ void		parsing_arg(int ac, char **av, t_all *d)
 		(av[i][0] == '-') ? parsing_option(av[i], d) : 0;
 	i = -1;
 	while (++i < ac)
-	(av[i][0] != '-') ?  parsing_files(d, av[i]) : 0;
+	(av[i][0] != '-') ?  parsing_files(d, av[i], &d->arg_file, &d->l_arg_file) : 0;
 }
 
 void        start_curr(t_all *d)
 {
-    parsing_files(d, ".");
+    parsing_files(d, ".", &d->arg_file, &d->l_arg_file);
     parsing_dir(d);
 }
 
@@ -225,6 +225,7 @@ int			main(int ac, char **av)
 	if (ac > 1)
 		parsing_arg(ac - 1, &av[1], d);
 	(d->arg_file) ? parsing_dir(d) : start_curr(d);
+    (d->head_waiting) ? loop_dir(d) : 0;
     ret = d->ret;
 	free_all(d);
 	return (ret);

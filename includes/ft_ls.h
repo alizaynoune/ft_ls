@@ -86,17 +86,14 @@ typedef struct			s_op
 typedef struct			s_waiting
 {
 	char				*name;
-//	char				*path;
 	struct stat			*st;
 	struct stat			*l_st;
-	//struct dirent		*dirent;
 	struct s_waiting	*next;
 }						t_waiting;
 
 typedef struct			s_files
 {
 	char				*name;
-//	struct dirent		*dirent;
 	struct stat			*st;
 	struct stat			*l_st;
 	struct s_files		*next;
@@ -120,7 +117,7 @@ typedef struct			s_all
 	t_files				*l_files;
 	t_waiting			*head_waiting;
 	t_waiting			*lst_waiting;
-//	t_dir				*dir;
+    t_dir               *dir;
 }						t_all;
 
 extern t_op				g_op[];
@@ -131,5 +128,6 @@ void					free_all(t_all *d);
 void					push_files(t_all *d, t_files *f, t_files **lst, t_files **l_lst);
 void					print_files(t_all *d, t_files *f);
 void                    push_waiting(t_all *d, t_files *f);
+void                    loop_dir(t_all *d);
 
 #endif

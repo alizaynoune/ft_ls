@@ -60,4 +60,3 @@ int			error_ls(t_all *d,  char *err)
 	exit(_TROUBLE);
 }
 
-

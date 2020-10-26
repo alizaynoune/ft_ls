@@ -22,7 +22,8 @@ SRC = main.c \
 	  error.c\
 	  push.c\
 	  print.c\
-      push_dir.c
+      push_dir.c\
+	  open_dir.c
 OBJ =  $(addprefix $(P_SRC), $(SRC))
 all:
 	$(GCC) $(OBJ) -I $(INC) -I $(INC_LIB) -L $(P_LIB) $(LIB) -o $(NAME)

@@ -180,19 +180,19 @@ YELLOW = 	\x1B[1;33m
 define compile
 @mkdir -p $(OBJS)
 @$(GCC) $1 -o $2 -I $(PATH_INC)
-@echo "$(SILVER)[$(PURPLE)Object file$(BLUE) $(notdir $2)$(SILVER)] $(GREEN)Created.$(DEF)"
+@printf "$(SILVER)[$(PURPLE)Object file$(BLUE) $(notdir $2)$(SILVER)] $(GREEN)Created.$(DEF)\n"
 endef
 
 define to_lib
 @ar rc $1 $2
 @ranlib $1
-@echo "$(SILVER)[$(PURPLE)Library file$(YELLOW) $(notdir $1)$(SILVER)] $(GREEN)Created.$(DEF)"
+@printf "$(SILVER)[$(PURPLE)Library file$(YELLOW) $(notdir $1)$(SILVER)] $(GREEN)Created.$(DEF)\n"
 
 endef
 
 define remove_lib
 @rm -f $1
-@echo "$(SILVER)[$(PURPLE)library file$(YELLOW)$1$(SILVER)] $(RED)deleted.$(DEF)"
+@printf "$(SILVER)[$(PURPLE)library file$(YELLOW)$1$(SILVER)] $(RED)deleted.$(DEF)\n"
 endef
 
 #*
@@ -239,7 +239,7 @@ $(OBJS)%.o: $(PATH_DPRINTF)%.c $(DPRINTF_INC)
 
 clean:
 	@rm -rf $(OBJS)
-	@echo "$(SILVER)[$(PURPLE)Path objects$(DEF) $(OBJS)$(SILVER)] $(RED)Deleted.$(DEF)"
+	@printf "$(SILVER)[$(PURPLE)Path objects$(DEF) $(OBJS)$(SILVER)] $(RED)Deleted.$(DEF)\n"
 
 fclean: clean
 	@$(call remove_lib, $(NAME))
