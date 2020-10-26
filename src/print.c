@@ -23,7 +23,7 @@ void		print_files(t_all *d, t_files *f)
 		// print size
 		// print time
 		ft_printf("%s  lllll\n", f->name);
-		// if is link print name of stat file
+        // if is link print name of stat file
 	}
 	else
 		ft_printf("%s\n", f->name);

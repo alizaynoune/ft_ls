@@ -21,7 +21,6 @@ void		free_files(t_files *lst)
 		tmp = lst;
 		lst = lst->next;
 		(tmp->name) ? free(tmp->name) : 0;
-		(tmp->dirent) ? free(tmp->dirent) : 0;
 		(tmp->st) ? free(tmp->st) : 0;
 		(tmp->l_st) ? free(tmp->l_st) : 0;
 		free(tmp);
@@ -37,7 +36,6 @@ void		free_waiting(t_waiting *lst)
 		tmp = lst;
 		lst = lst->next;
 		(tmp->name) ? free(tmp->name) : 0;
-		(tmp->path) ? free(tmp->path) : 0;
 		(tmp->st) ? free(tmp->st) : 0;
 		(tmp->l_st) ? free(tmp->l_st) : 0;
 		free(tmp);

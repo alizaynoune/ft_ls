@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = ft_ls
-GCC = gcc -Wall -Werror -Wextra
+GCC = gcc #-Wall -Werror -Wextra
 LIB = -lftdprintf
 P_LIB = ./ft_dprintf/
 INC_LIB = ./ft_dprintf/includes/
@@ -21,7 +21,8 @@ P_SRC = ./src/
 SRC = main.c \
 	  error.c\
 	  push.c\
-	  print.c
+	  print.c\
+      push_dir.c
 OBJ =  $(addprefix $(P_SRC), $(SRC))
 all:
 	$(GCC) $(OBJ) -I $(INC) -I $(INC_LIB) -L $(P_LIB) $(LIB) -o $(NAME)

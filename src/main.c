@@ -172,6 +172,7 @@ void		parsing_files(t_all *d, char *f)
 void		parsing_dir(t_all *d)
 {
 	t_files		*tmp;
+    size_t      len;
 
 	tmp = ((d->options & _R)) ?  d->l_arg_file : d->arg_file;
 	while (tmp)
@@ -179,12 +180,16 @@ void		parsing_dir(t_all *d)
 		if (!(d->options & _L) && ((tmp->l_st->st_mode & S_IFMT) == S_IFLNK))
 		{
 			if (((tmp->st->st_mode & S_IFMT) == S_IFDIR))
-				ft_printf("dd  %s\n", tmp->name);
+				push_waiting(d, &*tmp);
 			else
 				print_files(d, tmp);
 		}
 		else if (((tmp->l_st->st_mode & S_IFMT) == S_IFDIR))
-			ft_printf("dd %s\n", tmp->name);
+        {
+            len = ft_strlen(tmp->name);
+            (tmp->name[len - 1] == '/') ? tmp->name[len - 1] = 0 : 0;
+            push_waiting(d, tmp);
+        }
 		else
 			print_files(d, tmp);
 		tmp = ((d->options & _R)) ? tmp->prev : tmp->next;
@@ -201,8 +206,12 @@ void		parsing_arg(int ac, char **av, t_all *d)
 	i = -1;
 	while (++i < ac)
 	(av[i][0] != '-') ?  parsing_files(d, av[i]) : 0;
-	if (d->arg_file)
-		parsing_dir(d);
+}
+
+void        start_curr(t_all *d)
+{
+    parsing_files(d, ".");
+    parsing_dir(d);
 }
 
 int			main(int ac, char **av)
@@ -215,7 +224,8 @@ int			main(int ac, char **av)
 		error_ls(NULL, strerror(errno));
 	if (ac > 1)
 		parsing_arg(ac - 1, &av[1], d);
-	ret = d->ret;
+	(d->arg_file) ? parsing_dir(d) : start_curr(d);
+    ret = d->ret;
 	free_all(d);
 	return (ret);
 }
