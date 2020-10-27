@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 16:58:04 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/25 19:08:12 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/26 23:28:11 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,20 @@ t_files		*cmp_ascii(t_files *f, t_files *lst)
 	return (NULL);
 }
 
-t_files		*cmp_mtime(t_files *f, t_files *lst)
+t_files		*cmp_mtime(int options, t_files *f, t_files *lst)
 {
 	t_files		*tmp;
+	struct stat	*t_st;
+	struct stat	*f_st;
 
 	tmp = lst;
+	f_st =  f->st;
 	while (tmp)
 	{
-		if (f->l_st->st_mtime > tmp->l_st->st_mtime)
+		t_st =  tmp->st;
+		if (f_st->st_mtime > t_st->st_mtime)
 			return (tmp);
-        else if (f->l_st->st_mtime == tmp->l_st->st_mtime)
+        else if (f_st->st_mtime == t_st->st_mtime)
         {
             if (ft_strcmp(f->name, tmp->name) < 0)
                 return (tmp);
@@ -59,9 +63,9 @@ t_files     *cmp_size(t_files *f, t_files *lst)
     tmp = lst;
     while (tmp)
     {
-        if (f->l_st->st_size > tmp->l_st->st_size)
+        if (f->st->st_size > tmp->st->st_size)
             return (tmp);
-        else if (f->l_st->st_size == tmp->l_st->st_size)
+        else if (f->st->st_size == tmp->st->st_size)
         {
             if (ft_strcmp(f->name, tmp->name) < 0)
                 return (tmp);
@@ -78,9 +82,9 @@ t_files     *cmp_atime(t_files *f, t_files *lst)
     tmp = lst;
     while (tmp)
     {
-        if (f->l_st->st_atime > tmp->l_st->st_atime)
+        if (f->st->st_atime > tmp->st->st_atime)
             return (tmp);
-        else if (f->l_st->st_atime == tmp->l_st->st_atime)
+        else if (f->st->st_atime == tmp->st->st_atime)
         {
             if (ft_strcmp(f->name, tmp->name) < 0)
                 return (tmp);
@@ -93,7 +97,7 @@ t_files     *cmp_atime(t_files *f, t_files *lst)
 t_files		*get_position(t_all *d, t_files *f, t_files *lst)
 {
 	if ((d->options & _T))
-		return (cmp_mtime(f, lst));
+		return (cmp_mtime(d->options, f, lst));
 	else if ((d->options & _U))
 		return (cmp_atime(f, lst));
 	else if ((d->options & _S))

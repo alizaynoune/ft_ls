@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 16:45:13 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/25 20:16:27 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/27 03:47:48 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,16 +86,16 @@ typedef struct			s_op
 typedef struct			s_waiting
 {
 	char				*name;
+	char				*full_name;
 	struct stat			*st;
-	struct stat			*l_st;
 	struct s_waiting	*next;
 }						t_waiting;
 
 typedef struct			s_files
 {
 	char				*name;
+	char				*path;
 	struct stat			*st;
-	struct stat			*l_st;
 	struct s_files		*next;
 	struct s_files		*prev;
 }						t_files;
@@ -105,6 +105,7 @@ typedef struct			s_dir
 	char				*path;
 	struct dirent		*dirent;
 	t_files				*l_files;
+	t_files				*h_files;
 }						t_dir;
 
 typedef struct			s_all
@@ -129,5 +130,12 @@ void					push_files(t_all *d, t_files *f, t_files **lst, t_files **l_lst);
 void					print_files(t_all *d, t_files *f);
 void                    push_waiting(t_all *d, t_files *f);
 void                    loop_dir(t_all *d);
+void					parsing_files(t_all *d, char *f, t_files **lst, t_files **l_lst);
+int						lstat_file(t_all *d, char *f, struct stat *st);
+int						stat_file(t_all *d, char *f, struct stat *st);
+t_files					*init_files(t_all *d, char *name);
+void					free_dir(t_dir *dir);
+void					loop_print_files(t_all *d, t_files *lst, t_waiting *curr);
+t_waiting				*init_waiting(t_all *d, t_files *f, char **name);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:28:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/25 20:16:23 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/27 02:35:06 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,9 +116,9 @@ int			stat_file(t_all *d, char *f, struct stat *st)
 	return (_SUCCESS);
 }
 
-int			lstat_file(t_all *d, char *f, struct stat *l_st)
+int			lstat_file(t_all *d, char *f, struct stat *st)
 {
-	if ((lstat(f, l_st)) == -1)
+	if ((lstat(f, st)) == -1)
 	{
 		perror(f);
 		d->ret = _FAILURE;
@@ -133,7 +133,7 @@ t_files		*init_files(t_all *d, char *name)
 
 	if (!(new = (t_files *)ft_memalloc(sizeof(t_files))))
 		error_ls(d, strerror(errno));
-	if (!(new->l_st = (struct stat *)ft_memalloc(sizeof(struct stat))))
+	if (!(new->st = (struct stat *)ft_memalloc(sizeof(struct stat))))
 	{
 		free(new);
 		error_ls(d, strerror(errno));
@@ -151,20 +151,10 @@ void		parsing_files(t_all *d, char *f, t_files **lst, t_files **l_lst)
 	t_files			*file;
 
 	file = init_files(d, f);
-	if ((lstat_file(d, f, file->l_st)) == _SUCCESS)
-	{
-		if (((file->l_st->st_mode & S_IFMT) == S_IFLNK))
-		{
-			if (!(file->st = (struct stat *) ft_memalloc(sizeof(struct stat))))
-			{
-				free_files(file);
-				error_ls(d, strerror(errno));
-			}
-			if ((stat_file(d, f, file->st) == _FAILURE))
-				ft_voidfree((void *)&file->st);
-		}
+	if ((d->options & _L) && (lstat_file(d, f, file->st)) == _SUCCESS)
 		push_files(d, file, lst, l_lst);
-	}
+	else if (!(d->options & _L) && (stat_file(d, f, file->st) == _SUCCESS))
+		push_files(d, file, lst, l_lst);
 	else
 		free_files(file);
 }
@@ -177,17 +167,17 @@ void		parsing_dir(t_all *d)
 	tmp = ((d->options & _R)) ?  d->l_arg_file : d->arg_file;
 	while (tmp)
 	{
-		if (!(d->options & _L) && ((tmp->l_st->st_mode & S_IFMT) == S_IFLNK))
+		if (!(d->options & _L) && ((tmp->st->st_mode & S_IFMT) == S_IFLNK))
 		{
 			if (((tmp->st->st_mode & S_IFMT) == S_IFDIR))
 				push_waiting(d, &*tmp);
 			else
 				print_files(d, tmp);
 		}
-		else if (((tmp->l_st->st_mode & S_IFMT) == S_IFDIR))
+		else if (((tmp->st->st_mode & S_IFMT) == S_IFDIR))
         {
             len = ft_strlen(tmp->name);
-            (tmp->name[len - 1] == '/') ? tmp->name[len - 1] = 0 : 0;
+            (tmp->name[len - 1] == '/') && len > 1 ? tmp->name[len - 1] = 0 : 0;
             push_waiting(d, tmp);
         }
 		else

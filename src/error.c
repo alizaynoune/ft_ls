@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 11:53:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/25 19:18:55 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/27 02:54:48 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,19 @@ void		free_files(t_files *lst)
 		tmp = lst;
 		lst = lst->next;
 		(tmp->name) ? free(tmp->name) : 0;
+		(tmp->path) ? free(tmp->path) : 0;
 		(tmp->st) ? free(tmp->st) : 0;
-		(tmp->l_st) ? free(tmp->l_st) : 0;
 		free(tmp);
 	}
+}
+
+void		free_dir(t_dir *dir)
+{
+	if (!dir)
+		return ;
+	(dir->h_files) ? free_files(dir->h_files) : 0;
+	(dir->path) ? free(dir->path) : 0;
+	free(dir);
 }
 
 void		free_waiting(t_waiting *lst)
@@ -37,7 +46,6 @@ void		free_waiting(t_waiting *lst)
 		lst = lst->next;
 		(tmp->name) ? free(tmp->name) : 0;
 		(tmp->st) ? free(tmp->st) : 0;
-		(tmp->l_st) ? free(tmp->l_st) : 0;
 		free(tmp);
 	}
 }
@@ -47,16 +55,18 @@ void		free_all(t_all *d)
 	(d->arg_file) ? free_files(d->arg_file) : 0;
 	(d->files) ? free_files(d->files) : 0;
 	(d->head_waiting) ? free_waiting(d->head_waiting) : 0;
+	(d->dir) ? free_dir(d->dir) : 0;
 	free(d);
 }
 
 int			error_ls(t_all *d,  char *err)
 {
 	ft_dprintf(0, "%s\n", err);
-	(d->arg_file) ? free_files(d->arg_file) : 0;
+	/*(d->arg_file) ? free_files(d->arg_file) : 0;
 	(d->files) ? free_files(d->files) : 0;
 	(d->head_waiting) ? free_waiting(d->head_waiting) : 0;
-	free(d);
+	free(d);*/
+	free_all(d);
 	exit(_TROUBLE);
 }
 
