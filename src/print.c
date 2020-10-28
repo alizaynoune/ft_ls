@@ -6,42 +6,78 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 19:08:22 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/27 02:42:29 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/28 06:10:47 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
+void		print_type(unsigned int type)
+{
+	char	*str;
+	int		i;
+
+	str = "?-bcdlps";
+	i = 0;
+	((type == S_IFREG)) ? i = 1 : 0;
+	((type == S_IFBLK)) ? i = 2 : 0;
+	((type == S_IFCHR)) ? i = 3 : 0;
+	((type == S_IFDIR)) ? i = 4 : 0;
+	((type == S_IFLNK)) ? i = 5 : 0;
+	((type == S_IFIFO)) ? i = 6 : 0;
+	((type == S_IFSOCK)) ? i = 7 : 0;
+	ft_printf("%c", str[i]);
+}
+
+void		print_permission(unsigned int mode)
+{
+	int8_t		shift;
+	int8_t		perm;
+
+	shift = 2;
+	while (shift >= 0)
+	{
+		perm = ((mode & (7 << (shift * 3))) >> (shift * 3));
+		(perm & P_R) ? ft_printf("r") : ft_printf("-");
+		(perm & P_W) ? ft_printf("w") : ft_printf("-");
+		(perm & P_X) ? ft_printf("x") : ft_printf("-");
+		shift--;
+	}
+}
+
 void		print_files(t_all *d, t_files *f)
 {
+	unsigned int		type;
+
+	type = (f->st->st_mode & S_IFMT);
 	if ((d->options & _L))
 	{
-		//print mode
+		print_type((type));
+		print_permission(f->st->st_mode);
 		// print nlink
 		// print owner
 		// print group
 		// print size
 		// print time
-		ft_printf("%s  lllll\n", f->name);
+		ft_printf(" %s  lllll\n", f->name);
         // if is link print name of stat file
 	}
 	else
 		ft_printf("%s\n", f->name);
 }
 
-t_waiting		*new_waiting(t_all *d, t_files *f, t_waiting *curr)
+t_waiting		*recursuvely(t_all *d, t_files *f, t_waiting *curr)
 {
 	t_waiting		*new;
 	char			*n_name;
 
 	if (!ft_strcmp(f->name, ".") || !ft_strcmp(f->name, ".."))
 		return (NULL);
-//	n_name = ft_nstrjoin(3, d->dir->path, "/", f->name);//erorr
-	new = init_waiting(d, f, &f->path);
+	new = init_waiting(d, f);
 	return (new);
 }
 
-void		loop_print_files(t_all *d, t_files *lst, t_waiting *curr)
+void		loop_print_files(t_all *d, t_files *lst, t_files *l_lst, t_waiting *curr)
 {
 	t_files		*tmp;
 	t_waiting	*h_w;
@@ -49,18 +85,18 @@ void		loop_print_files(t_all *d, t_files *lst, t_waiting *curr)
 
 	h_w = NULL;
 	l_w = NULL;
-	tmp = lst;
+	tmp = ((d->options & _R)) ? l_lst : lst;
 	while (tmp)
 	{
 		print_files(d, tmp);
 		if ((d->options & _R_) && ((tmp->st->st_mode & S_IFMT) == S_IFDIR))
 		{
 			if (h_w)
-				((l_w->next = new_waiting(d, tmp, curr))) ? l_w = l_w->next : 0;
+				((l_w->next = recursuvely(d, tmp, curr))) ? l_w = l_w->next : 0;
 			else
-				((h_w = new_waiting(d, tmp, curr))) ? l_w = h_w : 0;
+				((h_w = recursuvely(d, tmp, curr))) ? l_w = h_w : 0;
 		}
-		tmp = tmp->next;
+		tmp = ((d->options & _R)) ? tmp->prev : tmp->next;
 	}
 	if (h_w)
 	{

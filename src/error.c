@@ -6,66 +6,65 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 11:53:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/27 02:54:48 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/28 02:24:48 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void		free_files(t_files *lst)
+void		free_files(t_files **lst)
 {
 	t_files		*tmp;
 
-	while (lst)
+	while (*lst)
 	{
-		tmp = lst;
-		lst = lst->next;
-		(tmp->name) ? free(tmp->name) : 0;
-		(tmp->path) ? free(tmp->path) : 0;
-		(tmp->st) ? free(tmp->st) : 0;
+		tmp = *lst;
+		*lst = (*lst)->next;
+		(tmp->name) ? ft_strdel(&tmp->name) : 0;
+		(tmp->path) ? ft_strdel(&tmp->path) : 0;
+		(tmp->st) ? ft_voidfree((void *)&tmp->st) : 0;
 		free(tmp);
 	}
+	(*lst) = NULL;
 }
 
-void		free_dir(t_dir *dir)
+void		free_dir(t_dir **dir)
 {
-	if (!dir)
+	if (!*dir)
 		return ;
-	(dir->h_files) ? free_files(dir->h_files) : 0;
-	(dir->path) ? free(dir->path) : 0;
-	free(dir);
+	((*dir)->h_files) ? free_files(&(*dir)->h_files) : 0;
+	((*dir)->path) ? ft_voidfree((void *)&(*dir)->path) : 0;
+	ft_voidfree((void *)&(*dir));
 }
 
-void		free_waiting(t_waiting *lst)
+void		free_waiting(t_waiting **lst)
 {
 	t_waiting		*tmp;
 
-	while (lst)
+	while (*lst)
 	{
-		tmp = lst;
-		lst = lst->next;
-		(tmp->name) ? free(tmp->name) : 0;
-		(tmp->st) ? free(tmp->st) : 0;
-		free(tmp);
+		tmp = *lst;
+		*lst = (*lst)->next;
+		(tmp->name) ? ft_strdel(&tmp->name) : 0;
+		(tmp->full_name) ? ft_strdel(&tmp->full_name) : 0;
+		(tmp->st) ? ft_voidfree((void *)&tmp->st) : 0;
+		ft_voidfree((void *)&tmp);
 	}
+	(*lst) = NULL;
 }
 
 void		free_all(t_all *d)
 {
-	(d->arg_file) ? free_files(d->arg_file) : 0;
-	(d->files) ? free_files(d->files) : 0;
-	(d->head_waiting) ? free_waiting(d->head_waiting) : 0;
-	(d->dir) ? free_dir(d->dir) : 0;
-	free(d);
+	(d->arg_file) ? free_files(&d->arg_file) : 0;
+	(d->files) ? free_files(&d->files) : 0;
+	(d->head_waiting) ? free_waiting(&d->head_waiting) : 0;
+	(d->dir) ? free_dir(&d->dir) : 0;
+	ft_voidfree((void *)&d);
 }
 
 int			error_ls(t_all *d,  char *err)
 {
 	ft_dprintf(0, "%s\n", err);
-	/*(d->arg_file) ? free_files(d->arg_file) : 0;
-	(d->files) ? free_files(d->files) : 0;
-	(d->head_waiting) ? free_waiting(d->head_waiting) : 0;
-	free(d);*/
 	free_all(d);
 	exit(_TROUBLE);
 }

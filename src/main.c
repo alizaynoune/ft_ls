@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:28:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/27 02:35:06 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/28 03:06:19 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int			stat_file(t_all *d, char *f, struct stat *st)
 {
 	if ((stat(f, st)) == -1)
 	{
-		perror(f);
+		ft_dprintf(2, "ls : %s: %s\n", f, strerror(errno));
 		d->ret = _FAILURE;
 		return (_FAILURE);
 	}
@@ -120,14 +120,14 @@ int			lstat_file(t_all *d, char *f, struct stat *st)
 {
 	if ((lstat(f, st)) == -1)
 	{
-		perror(f);
+		ft_dprintf(2, "ls : %s: %s\n", f, strerror(errno));
 		d->ret = _FAILURE;
 		return (_FAILURE);
 	}
 	return (_SUCCESS);
 }
 
-t_files		*init_files(t_all *d, char *name)
+t_files		*init_files(t_all *d, char *name, char *path)
 {
 	t_files		*new;
 
@@ -138,9 +138,9 @@ t_files		*init_files(t_all *d, char *name)
 		free(new);
 		error_ls(d, strerror(errno));
 	}
-	if (!(new->name = ft_strdup(name)))
+	if (!(new->name = ft_strdup(name)) || !(new->path = ft_strdup(path)))
 	{
-		free_files(new);
+		free_files(&new);
 		error_ls(d, strerror(errno));
 	}
 	return (new);
@@ -150,13 +150,13 @@ void		parsing_files(t_all *d, char *f, t_files **lst, t_files **l_lst)
 {
 	t_files			*file;
 
-	file = init_files(d, f);
+	file = init_files(d, f, f);
 	if ((d->options & _L) && (lstat_file(d, f, file->st)) == _SUCCESS)
 		push_files(d, file, lst, l_lst);
 	else if (!(d->options & _L) && (stat_file(d, f, file->st) == _SUCCESS))
 		push_files(d, file, lst, l_lst);
 	else
-		free_files(file);
+		free_files(&file);
 }
 
 void		parsing_dir(t_all *d)
@@ -168,12 +168,8 @@ void		parsing_dir(t_all *d)
 	while (tmp)
 	{
 		if (!(d->options & _L) && ((tmp->st->st_mode & S_IFMT) == S_IFLNK))
-		{
-			if (((tmp->st->st_mode & S_IFMT) == S_IFDIR))
-				push_waiting(d, &*tmp);
-			else
-				print_files(d, tmp);
-		}
+			(((tmp->st->st_mode & S_IFMT) == S_IFDIR)) ?
+				push_waiting(d, &*tmp) : print_files(d, tmp);
 		else if (((tmp->st->st_mode & S_IFMT) == S_IFDIR))
         {
             len = ft_strlen(tmp->name);
@@ -181,9 +177,13 @@ void		parsing_dir(t_all *d)
             push_waiting(d, tmp);
         }
 		else
+		{
+			d->print_path = _SUCCESS;
 			print_files(d, tmp);// remove et;
+		}
 		tmp = ((d->options & _R)) ? tmp->prev : tmp->next;
 	}
+	free_files(&d->arg_file);
 }
 
 void		parsing_arg(int ac, char **av, t_all *d)
@@ -200,6 +200,8 @@ void		parsing_arg(int ac, char **av, t_all *d)
 
 void        start_curr(t_all *d)
 {
+	if (d->ret == _FAILURE)
+		return ;
     parsing_files(d, ".", &d->arg_file, &d->l_arg_file);
     parsing_dir(d);
 }
@@ -209,9 +211,10 @@ int			main(int ac, char **av)
 	int		ret;
 	t_all	*d;
 
-	ret = _SUCCESS;
 	if (!(d = (t_all *)ft_memalloc(sizeof(t_all))))
 		error_ls(NULL, strerror(errno));
+	d->ret = _SUCCESS;
+	d->print_path = _FAILURE;
 	if (ac > 1)
 		parsing_arg(ac - 1, &av[1], d);
 	(d->arg_file) ? parsing_dir(d) : start_curr(d);

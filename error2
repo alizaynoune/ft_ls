@@ -49,6 +49,7 @@ ls: Drop Box: Permission denied
 ls: .DocumentRevisions-V100: Permission denied
 ls: .TemporaryItems: Permission denied
 ls: .fseventsd: Permission denied
+ls: dd: Permission denied
 ls: Desktop: Permission denied
 ls: Documents: Permission denied
 ls: Downloads: Permission denied

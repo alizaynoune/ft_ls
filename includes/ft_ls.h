@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 16:45:13 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/27 03:47:48 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/28 06:00:15 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,13 @@
 # define C_DEF		"\e[1;0m"
 # define C_ERROR	"\e[1;32m"
 
+/*
+* * permission
+*/
+
+# define P_X		1
+# define P_W		2
+# define P_R		4
 
 /*
  * struct
@@ -111,6 +118,7 @@ typedef struct			s_dir
 typedef struct			s_all
 {
 	int					ret;
+	int					print_path;
 	int					options;
 	t_files				*arg_file;
 	t_files				*l_arg_file;
@@ -124,7 +132,7 @@ typedef struct			s_all
 extern t_op				g_op[];
 
 int						error_ls(t_all *d, char *err);
-void					free_files(t_files *lst);
+void					free_files(t_files **lst);
 void					free_all(t_all *d);
 void					push_files(t_all *d, t_files *f, t_files **lst, t_files **l_lst);
 void					print_files(t_all *d, t_files *f);
@@ -133,9 +141,9 @@ void                    loop_dir(t_all *d);
 void					parsing_files(t_all *d, char *f, t_files **lst, t_files **l_lst);
 int						lstat_file(t_all *d, char *f, struct stat *st);
 int						stat_file(t_all *d, char *f, struct stat *st);
-t_files					*init_files(t_all *d, char *name);
-void					free_dir(t_dir *dir);
-void					loop_print_files(t_all *d, t_files *lst, t_waiting *curr);
-t_waiting				*init_waiting(t_all *d, t_files *f, char **name);
+t_files					*init_files(t_all *d, char *name, char *path);
+void					free_dir(t_dir **dir);
+void					loop_print_files(t_all *d, t_files *lst, t_files *l_lst , t_waiting *curr);
+t_waiting				*init_waiting(t_all *d, t_files *f);
 
 #endif
