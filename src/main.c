@@ -127,23 +127,61 @@ int			lstat_file(t_all *d, char *f, struct stat *st)
 	return (_SUCCESS);
 }
 
-int		init_pwd(t_all *d, t_files *new, struct passwd *pwd)
+int		init_pwd(t_all *d, t_files *new)
 {
+    struct passwd       *pwd;
+
+    errno = 0;
+    pwd = getpwuid(new->st->st_uid);
+    if (errno)
+    {
+        ft_dprintf(2, "getpwuid: %s", strerror(errno));
+        d->ret = _FAILURE;
+        return (_FAILURE);
+    }
+    if (!pwd)
+    {
+        d->ret = _FAILURE;
+        return (_FAILURE);
+    }
 	if (!(new->pwd->pw_name = ft_strdup(pwd->pw_name)))
-		return (_FAILURE);
+    {
+        free_files(&new);
+        error_ls(d, strerror(errno));
+    }
 	new->pwd->pw_uid = pwd->pw_uid;
-	return (_SUCCESS);
+    return (_SUCCESS);
 }
 
-int			init_grp(t_all *d, t_files *new, struct group *grp)
+int			init_grp(t_all *d, t_files *new)
 {
+    struct group        *grp;
+
+    errno = 0;
+    grp = getgrgid(new->grp->gr_gid);
+    if (errno)
+    {
+        ft_printf("%s\n", new->path);
+        ft_dprintf(2, "getgrgid: %s\n", strerror(errno));
+        free_files(&new);
+        d->ret = _FAILURE;
+        return (_FAILURE);
+    }
+    if (!grp)
+    {
+        d->ret = _FAILURE;
+        return (_FAILURE);
+    }
 	if (!(new->grp->gr_name = strdup(grp->gr_name)))
-		return (_FAILURE);
+    {
+        free_files(&new);
+        error_ls(d, strerror(errno));
+    }
 	new->grp->gr_gid = grp->gr_gid;
-	return (_SUCCESS);
+    return (_SUCCESS);
 }
 
-void		init_id(t_all *d, t_files *new)
+int		init_id(t_all *d, t_files *new)
 {
 	struct passwd		*pwd;
 	struct group		*grp;
@@ -154,22 +192,12 @@ void		init_id(t_all *d, t_files *new)
 		free_files(&new);
 		error_ls(d, strerror(errno));
 	}
-	errno = 0;
-	pwd = getpwuid(new->st->st_uid);
-	(errno) ? ft_dprintf(2, "getpwuid: %s\n", strerror(errno)) : 0;
-	if (pwd && init_pwd(d, new, pwd) == _FAILURE)
-	{
-		free_files(&new);
-		error_ls(d, strerror(errno));
-	}
-	errno = 0;
-	grp = getgrgid(new->st->st_gid);
-	if (grp && init_grp(d, new, grp) == _FAILURE)
-	{
-		free_files(&new);
-		error_ls(d, strerror(errno));
-	}
-	(errno) ? ft_dprintf(2, "getgrgid: %s\n", strerror(errno)) : 0;
+    if ((init_pwd(d, new) == _FAILURE) || (init_grp(d, new) == _FAILURE))
+    {
+        free_files(&new);
+        return (_FAILURE);
+    }
+    return (_SUCCESS);
 }
 
 t_files		*init_files(t_all *d, char *name, char *path)
@@ -183,11 +211,16 @@ t_files		*init_files(t_all *d, char *name, char *path)
 		free(new);
 		error_ls(d, strerror(errno));
 	}
-	if (!(new->name = ft_strdup(name)) || !(new->path = ft_strdup(path)))
+	if (!(new->name = ft_strdup(name)) || (!path && !((new->path = ft_strdup(name)))))
 	{
 		free_files(&new);
 		error_ls(d, strerror(errno));
 	}
+    if (path && !((new->path = ft_nstrjoin(3, path, "/", name))))
+    {
+        free_files(&new);
+        error_ls(d, strerror(errno));
+    }
 	return (new);
 }
 
@@ -195,9 +228,7 @@ void		get_lens(t_all *d, t_files *f, char *name)
 {
 	size_t		len;
 
-	//ft_memset((void *)d->len, 0, _MAX_LEN_TABLE);
 	len = ft_intlen(f->st->st_nlink);
-    //ft_printf("[%d %s]", len, name);
 	((d->len[_LINK] < len)) ? d->len[_LINK] = len : 0;
 	len = ft_intlen(f->st->st_size);
 	((d->len[_SIZE] < len)) ? d->len[_SIZE] = len : 0;
@@ -212,10 +243,11 @@ void		parsing_files(t_all *d, char *f, t_files **lst, t_files **l_lst)
 {
 	t_files			*file;
 
-	file = init_files(d, f, f);
+	file = init_files(d, f, NULL);
 	if ((d->options & _L) && ((lstat_file(d, f, file->st)) == _SUCCESS))
 	{
-		init_id(d, file);
+		if (init_id(d, file) == _FAILURE)
+            return ;
 		push_files(d, file, lst, l_lst);
 		((file->st->st_mode & S_IFMT) != S_IFDIR) ? get_lens(d, file, f) : 0;
 	}

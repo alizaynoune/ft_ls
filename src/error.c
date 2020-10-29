@@ -37,7 +37,7 @@ void		free_files(t_files **lst)
 		(tmp->st) ? ft_voidfree((void *)&tmp->st) : 0;
 		(tmp->pwd) ? free_pwd(&tmp->pwd) : 0;
 		(tmp->grp) ? free_grp(&tmp->grp) : 0;
-		free(tmp);
+        ft_voidfree((void *)&tmp);
 	}
 	(*lst) = NULL;
 }
@@ -78,7 +78,8 @@ void		free_all(t_all *d)
 
 int			error_ls(t_all *d,  char *err)
 {
-	ft_dprintf(0, "%s\n", err);
+    errno = 0;
+	ft_dprintf(2, "%s\n", err);
 	free_all(d);
 	exit(_TROUBLE);
 }

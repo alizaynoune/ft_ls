@@ -26,4 +26,16 @@ SRC = main.c \
 	  open_dir.c
 OBJ =  $(addprefix $(P_SRC), $(SRC))
 all:
-	$(GCC) $(OBJ) -I $(INC) -I $(INC_LIB) -L $(P_LIB) $(LIB) -o $(NAME)
+	@make --no-print-directory -C $(P_LIB)
+	@$(GCC) $(OBJ) -I $(INC) -I $(INC_LIB) -L $(P_LIB) $(LIB) -o $(NAME)
+
+re:
+	@make -re --no-print-directory -C $(P_LIB)
+	@$(GCC) $(OBJ) -I $(INC) -I $(INC_LIB) -L $(P_LIB) $(LIB) -o $(NAME)
+
+fclean:
+		@make fclean --no-print-directory -C $(P_LIB)
+		@rm -rf ft_ls
+
+clean:
+		@make clean --no-print-directory -C $(P_LIB)

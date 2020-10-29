@@ -149,5 +149,5 @@ void					free_dir(t_dir **dir);
 void					loop_print_files(t_all *d, t_files *lst, t_files *l_lst , t_waiting *curr);
 t_waiting				*init_waiting(t_all *d, t_files *f);
 void					get_lens(t_all *d, t_files *f, char *name);
-void					init_id(t_all *d, t_files *new);
+int                     init_id(t_all *d, t_files *new);
 #endif

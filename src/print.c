@@ -45,6 +45,20 @@ void		print_permission(unsigned int mode)
 	}
 }
 
+void        print_time(t_all *d, t_files *f)
+{
+    char    *time;
+   // long int tt = 99999999999999999999;
+
+    if ((time = ctime(&f->st->st_mtime)))
+        ft_printf(" %.16s ", time);
+    else
+    {
+        ft_dprintf(2, "ctime: %s", strerror(errno));
+        d->ret = _FAILURE;
+    }
+}
+
 void		print_files(t_all *d, t_files *f)
 {
 	unsigned int		type;
@@ -54,15 +68,12 @@ void		print_files(t_all *d, t_files *f)
 	{
 		print_type((type));
 		print_permission(f->st->st_mode);
-		//extended attributes her;
 		ft_printf("  %*d", d->len[_LINK], f->st->st_nlink);
 		(f->pwd) ? ft_printf(" %-*s ", d->len[_OWNER], f->pwd->pw_name) : 0;
 		(f->grp) ? ft_printf(" %-*s ", d->len[_GROUP], f->grp->gr_name) : 0;
 		ft_printf(" %*d ", d->len[_SIZE], f->st->st_size);
-        ft_printf(" %.16s ", ctime(&f->st->st_mtime));
-	//	ft_printf("[%ld]", f->st->st_mtime);
-      //  ft_printf("[%ld]", time(&f->st->st_mtime));
-        // print time
+        print_time(d, f);
+        //ft_printf(" %.16s ", ctime(&f->st->st_mtime));
 		ft_printf(" %s\n", f->name);
         // if is link print name of stat file
 	}
