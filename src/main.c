@@ -195,8 +195,9 @@ void		get_lens(t_all *d, t_files *f, char *name)
 {
 	size_t		len;
 
-	ft_memset((void *)d->len, 0, _MAX_LEN_TABLE);
+	//ft_memset((void *)d->len, 0, _MAX_LEN_TABLE);
 	len = ft_intlen(f->st->st_nlink);
+    //ft_printf("[%d %s]", len, name);
 	((d->len[_LINK] < len)) ? d->len[_LINK] = len : 0;
 	len = ft_intlen(f->st->st_size);
 	((d->len[_SIZE] < len)) ? d->len[_SIZE] = len : 0;

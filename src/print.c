@@ -59,7 +59,10 @@ void		print_files(t_all *d, t_files *f)
 		(f->pwd) ? ft_printf(" %-*s ", d->len[_OWNER], f->pwd->pw_name) : 0;
 		(f->grp) ? ft_printf(" %-*s ", d->len[_GROUP], f->grp->gr_name) : 0;
 		ft_printf(" %*d ", d->len[_SIZE], f->st->st_size);
-		// print time
+        ft_printf(" %.16s ", ctime(&f->st->st_mtime));
+	//	ft_printf("[%ld]", f->st->st_mtime);
+      //  ft_printf("[%ld]", time(&f->st->st_mtime));
+        // print time
 		ft_printf(" %s\n", f->name);
         // if is link print name of stat file
 	}
@@ -104,4 +107,5 @@ void		loop_print_files(t_all *d, t_files *lst, t_files *l_lst, t_waiting *curr)
 		l_w->next = curr->next;
 		curr->next = h_w;
 	}
+    ft_memset((void *)d->len, 0, _MAX_LEN_TABLE);
 }
