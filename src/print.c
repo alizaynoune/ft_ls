@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 19:08:22 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/28 06:10:47 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/29 03:29:52 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,13 @@ void		print_files(t_all *d, t_files *f)
 	{
 		print_type((type));
 		print_permission(f->st->st_mode);
-		// print nlink
-		// print owner
-		// print group
-		// print size
+		//extended attributes her;
+		ft_printf("  %*d", d->len[_LINK], f->st->st_nlink);
+		(f->pwd) ? ft_printf(" %-*s ", d->len[_OWNER], f->pwd->pw_name) : 0;
+		(f->grp) ? ft_printf(" %-*s ", d->len[_GROUP], f->grp->gr_name) : 0;
+		ft_printf(" %*d ", d->len[_SIZE], f->st->st_size);
 		// print time
-		ft_printf(" %s  lllll\n", f->name);
+		ft_printf(" %s\n", f->name);
         // if is link print name of stat file
 	}
 	else

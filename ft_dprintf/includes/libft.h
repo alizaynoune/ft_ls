@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 14:42:11 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/21 19:42:16 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/28 23:10:58 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ char					*ft_itoa_base(int value, int base);
 */
 
 size_t					ft_strlen(const char *s);
-int						ft_intlen(long long int n);
+size_t					ft_intlen(long long int n);
 size_t					ft_strnlen(char *str, char *c);
-int						ft_count_char(char *str, char c);
-int						count_words(char *str, char *c);
-int						**start_end_words(char *str, char *c);
+size_t					ft_count_char(char *str, char c);
+size_t					count_words(char *str, char *c);
+size_t					**start_end_words(char *str, char *c);
 
 /*
 *** functions edit

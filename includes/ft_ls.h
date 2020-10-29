@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 16:45:13 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/28 06:00:15 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/29 02:04:41 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@
 /*
  * index in tab lens
  * */
-# define _LINK		0
-# define _OWNER		1
-# define _GROUP		2
-# define _SIZE		3
-# define _NAME		4
+# define _LINK			0
+# define _OWNER			1
+# define _GROUP			2
+# define _SIZE			3
+# define _MAX_LEN_TABLE	4
 
 /*
  ** colors
@@ -103,6 +103,8 @@ typedef struct			s_files
 	char				*name;
 	char				*path;
 	struct stat			*st;
+	struct passwd		*pwd;
+	struct group		*grp;
 	struct s_files		*next;
 	struct s_files		*prev;
 }						t_files;
@@ -118,6 +120,7 @@ typedef struct			s_dir
 typedef struct			s_all
 {
 	int					ret;
+	size_t				len[_MAX_LEN_TABLE];
 	int					print_path;
 	int					options;
 	t_files				*arg_file;
@@ -145,5 +148,6 @@ t_files					*init_files(t_all *d, char *name, char *path);
 void					free_dir(t_dir **dir);
 void					loop_print_files(t_all *d, t_files *lst, t_files *l_lst , t_waiting *curr);
 t_waiting				*init_waiting(t_all *d, t_files *f);
-
+void					get_lens(t_all *d, t_files *f, char *name);
+void					init_id(t_all *d, t_files *new);
 #endif

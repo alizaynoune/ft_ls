@@ -6,11 +6,23 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 11:53:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/28 02:24:48 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/29 03:20:54 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+void		free_pwd(struct passwd **pwd)
+{
+	((*pwd)->pw_name) ? ft_strdel(&(*pwd)->pw_name) : 0;
+	ft_voidfree((void *)&(*pwd));
+}
+
+void		free_grp(struct group **grp)
+{
+	((*grp)->gr_name) ? ft_strdel(&(*grp)->gr_name) : 0;
+	ft_voidfree((void *)&(*grp));
+}
 
 void		free_files(t_files **lst)
 {
@@ -23,6 +35,8 @@ void		free_files(t_files **lst)
 		(tmp->name) ? ft_strdel(&tmp->name) : 0;
 		(tmp->path) ? ft_strdel(&tmp->path) : 0;
 		(tmp->st) ? ft_voidfree((void *)&tmp->st) : 0;
+		(tmp->pwd) ? free_pwd(&tmp->pwd) : 0;
+		(tmp->grp) ? free_grp(&tmp->grp) : 0;
 		free(tmp);
 	}
 	(*lst) = NULL;

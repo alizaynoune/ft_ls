@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:28:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/28 03:06:19 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/29 03:27:36 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,51 @@ int			lstat_file(t_all *d, char *f, struct stat *st)
 	return (_SUCCESS);
 }
 
+int		init_pwd(t_all *d, t_files *new, struct passwd *pwd)
+{
+	if (!(new->pwd->pw_name = ft_strdup(pwd->pw_name)))
+		return (_FAILURE);
+	new->pwd->pw_uid = pwd->pw_uid;
+	return (_SUCCESS);
+}
+
+int			init_grp(t_all *d, t_files *new, struct group *grp)
+{
+	if (!(new->grp->gr_name = strdup(grp->gr_name)))
+		return (_FAILURE);
+	new->grp->gr_gid = grp->gr_gid;
+	return (_SUCCESS);
+}
+
+void		init_id(t_all *d, t_files *new)
+{
+	struct passwd		*pwd;
+	struct group		*grp;
+
+	if (!(new->pwd = (struct passwd *)ft_memalloc(sizeof(struct passwd))) ||
+			!(new->grp = (struct group *)ft_memalloc(sizeof(struct group))))
+	{
+		free_files(&new);
+		error_ls(d, strerror(errno));
+	}
+	errno = 0;
+	pwd = getpwuid(new->st->st_uid);
+	(errno) ? ft_dprintf(2, "getpwuid: %s\n", strerror(errno)) : 0;
+	if (pwd && init_pwd(d, new, pwd) == _FAILURE)
+	{
+		free_files(&new);
+		error_ls(d, strerror(errno));
+	}
+	errno = 0;
+	grp = getgrgid(new->st->st_gid);
+	if (grp && init_grp(d, new, grp) == _FAILURE)
+	{
+		free_files(&new);
+		error_ls(d, strerror(errno));
+	}
+	(errno) ? ft_dprintf(2, "getgrgid: %s\n", strerror(errno)) : 0;
+}
+
 t_files		*init_files(t_all *d, char *name, char *path)
 {
 	t_files		*new;
@@ -146,13 +191,33 @@ t_files		*init_files(t_all *d, char *name, char *path)
 	return (new);
 }
 
+void		get_lens(t_all *d, t_files *f, char *name)
+{
+	size_t		len;
+
+	ft_memset((void *)d->len, 0, _MAX_LEN_TABLE);
+	len = ft_intlen(f->st->st_nlink);
+	((d->len[_LINK] < len)) ? d->len[_LINK] = len : 0;
+	len = ft_intlen(f->st->st_size);
+	((d->len[_SIZE] < len)) ? d->len[_SIZE] = len : 0;
+	len = (f->pwd && f->pwd->pw_name) ? ft_strlen(f->pwd->pw_name) : 0;
+	(len > d->len[_OWNER]) ? d->len[_OWNER] = len : 0;
+	len = (f->grp && f->grp->gr_name) ? ft_strlen(f->grp->gr_name) : 0;
+	(len > d->len[_GROUP]) ? d->len[_GROUP] = len : 0;
+
+}
+
 void		parsing_files(t_all *d, char *f, t_files **lst, t_files **l_lst)
 {
 	t_files			*file;
 
 	file = init_files(d, f, f);
-	if ((d->options & _L) && (lstat_file(d, f, file->st)) == _SUCCESS)
+	if ((d->options & _L) && ((lstat_file(d, f, file->st)) == _SUCCESS))
+	{
+		init_id(d, file);
 		push_files(d, file, lst, l_lst);
+		((file->st->st_mode & S_IFMT) != S_IFDIR) ? get_lens(d, file, f) : 0;
+	}
 	else if (!(d->options & _L) && (stat_file(d, f, file->st) == _SUCCESS))
 		push_files(d, file, lst, l_lst);
 	else

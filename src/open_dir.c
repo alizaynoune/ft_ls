@@ -28,10 +28,12 @@ void		parsing_read_file(t_all *d, char *path, char *name)
 	new = init_files(d, name, full_name);
 	if ((lstat_file(d, full_name, new->st) == _SUCCESS))
 	{
+		((d->options & _L)) ? init_id(d, new) : 0;
 		push_files(d, new, &d->dir->h_files, &d->dir->l_files);
 		((d->options & _R_) && ((new->st->st_mode & S_IFMT) == S_IFDIR)) ?
 			d->print_path = _SUCCESS : 0;
 		ft_strdel(&full_name);
+		((d->options & _L)) ? get_lens(d, new, name) : 0;
 	}
 	else
 	{

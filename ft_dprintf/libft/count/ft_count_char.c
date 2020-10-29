@@ -6,16 +6,16 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 10:10:42 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/02/12 10:13:16 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/28 23:12:36 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_count_char(char *str, char c)
+size_t		ft_count_char(char *str, char c)
 {
-	int		cnt;
-	int		chr;
+	size_t		cnt;
+	size_t		chr;
 
 	cnt = 0;
 	chr = 0;
