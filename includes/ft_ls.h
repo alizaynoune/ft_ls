@@ -23,6 +23,8 @@
 # include <sys/ioctl.h>
 # include <grp.h>
 # include <sys/xattr.h>
+# include <sys/types.h>
+# include <sys/acl.h>
 
 /*
  ** return

@@ -77,11 +77,18 @@ void		print_uid_grid(t_all *d, t_files *f)
 void		extended_attribute(t_files *f)
 {
 	ssize_t		attr;
+   // acl_t       acl;
 
-	attr = listxattr(f->path, NULL, 0, XATTR_NOFOLLOW);
-	((attr > 0)) ? ft_printf("@") : 0;
-	((attr == -1)) ? ft_printf("+") : 0;
-	((attr == 0)) ? ft_printf(" ") : 0;
+	if (listxattr(f->path, NULL, 0) > 0)
+        ft_printf("@");
+ /*   else if ((acl = acl_get_link_np(f->path, ACL_TYPE_EXTENDED)))
+        {
+            acl_free(acl);
+            ft_printf("+");
+        }*/
+    else
+        ft_printf(" ");
+	//((attr == 0)) ? ft_printf(" ") : 0;
 //	ft_printf("[%d]", errno);
 }
 
