@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 11:53:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/29 03:20:54 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/30 05:33:47 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void		free_files(t_files **lst)
 		(tmp->st) ? ft_voidfree((void *)&tmp->st) : 0;
 		(tmp->pwd) ? free_pwd(&tmp->pwd) : 0;
 		(tmp->grp) ? free_grp(&tmp->grp) : 0;
+		(tmp->link) ? ft_strdel(&tmp->link) : 0;
         ft_voidfree((void *)&tmp);
 	}
 	(*lst) = NULL;

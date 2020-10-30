@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 19:08:22 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/29 03:29:52 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/30 05:33:02 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,14 @@ void		print_permission(unsigned int mode)
 		perm = ((mode & (7 << (shift * 3))) >> (shift * 3));
 		(perm & P_R) ? ft_printf("r") : ft_printf("-");
 		(perm & P_W) ? ft_printf("w") : ft_printf("-");
-		(perm & P_X) ? ft_printf("x") : ft_printf("-");
+		(shift && (perm & P_X)) ? ft_printf("x") : ft_printf("-");
+		if (!shift)
+		{
+			if (!(mode & S_ISVTX))
+				(perm & P_X) ? ft_printf("x") : ft_printf("-");
+			else
+				(perm & P_X) ? ft_printf("t") : ft_printf("T");
+		}
 		shift--;
 	}
 }
@@ -48,15 +55,34 @@ void		print_permission(unsigned int mode)
 void        print_time(t_all *d, t_files *f)
 {
     char    *time;
-   // long int tt = 99999999999999999999;
 
     if ((time = ctime(&f->st->st_mtime)))
-        ft_printf(" %.16s ", time);
+        ft_printf("%.12s ", time + 4);
     else
     {
         ft_dprintf(2, "ctime: %s", strerror(errno));
         d->ret = _FAILURE;
     }
+}
+
+void		print_uid_grid(t_all *d, t_files *f)
+{
+	((d->options & _N)) ? ft_printf(" %-*d ", d->len[_OWNER], f->pwd->pw_uid) :
+		ft_printf(" %-*s ", d->len[_OWNER], f->pwd->pw_name);
+	((d->options & _N)) ? ft_printf(" %-*d ", d->len[_GROUP], f->grp->gr_gid) :
+		ft_printf(" %-*s ", d->len[_GROUP], f->grp->gr_name); 
+
+}
+
+void		extended_attribute(t_files *f)
+{
+	ssize_t		attr;
+
+	attr = listxattr(f->path, NULL, 0, XATTR_NOFOLLOW);
+	((attr > 0)) ? ft_printf("@") : 0;
+	((attr == -1)) ? ft_printf("+") : 0;
+	((attr == 0)) ? ft_printf(" ") : 0;
+//	ft_printf("[%d]", errno);
 }
 
 void		print_files(t_all *d, t_files *f)
@@ -68,13 +94,14 @@ void		print_files(t_all *d, t_files *f)
 	{
 		print_type((type));
 		print_permission(f->st->st_mode);
-		ft_printf("  %*d", d->len[_LINK], f->st->st_nlink);
-		(f->pwd) ? ft_printf(" %-*s ", d->len[_OWNER], f->pwd->pw_name) : 0;
-		(f->grp) ? ft_printf(" %-*s ", d->len[_GROUP], f->grp->gr_name) : 0;
-		ft_printf(" %*d ", d->len[_SIZE], f->st->st_size);
+		extended_attribute(f);
+		//print extended attributes
+		ft_printf(" %*d", d->len[_LINK], f->st->st_nlink);
+		(f->pwd && f->grp) ? print_uid_grid(d, f) : 0;
+		ft_printf("%*d ", d->len[_SIZE], f->st->st_size);
         print_time(d, f);
-        //ft_printf(" %.16s ", ctime(&f->st->st_mtime));
-		ft_printf(" %s\n", f->name);
+		ft_printf("%s", f->name);
+		(f->link) ? ft_printf(" -> %s\n", f->link) : ft_printf("\n");
         // if is link print name of stat file
 	}
 	else

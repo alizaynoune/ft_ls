@@ -1,1814 +1,406 @@
-ls: cannot open directory '/etc/NetworkManager/system-connections': Permission denied
-ls: cannot open directory '/etc/audisp/plugins.d': Permission denied
-ls: cannot open directory '/etc/pacman.d/gnupg/openpgp-revocs.d': Permission denied
-ls: cannot open directory '/etc/pacman.d/gnupg/private-keys-v1.d': Permission denied
-ls: cannot open directory '/etc/polkit-1/rules.d': Permission denied
-ls: cannot open directory '/etc/sudoers.d': Permission denied
-ls: cannot open directory '/home/ali/.cache/yay/libdesktop-agnostic/pkg': Permission denied
-ls: cannot open directory '/lost+found': Permission denied
-ls: cannot access '/proc/525170': No such file or directory
-ls: cannot access '/proc/525172': No such file or directory
-ls: cannot access '/proc/525173': No such file or directory
-ls: cannot read symbolic link '/proc/1/cwd': Permission denied
-ls: cannot read symbolic link '/proc/1/root': Permission denied
-ls: cannot read symbolic link '/proc/1/exe': Permission denied
-ls: cannot open directory '/proc/1/fd': Permission denied
-ls: cannot open directory '/proc/1/fdinfo': Permission denied
-ls: cannot open directory '/proc/1/map_files': Permission denied
-ls: cannot open directory '/proc/1/ns': Permission denied
-ls: cannot read symbolic link '/proc/1/task/1/cwd': Permission denied
-ls: cannot read symbolic link '/proc/1/task/1/root': Permission denied
-ls: cannot read symbolic link '/proc/1/task/1/exe': Permission denied
-ls: cannot open directory '/proc/1/task/1/fd': Permission denied
-ls: cannot open directory '/proc/1/task/1/fdinfo': Permission denied
-ls: cannot open directory '/proc/1/task/1/ns': Permission denied
-ls: cannot read symbolic link '/proc/10/cwd': Permission denied
-ls: cannot read symbolic link '/proc/10/root': Permission denied
-ls: cannot read symbolic link '/proc/10/exe': Permission denied
-ls: cannot open directory '/proc/10/fd': Permission denied
-ls: cannot open directory '/proc/10/fdinfo': Permission denied
-ls: cannot open directory '/proc/10/map_files': Permission denied
-ls: cannot open directory '/proc/10/ns': Permission denied
-ls: cannot read symbolic link '/proc/10/task/10/cwd': Permission denied
-ls: cannot read symbolic link '/proc/10/task/10/root': Permission denied
-ls: cannot read symbolic link '/proc/10/task/10/exe': Permission denied
-ls: cannot open directory '/proc/10/task/10/fd': Permission denied
-ls: cannot open directory '/proc/10/task/10/fdinfo': Permission denied
-ls: cannot open directory '/proc/10/task/10/ns': Permission denied
-ls: cannot read symbolic link '/proc/100/cwd': Permission denied
-ls: cannot read symbolic link '/proc/100/root': Permission denied
-ls: cannot read symbolic link '/proc/100/exe': Permission denied
-ls: cannot open directory '/proc/100/fd': Permission denied
-ls: cannot open directory '/proc/100/fdinfo': Permission denied
-ls: cannot open directory '/proc/100/map_files': Permission denied
-ls: cannot open directory '/proc/100/ns': Permission denied
-ls: cannot read symbolic link '/proc/100/task/100/cwd': Permission denied
-ls: cannot read symbolic link '/proc/100/task/100/root': Permission denied
-ls: cannot read symbolic link '/proc/100/task/100/exe': Permission denied
-ls: cannot open directory '/proc/100/task/100/fd': Permission denied
-ls: cannot open directory '/proc/100/task/100/fdinfo': Permission denied
-ls: cannot open directory '/proc/100/task/100/ns': Permission denied
-ls: cannot read symbolic link '/proc/102/cwd': Permission denied
-ls: cannot read symbolic link '/proc/102/root': Permission denied
-ls: cannot read symbolic link '/proc/102/exe': Permission denied
-ls: cannot open directory '/proc/102/fd': Permission denied
-ls: cannot open directory '/proc/102/fdinfo': Permission denied
-ls: cannot open directory '/proc/102/map_files': Permission denied
-ls: cannot open directory '/proc/102/ns': Permission denied
-ls: cannot read symbolic link '/proc/102/task/102/cwd': Permission denied
-ls: cannot read symbolic link '/proc/102/task/102/root': Permission denied
-ls: cannot read symbolic link '/proc/102/task/102/exe': Permission denied
-ls: cannot open directory '/proc/102/task/102/fd': Permission denied
-ls: cannot open directory '/proc/102/task/102/fdinfo': Permission denied
-ls: cannot open directory '/proc/102/task/102/ns': Permission denied
-ls: cannot read symbolic link '/proc/103/cwd': Permission denied
-ls: cannot read symbolic link '/proc/103/root': Permission denied
-ls: cannot read symbolic link '/proc/103/exe': Permission denied
-ls: cannot open directory '/proc/103/fd': Permission denied
-ls: cannot open directory '/proc/103/fdinfo': Permission denied
-ls: cannot open directory '/proc/103/map_files': Permission denied
-ls: cannot open directory '/proc/103/ns': Permission denied
-ls: cannot read symbolic link '/proc/103/task/103/cwd': Permission denied
-ls: cannot read symbolic link '/proc/103/task/103/root': Permission denied
-ls: cannot read symbolic link '/proc/103/task/103/exe': Permission denied
-ls: cannot open directory '/proc/103/task/103/fd': Permission denied
-ls: cannot open directory '/proc/103/task/103/fdinfo': Permission denied
-ls: cannot open directory '/proc/103/task/103/ns': Permission denied
-ls: cannot read symbolic link '/proc/105/cwd': Permission denied
-ls: cannot read symbolic link '/proc/105/root': Permission denied
-ls: cannot read symbolic link '/proc/105/exe': Permission denied
-ls: cannot open directory '/proc/105/fd': Permission denied
-ls: cannot open directory '/proc/105/fdinfo': Permission denied
-ls: cannot open directory '/proc/105/map_files': Permission denied
-ls: cannot open directory '/proc/105/ns': Permission denied
-ls: cannot read symbolic link '/proc/105/task/105/cwd': Permission denied
-ls: cannot read symbolic link '/proc/105/task/105/root': Permission denied
-ls: cannot read symbolic link '/proc/105/task/105/exe': Permission denied
-ls: cannot open directory '/proc/105/task/105/fd': Permission denied
-ls: cannot open directory '/proc/105/task/105/fdinfo': Permission denied
-ls: cannot open directory '/proc/105/task/105/ns': Permission denied
-ls: cannot read symbolic link '/proc/106/cwd': Permission denied
-ls: cannot read symbolic link '/proc/106/root': Permission denied
-ls: cannot read symbolic link '/proc/106/exe': Permission denied
-ls: cannot open directory '/proc/106/fd': Permission denied
-ls: cannot open directory '/proc/106/fdinfo': Permission denied
-ls: cannot open directory '/proc/106/map_files': Permission denied
-ls: cannot open directory '/proc/106/ns': Permission denied
-ls: cannot read symbolic link '/proc/106/task/106/cwd': Permission denied
-ls: cannot read symbolic link '/proc/106/task/106/root': Permission denied
-ls: cannot read symbolic link '/proc/106/task/106/exe': Permission denied
-ls: cannot open directory '/proc/106/task/106/fd': Permission denied
-ls: cannot open directory '/proc/106/task/106/fdinfo': Permission denied
-ls: cannot open directory '/proc/106/task/106/ns': Permission denied
-ls: cannot read symbolic link '/proc/107/cwd': Permission denied
-ls: cannot read symbolic link '/proc/107/root': Permission denied
-ls: cannot read symbolic link '/proc/107/exe': Permission denied
-ls: cannot open directory '/proc/107/fd': Permission denied
-ls: cannot open directory '/proc/107/fdinfo': Permission denied
-ls: cannot open directory '/proc/107/map_files': Permission denied
-ls: cannot open directory '/proc/107/ns': Permission denied
-ls: cannot read symbolic link '/proc/107/task/107/cwd': Permission denied
-ls: cannot read symbolic link '/proc/107/task/107/root': Permission denied
-ls: cannot read symbolic link '/proc/107/task/107/exe': Permission denied
-ls: cannot open directory '/proc/107/task/107/fd': Permission denied
-ls: cannot open directory '/proc/107/task/107/fdinfo': Permission denied
-ls: cannot open directory '/proc/107/task/107/ns': Permission denied
-ls: cannot read symbolic link '/proc/108/cwd': Permission denied
-ls: cannot read symbolic link '/proc/108/root': Permission denied
-ls: cannot read symbolic link '/proc/108/exe': Permission denied
-ls: cannot open directory '/proc/108/fd': Permission denied
-ls: cannot open directory '/proc/108/fdinfo': Permission denied
-ls: cannot open directory '/proc/108/map_files': Permission denied
-ls: cannot open directory '/proc/108/ns': Permission denied
-ls: cannot read symbolic link '/proc/108/task/108/cwd': Permission denied
-ls: cannot read symbolic link '/proc/108/task/108/root': Permission denied
-ls: cannot read symbolic link '/proc/108/task/108/exe': Permission denied
-ls: cannot open directory '/proc/108/task/108/fd': Permission denied
-ls: cannot open directory '/proc/108/task/108/fdinfo': Permission denied
-ls: cannot open directory '/proc/108/task/108/ns': Permission denied
-ls: cannot read symbolic link '/proc/109/cwd': Permission denied
-ls: cannot read symbolic link '/proc/109/root': Permission denied
-ls: cannot read symbolic link '/proc/109/exe': Permission denied
-ls: cannot open directory '/proc/109/fd': Permission denied
-ls: cannot open directory '/proc/109/fdinfo': Permission denied
-ls: cannot open directory '/proc/109/map_files': Permission denied
-ls: cannot open directory '/proc/109/ns': Permission denied
-ls: cannot read symbolic link '/proc/109/task/109/cwd': Permission denied
-ls: cannot read symbolic link '/proc/109/task/109/root': Permission denied
-ls: cannot read symbolic link '/proc/109/task/109/exe': Permission denied
-ls: cannot open directory '/proc/109/task/109/fd': Permission denied
-ls: cannot open directory '/proc/109/task/109/fdinfo': Permission denied
-ls: cannot open directory '/proc/109/task/109/ns': Permission denied
-ls: cannot read symbolic link '/proc/11/cwd': Permission denied
-ls: cannot read symbolic link '/proc/11/root': Permission denied
-ls: cannot read symbolic link '/proc/11/exe': Permission denied
-ls: cannot open directory '/proc/11/fd': Permission denied
-ls: cannot open directory '/proc/11/fdinfo': Permission denied
-ls: cannot open directory '/proc/11/map_files': Permission denied
-ls: cannot open directory '/proc/11/ns': Permission denied
-ls: cannot read symbolic link '/proc/11/task/11/cwd': Permission denied
-ls: cannot read symbolic link '/proc/11/task/11/root': Permission denied
-ls: cannot read symbolic link '/proc/11/task/11/exe': Permission denied
-ls: cannot open directory '/proc/11/task/11/fd': Permission denied
-ls: cannot open directory '/proc/11/task/11/fdinfo': Permission denied
-ls: cannot open directory '/proc/11/task/11/ns': Permission denied
-ls: cannot read symbolic link '/proc/110/cwd': Permission denied
-ls: cannot read symbolic link '/proc/110/root': Permission denied
-ls: cannot read symbolic link '/proc/110/exe': Permission denied
-ls: cannot open directory '/proc/110/fd': Permission denied
-ls: cannot open directory '/proc/110/fdinfo': Permission denied
-ls: cannot open directory '/proc/110/map_files': Permission denied
-ls: cannot open directory '/proc/110/ns': Permission denied
-ls: cannot read symbolic link '/proc/110/task/110/cwd': Permission denied
-ls: cannot read symbolic link '/proc/110/task/110/root': Permission denied
-ls: cannot read symbolic link '/proc/110/task/110/exe': Permission denied
-ls: cannot open directory '/proc/110/task/110/fd': Permission denied
-ls: cannot open directory '/proc/110/task/110/fdinfo': Permission denied
-ls: cannot open directory '/proc/110/task/110/ns': Permission denied
-ls: cannot read symbolic link '/proc/111/cwd': Permission denied
-ls: cannot read symbolic link '/proc/111/root': Permission denied
-ls: cannot read symbolic link '/proc/111/exe': Permission denied
-ls: cannot open directory '/proc/111/fd': Permission denied
-ls: cannot open directory '/proc/111/fdinfo': Permission denied
-ls: cannot open directory '/proc/111/map_files': Permission denied
-ls: cannot open directory '/proc/111/ns': Permission denied
-ls: cannot read symbolic link '/proc/111/task/111/cwd': Permission denied
-ls: cannot read symbolic link '/proc/111/task/111/root': Permission denied
-ls: cannot read symbolic link '/proc/111/task/111/exe': Permission denied
-ls: cannot open directory '/proc/111/task/111/fd': Permission denied
-ls: cannot open directory '/proc/111/task/111/fdinfo': Permission denied
-ls: cannot open directory '/proc/111/task/111/ns': Permission denied
-ls: cannot read symbolic link '/proc/112/cwd': Permission denied
-ls: cannot read symbolic link '/proc/112/root': Permission denied
-ls: cannot read symbolic link '/proc/112/exe': Permission denied
-ls: cannot open directory '/proc/112/fd': Permission denied
-ls: cannot open directory '/proc/112/fdinfo': Permission denied
-ls: cannot open directory '/proc/112/map_files': Permission denied
-ls: cannot open directory '/proc/112/ns': Permission denied
-ls: cannot read symbolic link '/proc/112/task/112/cwd': Permission denied
-ls: cannot read symbolic link '/proc/112/task/112/root': Permission denied
-ls: cannot read symbolic link '/proc/112/task/112/exe': Permission denied
-ls: cannot open directory '/proc/112/task/112/fd': Permission denied
-ls: cannot open directory '/proc/112/task/112/fdinfo': Permission denied
-ls: cannot open directory '/proc/112/task/112/ns': Permission denied
-ls: cannot read symbolic link '/proc/113/cwd': Permission denied
-ls: cannot read symbolic link '/proc/113/root': Permission denied
-ls: cannot read symbolic link '/proc/113/exe': Permission denied
-ls: cannot open directory '/proc/113/fd': Permission denied
-ls: cannot open directory '/proc/113/fdinfo': Permission denied
-ls: cannot open directory '/proc/113/map_files': Permission denied
-ls: cannot open directory '/proc/113/ns': Permission denied
-ls: cannot read symbolic link '/proc/113/task/113/cwd': Permission denied
-ls: cannot read symbolic link '/proc/113/task/113/root': Permission denied
-ls: cannot read symbolic link '/proc/113/task/113/exe': Permission denied
-ls: cannot open directory '/proc/113/task/113/fd': Permission denied
-ls: cannot open directory '/proc/113/task/113/fdinfo': Permission denied
-ls: cannot open directory '/proc/113/task/113/ns': Permission denied
-ls: cannot read symbolic link '/proc/114/cwd': Permission denied
-ls: cannot read symbolic link '/proc/114/root': Permission denied
-ls: cannot read symbolic link '/proc/114/exe': Permission denied
-ls: cannot open directory '/proc/114/fd': Permission denied
-ls: cannot open directory '/proc/114/fdinfo': Permission denied
-ls: cannot open directory '/proc/114/map_files': Permission denied
-ls: cannot open directory '/proc/114/ns': Permission denied
-ls: cannot read symbolic link '/proc/114/task/114/cwd': Permission denied
-ls: cannot read symbolic link '/proc/114/task/114/root': Permission denied
-ls: cannot read symbolic link '/proc/114/task/114/exe': Permission denied
-ls: cannot open directory '/proc/114/task/114/fd': Permission denied
-ls: cannot open directory '/proc/114/task/114/fdinfo': Permission denied
-ls: cannot open directory '/proc/114/task/114/ns': Permission denied
-ls: cannot read symbolic link '/proc/115/cwd': Permission denied
-ls: cannot read symbolic link '/proc/115/root': Permission denied
-ls: cannot read symbolic link '/proc/115/exe': Permission denied
-ls: cannot open directory '/proc/115/fd': Permission denied
-ls: cannot open directory '/proc/115/fdinfo': Permission denied
-ls: cannot open directory '/proc/115/map_files': Permission denied
-ls: cannot open directory '/proc/115/ns': Permission denied
-ls: cannot read symbolic link '/proc/115/task/115/cwd': Permission denied
-ls: cannot read symbolic link '/proc/115/task/115/root': Permission denied
-ls: cannot read symbolic link '/proc/115/task/115/exe': Permission denied
-ls: cannot open directory '/proc/115/task/115/fd': Permission denied
-ls: cannot open directory '/proc/115/task/115/fdinfo': Permission denied
-ls: cannot open directory '/proc/115/task/115/ns': Permission denied
-ls: cannot read symbolic link '/proc/116/cwd': Permission denied
-ls: cannot read symbolic link '/proc/116/root': Permission denied
-ls: cannot read symbolic link '/proc/116/exe': Permission denied
-ls: cannot open directory '/proc/116/fd': Permission denied
-ls: cannot open directory '/proc/116/fdinfo': Permission denied
-ls: cannot open directory '/proc/116/map_files': Permission denied
-ls: cannot open directory '/proc/116/ns': Permission denied
-ls: cannot read symbolic link '/proc/116/task/116/cwd': Permission denied
-ls: cannot read symbolic link '/proc/116/task/116/root': Permission denied
-ls: cannot read symbolic link '/proc/116/task/116/exe': Permission denied
-ls: cannot open directory '/proc/116/task/116/fd': Permission denied
-ls: cannot open directory '/proc/116/task/116/fdinfo': Permission denied
-ls: cannot open directory '/proc/116/task/116/ns': Permission denied
-ls: cannot read symbolic link '/proc/117/cwd': Permission denied
-ls: cannot read symbolic link '/proc/117/root': Permission denied
-ls: cannot read symbolic link '/proc/117/exe': Permission denied
-ls: cannot open directory '/proc/117/fd': Permission denied
-ls: cannot open directory '/proc/117/fdinfo': Permission denied
-ls: cannot open directory '/proc/117/map_files': Permission denied
-ls: cannot open directory '/proc/117/ns': Permission denied
-ls: cannot read symbolic link '/proc/117/task/117/cwd': Permission denied
-ls: cannot read symbolic link '/proc/117/task/117/root': Permission denied
-ls: cannot read symbolic link '/proc/117/task/117/exe': Permission denied
-ls: cannot open directory '/proc/117/task/117/fd': Permission denied
-ls: cannot open directory '/proc/117/task/117/fdinfo': Permission denied
-ls: cannot open directory '/proc/117/task/117/ns': Permission denied
-ls: cannot read symbolic link '/proc/118/cwd': Permission denied
-ls: cannot read symbolic link '/proc/118/root': Permission denied
-ls: cannot read symbolic link '/proc/118/exe': Permission denied
-ls: cannot open directory '/proc/118/fd': Permission denied
-ls: cannot open directory '/proc/118/fdinfo': Permission denied
-ls: cannot open directory '/proc/118/map_files': Permission denied
-ls: cannot open directory '/proc/118/ns': Permission denied
-ls: cannot read symbolic link '/proc/118/task/118/cwd': Permission denied
-ls: cannot read symbolic link '/proc/118/task/118/root': Permission denied
-ls: cannot read symbolic link '/proc/118/task/118/exe': Permission denied
-ls: cannot open directory '/proc/118/task/118/fd': Permission denied
-ls: cannot open directory '/proc/118/task/118/fdinfo': Permission denied
-ls: cannot open directory '/proc/118/task/118/ns': Permission denied
-ls: cannot read symbolic link '/proc/119/cwd': Permission denied
-ls: cannot read symbolic link '/proc/119/root': Permission denied
-ls: cannot read symbolic link '/proc/119/exe': Permission denied
-ls: cannot open directory '/proc/119/fd': Permission denied
-ls: cannot open directory '/proc/119/fdinfo': Permission denied
-ls: cannot open directory '/proc/119/map_files': Permission denied
-ls: cannot open directory '/proc/119/ns': Permission denied
-ls: cannot read symbolic link '/proc/119/task/119/cwd': Permission denied
-ls: cannot read symbolic link '/proc/119/task/119/root': Permission denied
-ls: cannot read symbolic link '/proc/119/task/119/exe': Permission denied
-ls: cannot open directory '/proc/119/task/119/fd': Permission denied
-ls: cannot open directory '/proc/119/task/119/fdinfo': Permission denied
-ls: cannot open directory '/proc/119/task/119/ns': Permission denied
-ls: cannot read symbolic link '/proc/12/cwd': Permission denied
-ls: cannot read symbolic link '/proc/12/root': Permission denied
-ls: cannot read symbolic link '/proc/12/exe': Permission denied
-ls: cannot open directory '/proc/12/fd': Permission denied
-ls: cannot open directory '/proc/12/fdinfo': Permission denied
-ls: cannot open directory '/proc/12/map_files': Permission denied
-ls: cannot open directory '/proc/12/ns': Permission denied
-ls: cannot read symbolic link '/proc/12/task/12/cwd': Permission denied
-ls: cannot read symbolic link '/proc/12/task/12/root': Permission denied
-ls: cannot read symbolic link '/proc/12/task/12/exe': Permission denied
-ls: cannot open directory '/proc/12/task/12/fd': Permission denied
-ls: cannot open directory '/proc/12/task/12/fdinfo': Permission denied
-ls: cannot open directory '/proc/12/task/12/ns': Permission denied
-ls: cannot read symbolic link '/proc/120/cwd': Permission denied
-ls: cannot read symbolic link '/proc/120/root': Permission denied
-ls: cannot read symbolic link '/proc/120/exe': Permission denied
-ls: cannot open directory '/proc/120/fd': Permission denied
-ls: cannot open directory '/proc/120/fdinfo': Permission denied
-ls: cannot open directory '/proc/120/map_files': Permission denied
-ls: cannot open directory '/proc/120/ns': Permission denied
-ls: cannot read symbolic link '/proc/120/task/120/cwd': Permission denied
-ls: cannot read symbolic link '/proc/120/task/120/root': Permission denied
-ls: cannot read symbolic link '/proc/120/task/120/exe': Permission denied
-ls: cannot open directory '/proc/120/task/120/fd': Permission denied
-ls: cannot open directory '/proc/120/task/120/fdinfo': Permission denied
-ls: cannot open directory '/proc/120/task/120/ns': Permission denied
-ls: cannot read symbolic link '/proc/127/cwd': Permission denied
-ls: cannot read symbolic link '/proc/127/root': Permission denied
-ls: cannot read symbolic link '/proc/127/exe': Permission denied
-ls: cannot open directory '/proc/127/fd': Permission denied
-ls: cannot open directory '/proc/127/fdinfo': Permission denied
-ls: cannot open directory '/proc/127/map_files': Permission denied
-ls: cannot open directory '/proc/127/ns': Permission denied
-ls: cannot read symbolic link '/proc/127/task/127/cwd': Permission denied
-ls: cannot read symbolic link '/proc/127/task/127/root': Permission denied
-ls: cannot read symbolic link '/proc/127/task/127/exe': Permission denied
-ls: cannot open directory '/proc/127/task/127/fd': Permission denied
-ls: cannot open directory '/proc/127/task/127/fdinfo': Permission denied
-ls: cannot open directory '/proc/127/task/127/ns': Permission denied
-ls: cannot read symbolic link '/proc/13/cwd': Permission denied
-ls: cannot read symbolic link '/proc/13/root': Permission denied
-ls: cannot read symbolic link '/proc/13/exe': Permission denied
-ls: cannot open directory '/proc/13/fd': Permission denied
-ls: cannot open directory '/proc/13/fdinfo': Permission denied
-ls: cannot open directory '/proc/13/map_files': Permission denied
-ls: cannot open directory '/proc/13/ns': Permission denied
-ls: cannot read symbolic link '/proc/13/task/13/cwd': Permission denied
-ls: cannot read symbolic link '/proc/13/task/13/root': Permission denied
-ls: cannot read symbolic link '/proc/13/task/13/exe': Permission denied
-ls: cannot open directory '/proc/13/task/13/fd': Permission denied
-ls: cannot open directory '/proc/13/task/13/fdinfo': Permission denied
-ls: cannot open directory '/proc/13/task/13/ns': Permission denied
-ls: cannot read symbolic link '/proc/137/cwd': Permission denied
-ls: cannot read symbolic link '/proc/137/root': Permission denied
-ls: cannot read symbolic link '/proc/137/exe': Permission denied
-ls: cannot open directory '/proc/137/fd': Permission denied
-ls: cannot open directory '/proc/137/fdinfo': Permission denied
-ls: cannot open directory '/proc/137/map_files': Permission denied
-ls: cannot open directory '/proc/137/ns': Permission denied
-ls: cannot read symbolic link '/proc/137/task/137/cwd': Permission denied
-ls: cannot read symbolic link '/proc/137/task/137/root': Permission denied
-ls: cannot read symbolic link '/proc/137/task/137/exe': Permission denied
-ls: cannot open directory '/proc/137/task/137/fd': Permission denied
-ls: cannot open directory '/proc/137/task/137/fdinfo': Permission denied
-ls: cannot open directory '/proc/137/task/137/ns': Permission denied
-ls: cannot read symbolic link '/proc/14/cwd': Permission denied
-ls: cannot read symbolic link '/proc/14/root': Permission denied
-ls: cannot read symbolic link '/proc/14/exe': Permission denied
-ls: cannot open directory '/proc/14/fd': Permission denied
-ls: cannot open directory '/proc/14/fdinfo': Permission denied
-ls: cannot open directory '/proc/14/map_files': Permission denied
-ls: cannot open directory '/proc/14/ns': Permission denied
-ls: cannot read symbolic link '/proc/14/task/14/cwd': Permission denied
-ls: cannot read symbolic link '/proc/14/task/14/root': Permission denied
-ls: cannot read symbolic link '/proc/14/task/14/exe': Permission denied
-ls: cannot open directory '/proc/14/task/14/fd': Permission denied
-ls: cannot open directory '/proc/14/task/14/fdinfo': Permission denied
-ls: cannot open directory '/proc/14/task/14/ns': Permission denied
-ls: cannot read symbolic link '/proc/142/cwd': Permission denied
-ls: cannot read symbolic link '/proc/142/root': Permission denied
-ls: cannot read symbolic link '/proc/142/exe': Permission denied
-ls: cannot open directory '/proc/142/fd': Permission denied
-ls: cannot open directory '/proc/142/fdinfo': Permission denied
-ls: cannot open directory '/proc/142/map_files': Permission denied
-ls: cannot open directory '/proc/142/ns': Permission denied
-ls: cannot read symbolic link '/proc/142/task/142/cwd': Permission denied
-ls: cannot read symbolic link '/proc/142/task/142/root': Permission denied
-ls: cannot read symbolic link '/proc/142/task/142/exe': Permission denied
-ls: cannot open directory '/proc/142/task/142/fd': Permission denied
-ls: cannot open directory '/proc/142/task/142/fdinfo': Permission denied
-ls: cannot open directory '/proc/142/task/142/ns': Permission denied
-ls: cannot read symbolic link '/proc/143/cwd': Permission denied
-ls: cannot read symbolic link '/proc/143/root': Permission denied
-ls: cannot read symbolic link '/proc/143/exe': Permission denied
-ls: cannot open directory '/proc/143/fd': Permission denied
-ls: cannot open directory '/proc/143/fdinfo': Permission denied
-ls: cannot open directory '/proc/143/map_files': Permission denied
-ls: cannot open directory '/proc/143/ns': Permission denied
-ls: cannot read symbolic link '/proc/143/task/143/cwd': Permission denied
-ls: cannot read symbolic link '/proc/143/task/143/root': Permission denied
-ls: cannot read symbolic link '/proc/143/task/143/exe': Permission denied
-ls: cannot open directory '/proc/143/task/143/fd': Permission denied
-ls: cannot open directory '/proc/143/task/143/fdinfo': Permission denied
-ls: cannot open directory '/proc/143/task/143/ns': Permission denied
-ls: cannot read symbolic link '/proc/144/cwd': Permission denied
-ls: cannot read symbolic link '/proc/144/root': Permission denied
-ls: cannot read symbolic link '/proc/144/exe': Permission denied
-ls: cannot open directory '/proc/144/fd': Permission denied
-ls: cannot open directory '/proc/144/fdinfo': Permission denied
-ls: cannot open directory '/proc/144/map_files': Permission denied
-ls: cannot open directory '/proc/144/ns': Permission denied
-ls: cannot read symbolic link '/proc/144/task/144/cwd': Permission denied
-ls: cannot read symbolic link '/proc/144/task/144/root': Permission denied
-ls: cannot read symbolic link '/proc/144/task/144/exe': Permission denied
-ls: cannot open directory '/proc/144/task/144/fd': Permission denied
-ls: cannot open directory '/proc/144/task/144/fdinfo': Permission denied
-ls: cannot open directory '/proc/144/task/144/ns': Permission denied
-ls: cannot read symbolic link '/proc/146/cwd': Permission denied
-ls: cannot read symbolic link '/proc/146/root': Permission denied
-ls: cannot read symbolic link '/proc/146/exe': Permission denied
-ls: cannot open directory '/proc/146/fd': Permission denied
-ls: cannot open directory '/proc/146/fdinfo': Permission denied
-ls: cannot open directory '/proc/146/map_files': Permission denied
-ls: cannot open directory '/proc/146/ns': Permission denied
-ls: cannot read symbolic link '/proc/146/task/146/cwd': Permission denied
-ls: cannot read symbolic link '/proc/146/task/146/root': Permission denied
-ls: cannot read symbolic link '/proc/146/task/146/exe': Permission denied
-ls: cannot open directory '/proc/146/task/146/fd': Permission denied
-ls: cannot open directory '/proc/146/task/146/fdinfo': Permission denied
-ls: cannot open directory '/proc/146/task/146/ns': Permission denied
-ls: cannot read symbolic link '/proc/147/cwd': Permission denied
-ls: cannot read symbolic link '/proc/147/root': Permission denied
-ls: cannot read symbolic link '/proc/147/exe': Permission denied
-ls: cannot open directory '/proc/147/fd': Permission denied
-ls: cannot open directory '/proc/147/fdinfo': Permission denied
-ls: cannot open directory '/proc/147/map_files': Permission denied
-ls: cannot open directory '/proc/147/ns': Permission denied
-ls: cannot read symbolic link '/proc/147/task/147/cwd': Permission denied
-ls: cannot read symbolic link '/proc/147/task/147/root': Permission denied
-ls: cannot read symbolic link '/proc/147/task/147/exe': Permission denied
-ls: cannot open directory '/proc/147/task/147/fd': Permission denied
-ls: cannot open directory '/proc/147/task/147/fdinfo': Permission denied
-ls: cannot open directory '/proc/147/task/147/ns': Permission denied
-ls: cannot read symbolic link '/proc/148/cwd': Permission denied
-ls: cannot read symbolic link '/proc/148/root': Permission denied
-ls: cannot read symbolic link '/proc/148/exe': Permission denied
-ls: cannot open directory '/proc/148/fd': Permission denied
-ls: cannot open directory '/proc/148/fdinfo': Permission denied
-ls: cannot open directory '/proc/148/map_files': Permission denied
-ls: cannot open directory '/proc/148/ns': Permission denied
-ls: cannot read symbolic link '/proc/148/task/148/cwd': Permission denied
-ls: cannot read symbolic link '/proc/148/task/148/root': Permission denied
-ls: cannot read symbolic link '/proc/148/task/148/exe': Permission denied
-ls: cannot open directory '/proc/148/task/148/fd': Permission denied
-ls: cannot open directory '/proc/148/task/148/fdinfo': Permission denied
-ls: cannot open directory '/proc/148/task/148/ns': Permission denied
-ls: cannot read symbolic link '/proc/16/cwd': Permission denied
-ls: cannot read symbolic link '/proc/16/root': Permission denied
-ls: cannot read symbolic link '/proc/16/exe': Permission denied
-ls: cannot open directory '/proc/16/fd': Permission denied
-ls: cannot open directory '/proc/16/fdinfo': Permission denied
-ls: cannot open directory '/proc/16/map_files': Permission denied
-ls: cannot open directory '/proc/16/ns': Permission denied
-ls: cannot read symbolic link '/proc/16/task/16/cwd': Permission denied
-ls: cannot read symbolic link '/proc/16/task/16/root': Permission denied
-ls: cannot read symbolic link '/proc/16/task/16/exe': Permission denied
-ls: cannot open directory '/proc/16/task/16/fd': Permission denied
-ls: cannot open directory '/proc/16/task/16/fdinfo': Permission denied
-ls: cannot open directory '/proc/16/task/16/ns': Permission denied
-ls: cannot read symbolic link '/proc/17/cwd': Permission denied
-ls: cannot read symbolic link '/proc/17/root': Permission denied
-ls: cannot read symbolic link '/proc/17/exe': Permission denied
-ls: cannot open directory '/proc/17/fd': Permission denied
-ls: cannot open directory '/proc/17/fdinfo': Permission denied
-ls: cannot open directory '/proc/17/map_files': Permission denied
-ls: cannot open directory '/proc/17/ns': Permission denied
-ls: cannot read symbolic link '/proc/17/task/17/cwd': Permission denied
-ls: cannot read symbolic link '/proc/17/task/17/root': Permission denied
-ls: cannot read symbolic link '/proc/17/task/17/exe': Permission denied
-ls: cannot open directory '/proc/17/task/17/fd': Permission denied
-ls: cannot open directory '/proc/17/task/17/fdinfo': Permission denied
-ls: cannot open directory '/proc/17/task/17/ns': Permission denied
-ls: cannot read symbolic link '/proc/174/cwd': Permission denied
-ls: cannot read symbolic link '/proc/174/root': Permission denied
-ls: cannot read symbolic link '/proc/174/exe': Permission denied
-ls: cannot open directory '/proc/174/fd': Permission denied
-ls: cannot open directory '/proc/174/fdinfo': Permission denied
-ls: cannot open directory '/proc/174/map_files': Permission denied
-ls: cannot open directory '/proc/174/ns': Permission denied
-ls: cannot read symbolic link '/proc/174/task/174/cwd': Permission denied
-ls: cannot read symbolic link '/proc/174/task/174/root': Permission denied
-ls: cannot read symbolic link '/proc/174/task/174/exe': Permission denied
-ls: cannot open directory '/proc/174/task/174/fd': Permission denied
-ls: cannot open directory '/proc/174/task/174/fdinfo': Permission denied
-ls: cannot open directory '/proc/174/task/174/ns': Permission denied
-ls: cannot read symbolic link '/proc/175/cwd': Permission denied
-ls: cannot read symbolic link '/proc/175/root': Permission denied
-ls: cannot read symbolic link '/proc/175/exe': Permission denied
-ls: cannot open directory '/proc/175/fd': Permission denied
-ls: cannot open directory '/proc/175/fdinfo': Permission denied
-ls: cannot open directory '/proc/175/map_files': Permission denied
-ls: cannot open directory '/proc/175/ns': Permission denied
-ls: cannot read symbolic link '/proc/175/task/175/cwd': Permission denied
-ls: cannot read symbolic link '/proc/175/task/175/root': Permission denied
-ls: cannot read symbolic link '/proc/175/task/175/exe': Permission denied
-ls: cannot open directory '/proc/175/task/175/fd': Permission denied
-ls: cannot open directory '/proc/175/task/175/fdinfo': Permission denied
-ls: cannot open directory '/proc/175/task/175/ns': Permission denied
-ls: cannot read symbolic link '/proc/179/cwd': Permission denied
-ls: cannot read symbolic link '/proc/179/root': Permission denied
-ls: cannot read symbolic link '/proc/179/exe': Permission denied
-ls: cannot open directory '/proc/179/fd': Permission denied
-ls: cannot open directory '/proc/179/fdinfo': Permission denied
-ls: cannot open directory '/proc/179/map_files': Permission denied
-ls: cannot open directory '/proc/179/ns': Permission denied
-ls: cannot read symbolic link '/proc/179/task/179/cwd': Permission denied
-ls: cannot read symbolic link '/proc/179/task/179/root': Permission denied
-ls: cannot read symbolic link '/proc/179/task/179/exe': Permission denied
-ls: cannot open directory '/proc/179/task/179/fd': Permission denied
-ls: cannot open directory '/proc/179/task/179/fdinfo': Permission denied
-ls: cannot open directory '/proc/179/task/179/ns': Permission denied
-ls: cannot read symbolic link '/proc/18/cwd': Permission denied
-ls: cannot read symbolic link '/proc/18/root': Permission denied
-ls: cannot read symbolic link '/proc/18/exe': Permission denied
-ls: cannot open directory '/proc/18/fd': Permission denied
-ls: cannot open directory '/proc/18/fdinfo': Permission denied
-ls: cannot open directory '/proc/18/map_files': Permission denied
-ls: cannot open directory '/proc/18/ns': Permission denied
-ls: cannot read symbolic link '/proc/18/task/18/cwd': Permission denied
-ls: cannot read symbolic link '/proc/18/task/18/root': Permission denied
-ls: cannot read symbolic link '/proc/18/task/18/exe': Permission denied
-ls: cannot open directory '/proc/18/task/18/fd': Permission denied
-ls: cannot open directory '/proc/18/task/18/fdinfo': Permission denied
-ls: cannot open directory '/proc/18/task/18/ns': Permission denied
-ls: cannot read symbolic link '/proc/186/cwd': Permission denied
-ls: cannot read symbolic link '/proc/186/root': Permission denied
-ls: cannot read symbolic link '/proc/186/exe': Permission denied
-ls: cannot open directory '/proc/186/fd': Permission denied
-ls: cannot open directory '/proc/186/fdinfo': Permission denied
-ls: cannot open directory '/proc/186/map_files': Permission denied
-ls: cannot open directory '/proc/186/ns': Permission denied
-ls: cannot read symbolic link '/proc/186/task/186/cwd': Permission denied
-ls: cannot read symbolic link '/proc/186/task/186/root': Permission denied
-ls: cannot read symbolic link '/proc/186/task/186/exe': Permission denied
-ls: cannot open directory '/proc/186/task/186/fd': Permission denied
-ls: cannot open directory '/proc/186/task/186/fdinfo': Permission denied
-ls: cannot open directory '/proc/186/task/186/ns': Permission denied
-ls: cannot read symbolic link '/proc/187/cwd': Permission denied
-ls: cannot read symbolic link '/proc/187/root': Permission denied
-ls: cannot read symbolic link '/proc/187/exe': Permission denied
-ls: cannot open directory '/proc/187/fd': Permission denied
-ls: cannot open directory '/proc/187/fdinfo': Permission denied
-ls: cannot open directory '/proc/187/map_files': Permission denied
-ls: cannot open directory '/proc/187/ns': Permission denied
-ls: cannot read symbolic link '/proc/187/task/187/cwd': Permission denied
-ls: cannot read symbolic link '/proc/187/task/187/root': Permission denied
-ls: cannot read symbolic link '/proc/187/task/187/exe': Permission denied
-ls: cannot open directory '/proc/187/task/187/fd': Permission denied
-ls: cannot open directory '/proc/187/task/187/fdinfo': Permission denied
-ls: cannot open directory '/proc/187/task/187/ns': Permission denied
-ls: cannot read symbolic link '/proc/19/cwd': Permission denied
-ls: cannot read symbolic link '/proc/19/root': Permission denied
-ls: cannot read symbolic link '/proc/19/exe': Permission denied
-ls: cannot open directory '/proc/19/fd': Permission denied
-ls: cannot open directory '/proc/19/fdinfo': Permission denied
-ls: cannot open directory '/proc/19/map_files': Permission denied
-ls: cannot open directory '/proc/19/ns': Permission denied
-ls: cannot read symbolic link '/proc/19/task/19/cwd': Permission denied
-ls: cannot read symbolic link '/proc/19/task/19/root': Permission denied
-ls: cannot read symbolic link '/proc/19/task/19/exe': Permission denied
-ls: cannot open directory '/proc/19/task/19/fd': Permission denied
-ls: cannot open directory '/proc/19/task/19/fdinfo': Permission denied
-ls: cannot open directory '/proc/19/task/19/ns': Permission denied
-ls: cannot read symbolic link '/proc/197/cwd': Permission denied
-ls: cannot read symbolic link '/proc/197/root': Permission denied
-ls: cannot read symbolic link '/proc/197/exe': Permission denied
-ls: cannot open directory '/proc/197/fd': Permission denied
-ls: cannot open directory '/proc/197/fdinfo': Permission denied
-ls: cannot open directory '/proc/197/map_files': Permission denied
-ls: cannot open directory '/proc/197/ns': Permission denied
-ls: cannot read symbolic link '/proc/197/task/197/cwd': Permission denied
-ls: cannot read symbolic link '/proc/197/task/197/root': Permission denied
-ls: cannot read symbolic link '/proc/197/task/197/exe': Permission denied
-ls: cannot open directory '/proc/197/task/197/fd': Permission denied
-ls: cannot open directory '/proc/197/task/197/fdinfo': Permission denied
-ls: cannot open directory '/proc/197/task/197/ns': Permission denied
-ls: cannot read symbolic link '/proc/198/cwd': Permission denied
-ls: cannot read symbolic link '/proc/198/root': Permission denied
-ls: cannot read symbolic link '/proc/198/exe': Permission denied
-ls: cannot open directory '/proc/198/fd': Permission denied
-ls: cannot open directory '/proc/198/fdinfo': Permission denied
-ls: cannot open directory '/proc/198/map_files': Permission denied
-ls: cannot open directory '/proc/198/ns': Permission denied
-ls: cannot read symbolic link '/proc/198/task/198/cwd': Permission denied
-ls: cannot read symbolic link '/proc/198/task/198/root': Permission denied
-ls: cannot read symbolic link '/proc/198/task/198/exe': Permission denied
-ls: cannot open directory '/proc/198/task/198/fd': Permission denied
-ls: cannot open directory '/proc/198/task/198/fdinfo': Permission denied
-ls: cannot open directory '/proc/198/task/198/ns': Permission denied
-ls: cannot read symbolic link '/proc/2/cwd': Permission denied
-ls: cannot read symbolic link '/proc/2/root': Permission denied
-ls: cannot read symbolic link '/proc/2/exe': Permission denied
-ls: cannot open directory '/proc/2/fd': Permission denied
-ls: cannot open directory '/proc/2/fdinfo': Permission denied
-ls: cannot open directory '/proc/2/map_files': Permission denied
-ls: cannot open directory '/proc/2/ns': Permission denied
-ls: cannot read symbolic link '/proc/2/task/2/cwd': Permission denied
-ls: cannot read symbolic link '/proc/2/task/2/root': Permission denied
-ls: cannot read symbolic link '/proc/2/task/2/exe': Permission denied
-ls: cannot open directory '/proc/2/task/2/fd': Permission denied
-ls: cannot open directory '/proc/2/task/2/fdinfo': Permission denied
-ls: cannot open directory '/proc/2/task/2/ns': Permission denied
-ls: cannot read symbolic link '/proc/20/cwd': Permission denied
-ls: cannot read symbolic link '/proc/20/root': Permission denied
-ls: cannot read symbolic link '/proc/20/exe': Permission denied
-ls: cannot open directory '/proc/20/fd': Permission denied
-ls: cannot open directory '/proc/20/fdinfo': Permission denied
-ls: cannot open directory '/proc/20/map_files': Permission denied
-ls: cannot open directory '/proc/20/ns': Permission denied
-ls: cannot read symbolic link '/proc/20/task/20/cwd': Permission denied
-ls: cannot read symbolic link '/proc/20/task/20/root': Permission denied
-ls: cannot read symbolic link '/proc/20/task/20/exe': Permission denied
-ls: cannot open directory '/proc/20/task/20/fd': Permission denied
-ls: cannot open directory '/proc/20/task/20/fdinfo': Permission denied
-ls: cannot open directory '/proc/20/task/20/ns': Permission denied
-ls: cannot read symbolic link '/proc/21/cwd': Permission denied
-ls: cannot read symbolic link '/proc/21/root': Permission denied
-ls: cannot read symbolic link '/proc/21/exe': Permission denied
-ls: cannot open directory '/proc/21/fd': Permission denied
-ls: cannot open directory '/proc/21/fdinfo': Permission denied
-ls: cannot open directory '/proc/21/map_files': Permission denied
-ls: cannot open directory '/proc/21/ns': Permission denied
-ls: cannot read symbolic link '/proc/21/task/21/cwd': Permission denied
-ls: cannot read symbolic link '/proc/21/task/21/root': Permission denied
-ls: cannot read symbolic link '/proc/21/task/21/exe': Permission denied
-ls: cannot open directory '/proc/21/task/21/fd': Permission denied
-ls: cannot open directory '/proc/21/task/21/fdinfo': Permission denied
-ls: cannot open directory '/proc/21/task/21/ns': Permission denied
-ls: cannot read symbolic link '/proc/225/cwd': Permission denied
-ls: cannot read symbolic link '/proc/225/root': Permission denied
-ls: cannot read symbolic link '/proc/225/exe': Permission denied
-ls: cannot open directory '/proc/225/fd': Permission denied
-ls: cannot open directory '/proc/225/fdinfo': Permission denied
-ls: cannot open directory '/proc/225/map_files': Permission denied
-ls: cannot open directory '/proc/225/ns': Permission denied
-ls: cannot read symbolic link '/proc/225/task/225/cwd': Permission denied
-ls: cannot read symbolic link '/proc/225/task/225/root': Permission denied
-ls: cannot read symbolic link '/proc/225/task/225/exe': Permission denied
-ls: cannot open directory '/proc/225/task/225/fd': Permission denied
-ls: cannot open directory '/proc/225/task/225/fdinfo': Permission denied
-ls: cannot open directory '/proc/225/task/225/ns': Permission denied
-ls: cannot read symbolic link '/proc/23/cwd': Permission denied
-ls: cannot read symbolic link '/proc/23/root': Permission denied
-ls: cannot read symbolic link '/proc/23/exe': Permission denied
-ls: cannot open directory '/proc/23/fd': Permission denied
-ls: cannot open directory '/proc/23/fdinfo': Permission denied
-ls: cannot open directory '/proc/23/map_files': Permission denied
-ls: cannot open directory '/proc/23/ns': Permission denied
-ls: cannot read symbolic link '/proc/23/task/23/cwd': Permission denied
-ls: cannot read symbolic link '/proc/23/task/23/root': Permission denied
-ls: cannot read symbolic link '/proc/23/task/23/exe': Permission denied
-ls: cannot open directory '/proc/23/task/23/fd': Permission denied
-ls: cannot open directory '/proc/23/task/23/fdinfo': Permission denied
-ls: cannot open directory '/proc/23/task/23/ns': Permission denied
-ls: cannot read symbolic link '/proc/235/cwd': Permission denied
-ls: cannot read symbolic link '/proc/235/root': Permission denied
-ls: cannot read symbolic link '/proc/235/exe': Permission denied
-ls: cannot open directory '/proc/235/fd': Permission denied
-ls: cannot open directory '/proc/235/fdinfo': Permission denied
-ls: cannot open directory '/proc/235/map_files': Permission denied
-ls: cannot open directory '/proc/235/ns': Permission denied
-ls: cannot read symbolic link '/proc/235/task/235/cwd': Permission denied
-ls: cannot read symbolic link '/proc/235/task/235/root': Permission denied
-ls: cannot read symbolic link '/proc/235/task/235/exe': Permission denied
-ls: cannot open directory '/proc/235/task/235/fd': Permission denied
-ls: cannot open directory '/proc/235/task/235/fdinfo': Permission denied
-ls: cannot open directory '/proc/235/task/235/ns': Permission denied
-ls: cannot read symbolic link '/proc/24/cwd': Permission denied
-ls: cannot read symbolic link '/proc/24/root': Permission denied
-ls: cannot read symbolic link '/proc/24/exe': Permission denied
-ls: cannot open directory '/proc/24/fd': Permission denied
-ls: cannot open directory '/proc/24/fdinfo': Permission denied
-ls: cannot open directory '/proc/24/map_files': Permission denied
-ls: cannot open directory '/proc/24/ns': Permission denied
-ls: cannot read symbolic link '/proc/24/task/24/cwd': Permission denied
-ls: cannot read symbolic link '/proc/24/task/24/root': Permission denied
-ls: cannot read symbolic link '/proc/24/task/24/exe': Permission denied
-ls: cannot open directory '/proc/24/task/24/fd': Permission denied
-ls: cannot open directory '/proc/24/task/24/fdinfo': Permission denied
-ls: cannot open directory '/proc/24/task/24/ns': Permission denied
-ls: cannot read symbolic link '/proc/240/cwd': Permission denied
-ls: cannot read symbolic link '/proc/240/root': Permission denied
-ls: cannot read symbolic link '/proc/240/exe': Permission denied
-ls: cannot open directory '/proc/240/fd': Permission denied
-ls: cannot open directory '/proc/240/fdinfo': Permission denied
-ls: cannot open directory '/proc/240/map_files': Permission denied
-ls: cannot open directory '/proc/240/ns': Permission denied
-ls: cannot read symbolic link '/proc/240/task/240/cwd': Permission denied
-ls: cannot read symbolic link '/proc/240/task/240/root': Permission denied
-ls: cannot read symbolic link '/proc/240/task/240/exe': Permission denied
-ls: cannot open directory '/proc/240/task/240/fd': Permission denied
-ls: cannot open directory '/proc/240/task/240/fdinfo': Permission denied
-ls: cannot open directory '/proc/240/task/240/ns': Permission denied
-ls: cannot read symbolic link '/proc/25/cwd': Permission denied
-ls: cannot read symbolic link '/proc/25/root': Permission denied
-ls: cannot read symbolic link '/proc/25/exe': Permission denied
-ls: cannot open directory '/proc/25/fd': Permission denied
-ls: cannot open directory '/proc/25/fdinfo': Permission denied
-ls: cannot open directory '/proc/25/map_files': Permission denied
-ls: cannot open directory '/proc/25/ns': Permission denied
-ls: cannot read symbolic link '/proc/25/task/25/cwd': Permission denied
-ls: cannot read symbolic link '/proc/25/task/25/root': Permission denied
-ls: cannot read symbolic link '/proc/25/task/25/exe': Permission denied
-ls: cannot open directory '/proc/25/task/25/fd': Permission denied
-ls: cannot open directory '/proc/25/task/25/fdinfo': Permission denied
-ls: cannot open directory '/proc/25/task/25/ns': Permission denied
-ls: cannot read symbolic link '/proc/26/cwd': Permission denied
-ls: cannot read symbolic link '/proc/26/root': Permission denied
-ls: cannot read symbolic link '/proc/26/exe': Permission denied
-ls: cannot open directory '/proc/26/fd': Permission denied
-ls: cannot open directory '/proc/26/fdinfo': Permission denied
-ls: cannot open directory '/proc/26/map_files': Permission denied
-ls: cannot open directory '/proc/26/ns': Permission denied
-ls: cannot read symbolic link '/proc/26/task/26/cwd': Permission denied
-ls: cannot read symbolic link '/proc/26/task/26/root': Permission denied
-ls: cannot read symbolic link '/proc/26/task/26/exe': Permission denied
-ls: cannot open directory '/proc/26/task/26/fd': Permission denied
-ls: cannot open directory '/proc/26/task/26/fdinfo': Permission denied
-ls: cannot open directory '/proc/26/task/26/ns': Permission denied
-ls: cannot read symbolic link '/proc/265739/cwd': Permission denied
-ls: cannot read symbolic link '/proc/265739/root': Permission denied
-ls: cannot read symbolic link '/proc/265739/exe': Permission denied
-ls: cannot open directory '/proc/265739/fd': Permission denied
-ls: cannot open directory '/proc/265739/fdinfo': Permission denied
-ls: cannot open directory '/proc/265739/map_files': Permission denied
-ls: cannot open directory '/proc/265739/ns': Permission denied
-ls: cannot read symbolic link '/proc/265739/task/265739/cwd': Permission denied
-ls: cannot read symbolic link '/proc/265739/task/265739/root': Permission denied
-ls: cannot read symbolic link '/proc/265739/task/265739/exe': Permission denied
-ls: cannot open directory '/proc/265739/task/265739/fd': Permission denied
-ls: cannot open directory '/proc/265739/task/265739/fdinfo': Permission denied
-ls: cannot open directory '/proc/265739/task/265739/ns': Permission denied
-ls: cannot read symbolic link '/proc/266/cwd': Permission denied
-ls: cannot read symbolic link '/proc/266/root': Permission denied
-ls: cannot read symbolic link '/proc/266/exe': Permission denied
-ls: cannot open directory '/proc/266/fd': Permission denied
-ls: cannot open directory '/proc/266/fdinfo': Permission denied
-ls: cannot open directory '/proc/266/map_files': Permission denied
-ls: cannot open directory '/proc/266/ns': Permission denied
-ls: cannot read symbolic link '/proc/266/task/266/cwd': Permission denied
-ls: cannot read symbolic link '/proc/266/task/266/root': Permission denied
-ls: cannot read symbolic link '/proc/266/task/266/exe': Permission denied
-ls: cannot open directory '/proc/266/task/266/fd': Permission denied
-ls: cannot open directory '/proc/266/task/266/fdinfo': Permission denied
-ls: cannot open directory '/proc/266/task/266/ns': Permission denied
-ls: cannot read symbolic link '/proc/27/cwd': Permission denied
-ls: cannot read symbolic link '/proc/27/root': Permission denied
-ls: cannot read symbolic link '/proc/27/exe': Permission denied
-ls: cannot open directory '/proc/27/fd': Permission denied
-ls: cannot open directory '/proc/27/fdinfo': Permission denied
-ls: cannot open directory '/proc/27/map_files': Permission denied
-ls: cannot open directory '/proc/27/ns': Permission denied
-ls: cannot read symbolic link '/proc/27/task/27/cwd': Permission denied
-ls: cannot read symbolic link '/proc/27/task/27/root': Permission denied
-ls: cannot read symbolic link '/proc/27/task/27/exe': Permission denied
-ls: cannot open directory '/proc/27/task/27/fd': Permission denied
-ls: cannot open directory '/proc/27/task/27/fdinfo': Permission denied
-ls: cannot open directory '/proc/27/task/27/ns': Permission denied
-ls: cannot read symbolic link '/proc/28/cwd': Permission denied
-ls: cannot read symbolic link '/proc/28/root': Permission denied
-ls: cannot read symbolic link '/proc/28/exe': Permission denied
-ls: cannot open directory '/proc/28/fd': Permission denied
-ls: cannot open directory '/proc/28/fdinfo': Permission denied
-ls: cannot open directory '/proc/28/map_files': Permission denied
-ls: cannot open directory '/proc/28/ns': Permission denied
-ls: cannot read symbolic link '/proc/28/task/28/cwd': Permission denied
-ls: cannot read symbolic link '/proc/28/task/28/root': Permission denied
-ls: cannot read symbolic link '/proc/28/task/28/exe': Permission denied
-ls: cannot open directory '/proc/28/task/28/fd': Permission denied
-ls: cannot open directory '/proc/28/task/28/fdinfo': Permission denied
-ls: cannot open directory '/proc/28/task/28/ns': Permission denied
-ls: cannot read symbolic link '/proc/285/cwd': Permission denied
-ls: cannot read symbolic link '/proc/285/root': Permission denied
-ls: cannot read symbolic link '/proc/285/exe': Permission denied
-ls: cannot open directory '/proc/285/fd': Permission denied
-ls: cannot open directory '/proc/285/fdinfo': Permission denied
-ls: cannot open directory '/proc/285/map_files': Permission denied
-ls: cannot open directory '/proc/285/ns': Permission denied
-ls: cannot read symbolic link '/proc/285/task/285/cwd': Permission denied
-ls: cannot read symbolic link '/proc/285/task/285/root': Permission denied
-ls: cannot read symbolic link '/proc/285/task/285/exe': Permission denied
-ls: cannot open directory '/proc/285/task/285/fd': Permission denied
-ls: cannot open directory '/proc/285/task/285/fdinfo': Permission denied
-ls: cannot open directory '/proc/285/task/285/ns': Permission denied
-ls: cannot read symbolic link '/proc/3/cwd': Permission denied
-ls: cannot read symbolic link '/proc/3/root': Permission denied
-ls: cannot read symbolic link '/proc/3/exe': Permission denied
-ls: cannot open directory '/proc/3/fd': Permission denied
-ls: cannot open directory '/proc/3/fdinfo': Permission denied
-ls: cannot open directory '/proc/3/map_files': Permission denied
-ls: cannot open directory '/proc/3/ns': Permission denied
-ls: cannot read symbolic link '/proc/3/task/3/cwd': Permission denied
-ls: cannot read symbolic link '/proc/3/task/3/root': Permission denied
-ls: cannot read symbolic link '/proc/3/task/3/exe': Permission denied
-ls: cannot open directory '/proc/3/task/3/fd': Permission denied
-ls: cannot open directory '/proc/3/task/3/fdinfo': Permission denied
-ls: cannot open directory '/proc/3/task/3/ns': Permission denied
-ls: cannot read symbolic link '/proc/30/cwd': Permission denied
-ls: cannot read symbolic link '/proc/30/root': Permission denied
-ls: cannot read symbolic link '/proc/30/exe': Permission denied
-ls: cannot open directory '/proc/30/fd': Permission denied
-ls: cannot open directory '/proc/30/fdinfo': Permission denied
-ls: cannot open directory '/proc/30/map_files': Permission denied
-ls: cannot open directory '/proc/30/ns': Permission denied
-ls: cannot read symbolic link '/proc/30/task/30/cwd': Permission denied
-ls: cannot read symbolic link '/proc/30/task/30/root': Permission denied
-ls: cannot read symbolic link '/proc/30/task/30/exe': Permission denied
-ls: cannot open directory '/proc/30/task/30/fd': Permission denied
-ls: cannot open directory '/proc/30/task/30/fdinfo': Permission denied
-ls: cannot open directory '/proc/30/task/30/ns': Permission denied
-ls: cannot read symbolic link '/proc/304/cwd': Permission denied
-ls: cannot read symbolic link '/proc/304/root': Permission denied
-ls: cannot read symbolic link '/proc/304/exe': Permission denied
-ls: cannot open directory '/proc/304/fd': Permission denied
-ls: cannot open directory '/proc/304/fdinfo': Permission denied
-ls: cannot open directory '/proc/304/map_files': Permission denied
-ls: cannot open directory '/proc/304/ns': Permission denied
-ls: cannot read symbolic link '/proc/304/task/304/cwd': Permission denied
-ls: cannot read symbolic link '/proc/304/task/304/root': Permission denied
-ls: cannot read symbolic link '/proc/304/task/304/exe': Permission denied
-ls: cannot open directory '/proc/304/task/304/fd': Permission denied
-ls: cannot open directory '/proc/304/task/304/fdinfo': Permission denied
-ls: cannot open directory '/proc/304/task/304/ns': Permission denied
-ls: cannot read symbolic link '/proc/305/cwd': Permission denied
-ls: cannot read symbolic link '/proc/305/root': Permission denied
-ls: cannot read symbolic link '/proc/305/exe': Permission denied
-ls: cannot open directory '/proc/305/fd': Permission denied
-ls: cannot open directory '/proc/305/fdinfo': Permission denied
-ls: cannot open directory '/proc/305/map_files': Permission denied
-ls: cannot open directory '/proc/305/ns': Permission denied
-ls: cannot read symbolic link '/proc/305/task/305/cwd': Permission denied
-ls: cannot read symbolic link '/proc/305/task/305/root': Permission denied
-ls: cannot read symbolic link '/proc/305/task/305/exe': Permission denied
-ls: cannot open directory '/proc/305/task/305/fd': Permission denied
-ls: cannot open directory '/proc/305/task/305/fdinfo': Permission denied
-ls: cannot open directory '/proc/305/task/305/ns': Permission denied
-ls: cannot read symbolic link '/proc/305/task/315/cwd': Permission denied
-ls: cannot read symbolic link '/proc/305/task/315/root': Permission denied
-ls: cannot read symbolic link '/proc/305/task/315/exe': Permission denied
-ls: cannot open directory '/proc/305/task/315/fd': Permission denied
-ls: cannot open directory '/proc/305/task/315/fdinfo': Permission denied
-ls: cannot open directory '/proc/305/task/315/ns': Permission denied
-ls: cannot read symbolic link '/proc/305/task/316/cwd': Permission denied
-ls: cannot read symbolic link '/proc/305/task/316/root': Permission denied
-ls: cannot read symbolic link '/proc/305/task/316/exe': Permission denied
-ls: cannot open directory '/proc/305/task/316/fd': Permission denied
-ls: cannot open directory '/proc/305/task/316/fdinfo': Permission denied
-ls: cannot open directory '/proc/305/task/316/ns': Permission denied
-ls: cannot read symbolic link '/proc/31/cwd': Permission denied
-ls: cannot read symbolic link '/proc/31/root': Permission denied
-ls: cannot read symbolic link '/proc/31/exe': Permission denied
-ls: cannot open directory '/proc/31/fd': Permission denied
-ls: cannot open directory '/proc/31/fdinfo': Permission denied
-ls: cannot open directory '/proc/31/map_files': Permission denied
-ls: cannot open directory '/proc/31/ns': Permission denied
-ls: cannot read symbolic link '/proc/31/task/31/cwd': Permission denied
-ls: cannot read symbolic link '/proc/31/task/31/root': Permission denied
-ls: cannot read symbolic link '/proc/31/task/31/exe': Permission denied
-ls: cannot open directory '/proc/31/task/31/fd': Permission denied
-ls: cannot open directory '/proc/31/task/31/fdinfo': Permission denied
-ls: cannot open directory '/proc/31/task/31/ns': Permission denied
-ls: cannot read symbolic link '/proc/310/cwd': Permission denied
-ls: cannot read symbolic link '/proc/310/root': Permission denied
-ls: cannot read symbolic link '/proc/310/exe': Permission denied
-ls: cannot open directory '/proc/310/fd': Permission denied
-ls: cannot open directory '/proc/310/fdinfo': Permission denied
-ls: cannot open directory '/proc/310/map_files': Permission denied
-ls: cannot open directory '/proc/310/ns': Permission denied
-ls: cannot read symbolic link '/proc/310/task/310/cwd': Permission denied
-ls: cannot read symbolic link '/proc/310/task/310/root': Permission denied
-ls: cannot read symbolic link '/proc/310/task/310/exe': Permission denied
-ls: cannot open directory '/proc/310/task/310/fd': Permission denied
-ls: cannot open directory '/proc/310/task/310/fdinfo': Permission denied
-ls: cannot open directory '/proc/310/task/310/ns': Permission denied
-ls: cannot read symbolic link '/proc/311/cwd': Permission denied
-ls: cannot read symbolic link '/proc/311/root': Permission denied
-ls: cannot read symbolic link '/proc/311/exe': Permission denied
-ls: cannot open directory '/proc/311/fd': Permission denied
-ls: cannot open directory '/proc/311/fdinfo': Permission denied
-ls: cannot open directory '/proc/311/map_files': Permission denied
-ls: cannot open directory '/proc/311/ns': Permission denied
-ls: cannot read symbolic link '/proc/311/task/311/cwd': Permission denied
-ls: cannot read symbolic link '/proc/311/task/311/root': Permission denied
-ls: cannot read symbolic link '/proc/311/task/311/exe': Permission denied
-ls: cannot open directory '/proc/311/task/311/fd': Permission denied
-ls: cannot open directory '/proc/311/task/311/fdinfo': Permission denied
-ls: cannot open directory '/proc/311/task/311/ns': Permission denied
-ls: cannot read symbolic link '/proc/317/cwd': Permission denied
-ls: cannot read symbolic link '/proc/317/root': Permission denied
-ls: cannot read symbolic link '/proc/317/exe': Permission denied
-ls: cannot open directory '/proc/317/fd': Permission denied
-ls: cannot open directory '/proc/317/fdinfo': Permission denied
-ls: cannot open directory '/proc/317/map_files': Permission denied
-ls: cannot open directory '/proc/317/ns': Permission denied
-ls: cannot read symbolic link '/proc/317/task/317/cwd': Permission denied
-ls: cannot read symbolic link '/proc/317/task/317/root': Permission denied
-ls: cannot read symbolic link '/proc/317/task/317/exe': Permission denied
-ls: cannot open directory '/proc/317/task/317/fd': Permission denied
-ls: cannot open directory '/proc/317/task/317/fdinfo': Permission denied
-ls: cannot open directory '/proc/317/task/317/ns': Permission denied
-ls: cannot read symbolic link '/proc/32/cwd': Permission denied
-ls: cannot read symbolic link '/proc/32/root': Permission denied
-ls: cannot read symbolic link '/proc/32/exe': Permission denied
-ls: cannot open directory '/proc/32/fd': Permission denied
-ls: cannot open directory '/proc/32/fdinfo': Permission denied
-ls: cannot open directory '/proc/32/map_files': Permission denied
-ls: cannot open directory '/proc/32/ns': Permission denied
-ls: cannot read symbolic link '/proc/32/task/32/cwd': Permission denied
-ls: cannot read symbolic link '/proc/32/task/32/root': Permission denied
-ls: cannot read symbolic link '/proc/32/task/32/exe': Permission denied
-ls: cannot open directory '/proc/32/task/32/fd': Permission denied
-ls: cannot open directory '/proc/32/task/32/fdinfo': Permission denied
-ls: cannot open directory '/proc/32/task/32/ns': Permission denied
-ls: cannot read symbolic link '/proc/33/cwd': Permission denied
-ls: cannot read symbolic link '/proc/33/root': Permission denied
-ls: cannot read symbolic link '/proc/33/exe': Permission denied
-ls: cannot open directory '/proc/33/fd': Permission denied
-ls: cannot open directory '/proc/33/fdinfo': Permission denied
-ls: cannot open directory '/proc/33/map_files': Permission denied
-ls: cannot open directory '/proc/33/ns': Permission denied
-ls: cannot read symbolic link '/proc/33/task/33/cwd': Permission denied
-ls: cannot read symbolic link '/proc/33/task/33/root': Permission denied
-ls: cannot read symbolic link '/proc/33/task/33/exe': Permission denied
-ls: cannot open directory '/proc/33/task/33/fd': Permission denied
-ls: cannot open directory '/proc/33/task/33/fdinfo': Permission denied
-ls: cannot open directory '/proc/33/task/33/ns': Permission denied
-ls: cannot read symbolic link '/proc/333/cwd': Permission denied
-ls: cannot read symbolic link '/proc/333/root': Permission denied
-ls: cannot read symbolic link '/proc/333/exe': Permission denied
-ls: cannot open directory '/proc/333/fd': Permission denied
-ls: cannot open directory '/proc/333/fdinfo': Permission denied
-ls: cannot open directory '/proc/333/map_files': Permission denied
-ls: cannot open directory '/proc/333/ns': Permission denied
-ls: cannot read symbolic link '/proc/333/task/333/cwd': Permission denied
-ls: cannot read symbolic link '/proc/333/task/333/root': Permission denied
-ls: cannot read symbolic link '/proc/333/task/333/exe': Permission denied
-ls: cannot open directory '/proc/333/task/333/fd': Permission denied
-ls: cannot open directory '/proc/333/task/333/fdinfo': Permission denied
-ls: cannot open directory '/proc/333/task/333/ns': Permission denied
-ls: cannot read symbolic link '/proc/337/cwd': Permission denied
-ls: cannot read symbolic link '/proc/337/root': Permission denied
-ls: cannot read symbolic link '/proc/337/exe': Permission denied
-ls: cannot open directory '/proc/337/fd': Permission denied
-ls: cannot open directory '/proc/337/fdinfo': Permission denied
-ls: cannot open directory '/proc/337/map_files': Permission denied
-ls: cannot open directory '/proc/337/ns': Permission denied
-ls: cannot read symbolic link '/proc/337/task/337/cwd': Permission denied
-ls: cannot read symbolic link '/proc/337/task/337/root': Permission denied
-ls: cannot read symbolic link '/proc/337/task/337/exe': Permission denied
-ls: cannot open directory '/proc/337/task/337/fd': Permission denied
-ls: cannot open directory '/proc/337/task/337/fdinfo': Permission denied
-ls: cannot open directory '/proc/337/task/337/ns': Permission denied
-ls: cannot read symbolic link '/proc/339/cwd': Permission denied
-ls: cannot read symbolic link '/proc/339/root': Permission denied
-ls: cannot read symbolic link '/proc/339/exe': Permission denied
-ls: cannot open directory '/proc/339/fd': Permission denied
-ls: cannot open directory '/proc/339/fdinfo': Permission denied
-ls: cannot open directory '/proc/339/map_files': Permission denied
-ls: cannot open directory '/proc/339/ns': Permission denied
-ls: cannot read symbolic link '/proc/339/task/339/cwd': Permission denied
-ls: cannot read symbolic link '/proc/339/task/339/root': Permission denied
-ls: cannot read symbolic link '/proc/339/task/339/exe': Permission denied
-ls: cannot open directory '/proc/339/task/339/fd': Permission denied
-ls: cannot open directory '/proc/339/task/339/fdinfo': Permission denied
-ls: cannot open directory '/proc/339/task/339/ns': Permission denied
-ls: cannot read symbolic link '/proc/34/cwd': Permission denied
-ls: cannot read symbolic link '/proc/34/root': Permission denied
-ls: cannot read symbolic link '/proc/34/exe': Permission denied
-ls: cannot open directory '/proc/34/fd': Permission denied
-ls: cannot open directory '/proc/34/fdinfo': Permission denied
-ls: cannot open directory '/proc/34/map_files': Permission denied
-ls: cannot open directory '/proc/34/ns': Permission denied
-ls: cannot read symbolic link '/proc/34/task/34/cwd': Permission denied
-ls: cannot read symbolic link '/proc/34/task/34/root': Permission denied
-ls: cannot read symbolic link '/proc/34/task/34/exe': Permission denied
-ls: cannot open directory '/proc/34/task/34/fd': Permission denied
-ls: cannot open directory '/proc/34/task/34/fdinfo': Permission denied
-ls: cannot open directory '/proc/34/task/34/ns': Permission denied
-ls: cannot read symbolic link '/proc/35/cwd': Permission denied
-ls: cannot read symbolic link '/proc/35/root': Permission denied
-ls: cannot read symbolic link '/proc/35/exe': Permission denied
-ls: cannot open directory '/proc/35/fd': Permission denied
-ls: cannot open directory '/proc/35/fdinfo': Permission denied
-ls: cannot open directory '/proc/35/map_files': Permission denied
-ls: cannot open directory '/proc/35/ns': Permission denied
-ls: cannot read symbolic link '/proc/35/task/35/cwd': Permission denied
-ls: cannot read symbolic link '/proc/35/task/35/root': Permission denied
-ls: cannot read symbolic link '/proc/35/task/35/exe': Permission denied
-ls: cannot open directory '/proc/35/task/35/fd': Permission denied
-ls: cannot open directory '/proc/35/task/35/fdinfo': Permission denied
-ls: cannot open directory '/proc/35/task/35/ns': Permission denied
-ls: cannot read symbolic link '/proc/353166/cwd': Permission denied
-ls: cannot read symbolic link '/proc/353166/root': Permission denied
-ls: cannot read symbolic link '/proc/353166/exe': Permission denied
-ls: cannot open directory '/proc/353166/fd': Permission denied
-ls: cannot open directory '/proc/353166/fdinfo': Permission denied
-ls: cannot open directory '/proc/353166/map_files': Permission denied
-ls: cannot open directory '/proc/353166/ns': Permission denied
-ls: cannot read symbolic link '/proc/353166/task/353166/cwd': Permission denied
-ls: cannot read symbolic link '/proc/353166/task/353166/root': Permission denied
-ls: cannot read symbolic link '/proc/353166/task/353166/exe': Permission denied
-ls: cannot open directory '/proc/353166/task/353166/fd': Permission denied
-ls: cannot open directory '/proc/353166/task/353166/fdinfo': Permission denied
-ls: cannot open directory '/proc/353166/task/353166/ns': Permission denied
-ls: cannot read symbolic link '/proc/363/cwd': Permission denied
-ls: cannot read symbolic link '/proc/363/root': Permission denied
-ls: cannot read symbolic link '/proc/363/exe': Permission denied
-ls: cannot open directory '/proc/363/fd': Permission denied
-ls: cannot open directory '/proc/363/fdinfo': Permission denied
-ls: cannot open directory '/proc/363/map_files': Permission denied
-ls: cannot open directory '/proc/363/ns': Permission denied
-ls: cannot read symbolic link '/proc/363/task/363/cwd': Permission denied
-ls: cannot read symbolic link '/proc/363/task/363/root': Permission denied
-ls: cannot read symbolic link '/proc/363/task/363/exe': Permission denied
-ls: cannot open directory '/proc/363/task/363/fd': Permission denied
-ls: cannot open directory '/proc/363/task/363/fdinfo': Permission denied
-ls: cannot open directory '/proc/363/task/363/ns': Permission denied
-ls: cannot read symbolic link '/proc/364/cwd': Permission denied
-ls: cannot read symbolic link '/proc/364/root': Permission denied
-ls: cannot read symbolic link '/proc/364/exe': Permission denied
-ls: cannot open directory '/proc/364/fd': Permission denied
-ls: cannot open directory '/proc/364/fdinfo': Permission denied
-ls: cannot open directory '/proc/364/map_files': Permission denied
-ls: cannot open directory '/proc/364/ns': Permission denied
-ls: cannot read symbolic link '/proc/364/task/364/cwd': Permission denied
-ls: cannot read symbolic link '/proc/364/task/364/root': Permission denied
-ls: cannot read symbolic link '/proc/364/task/364/exe': Permission denied
-ls: cannot open directory '/proc/364/task/364/fd': Permission denied
-ls: cannot open directory '/proc/364/task/364/fdinfo': Permission denied
-ls: cannot open directory '/proc/364/task/364/ns': Permission denied
-ls: cannot read symbolic link '/proc/37/cwd': Permission denied
-ls: cannot read symbolic link '/proc/37/root': Permission denied
-ls: cannot read symbolic link '/proc/37/exe': Permission denied
-ls: cannot open directory '/proc/37/fd': Permission denied
-ls: cannot open directory '/proc/37/fdinfo': Permission denied
-ls: cannot open directory '/proc/37/map_files': Permission denied
-ls: cannot open directory '/proc/37/ns': Permission denied
-ls: cannot read symbolic link '/proc/37/task/37/cwd': Permission denied
-ls: cannot read symbolic link '/proc/37/task/37/root': Permission denied
-ls: cannot read symbolic link '/proc/37/task/37/exe': Permission denied
-ls: cannot open directory '/proc/37/task/37/fd': Permission denied
-ls: cannot open directory '/proc/37/task/37/fdinfo': Permission denied
-ls: cannot open directory '/proc/37/task/37/ns': Permission denied
-ls: cannot read symbolic link '/proc/374/cwd': Permission denied
-ls: cannot read symbolic link '/proc/374/root': Permission denied
-ls: cannot read symbolic link '/proc/374/exe': Permission denied
-ls: cannot open directory '/proc/374/fd': Permission denied
-ls: cannot open directory '/proc/374/fdinfo': Permission denied
-ls: cannot open directory '/proc/374/map_files': Permission denied
-ls: cannot open directory '/proc/374/ns': Permission denied
-ls: cannot read symbolic link '/proc/374/task/374/cwd': Permission denied
-ls: cannot read symbolic link '/proc/374/task/374/root': Permission denied
-ls: cannot read symbolic link '/proc/374/task/374/exe': Permission denied
-ls: cannot open directory '/proc/374/task/374/fd': Permission denied
-ls: cannot open directory '/proc/374/task/374/fdinfo': Permission denied
-ls: cannot open directory '/proc/374/task/374/ns': Permission denied
-ls: cannot read symbolic link '/proc/374/task/376/cwd': Permission denied
-ls: cannot read symbolic link '/proc/374/task/376/root': Permission denied
-ls: cannot read symbolic link '/proc/374/task/376/exe': Permission denied
-ls: cannot open directory '/proc/374/task/376/fd': Permission denied
-ls: cannot open directory '/proc/374/task/376/fdinfo': Permission denied
-ls: cannot open directory '/proc/374/task/376/ns': Permission denied
-ls: cannot read symbolic link '/proc/374/task/378/cwd': Permission denied
-ls: cannot read symbolic link '/proc/374/task/378/root': Permission denied
-ls: cannot read symbolic link '/proc/374/task/378/exe': Permission denied
-ls: cannot open directory '/proc/374/task/378/fd': Permission denied
-ls: cannot open directory '/proc/374/task/378/fdinfo': Permission denied
-ls: cannot open directory '/proc/374/task/378/ns': Permission denied
-ls: cannot read symbolic link '/proc/376543/cwd': Permission denied
-ls: cannot read symbolic link '/proc/376543/root': Permission denied
-ls: cannot read symbolic link '/proc/376543/exe': Permission denied
-ls: cannot open directory '/proc/376543/fd': Permission denied
-ls: cannot open directory '/proc/376543/fdinfo': Permission denied
-ls: cannot open directory '/proc/376543/map_files': Permission denied
-ls: cannot open directory '/proc/376543/ns': Permission denied
-ls: cannot read symbolic link '/proc/376543/task/376543/cwd': Permission denied
-ls: cannot read symbolic link '/proc/376543/task/376543/root': Permission denied
-ls: cannot read symbolic link '/proc/376543/task/376543/exe': Permission denied
-ls: cannot open directory '/proc/376543/task/376543/fd': Permission denied
-ls: cannot open directory '/proc/376543/task/376543/fdinfo': Permission denied
-ls: cannot open directory '/proc/376543/task/376543/ns': Permission denied
-ls: cannot read symbolic link '/proc/378445/cwd': Permission denied
-ls: cannot read symbolic link '/proc/378445/root': Permission denied
-ls: cannot read symbolic link '/proc/378445/exe': Permission denied
-ls: cannot open directory '/proc/378445/fd': Permission denied
-ls: cannot open directory '/proc/378445/fdinfo': Permission denied
-ls: cannot open directory '/proc/378445/map_files': Permission denied
-ls: cannot open directory '/proc/378445/ns': Permission denied
-ls: cannot read symbolic link '/proc/378445/task/378445/cwd': Permission denied
-ls: cannot read symbolic link '/proc/378445/task/378445/root': Permission denied
-ls: cannot read symbolic link '/proc/378445/task/378445/exe': Permission denied
-ls: cannot open directory '/proc/378445/task/378445/fd': Permission denied
-ls: cannot open directory '/proc/378445/task/378445/fdinfo': Permission denied
-ls: cannot open directory '/proc/378445/task/378445/ns': Permission denied
-ls: cannot read symbolic link '/proc/378446/cwd': Permission denied
-ls: cannot read symbolic link '/proc/378446/root': Permission denied
-ls: cannot read symbolic link '/proc/378446/exe': Permission denied
-ls: cannot open directory '/proc/378446/fd': Permission denied
-ls: cannot open directory '/proc/378446/fdinfo': Permission denied
-ls: cannot open directory '/proc/378446/map_files': Permission denied
-ls: cannot open directory '/proc/378446/ns': Permission denied
-ls: cannot read symbolic link '/proc/378446/task/378446/cwd': Permission denied
-ls: cannot read symbolic link '/proc/378446/task/378446/root': Permission denied
-ls: cannot read symbolic link '/proc/378446/task/378446/exe': Permission denied
-ls: cannot open directory '/proc/378446/task/378446/fd': Permission denied
-ls: cannot open directory '/proc/378446/task/378446/fdinfo': Permission denied
-ls: cannot open directory '/proc/378446/task/378446/ns': Permission denied
-ls: cannot read symbolic link '/proc/378485/cwd': Permission denied
-ls: cannot read symbolic link '/proc/378485/root': Permission denied
-ls: cannot read symbolic link '/proc/378485/exe': Permission denied
-ls: cannot open directory '/proc/378485/fd': Permission denied
-ls: cannot open directory '/proc/378485/fdinfo': Permission denied
-ls: cannot open directory '/proc/378485/map_files': Permission denied
-ls: cannot open directory '/proc/378485/ns': Permission denied
-ls: cannot read symbolic link '/proc/378485/task/378485/cwd': Permission denied
-ls: cannot read symbolic link '/proc/378485/task/378485/root': Permission denied
-ls: cannot read symbolic link '/proc/378485/task/378485/exe': Permission denied
-ls: cannot open directory '/proc/378485/task/378485/fd': Permission denied
-ls: cannot open directory '/proc/378485/task/378485/fdinfo': Permission denied
-ls: cannot open directory '/proc/378485/task/378485/ns': Permission denied
-ls: cannot read symbolic link '/proc/38/cwd': Permission denied
-ls: cannot read symbolic link '/proc/38/root': Permission denied
-ls: cannot read symbolic link '/proc/38/exe': Permission denied
-ls: cannot open directory '/proc/38/fd': Permission denied
-ls: cannot open directory '/proc/38/fdinfo': Permission denied
-ls: cannot open directory '/proc/38/map_files': Permission denied
-ls: cannot open directory '/proc/38/ns': Permission denied
-ls: cannot read symbolic link '/proc/38/task/38/cwd': Permission denied
-ls: cannot read symbolic link '/proc/38/task/38/root': Permission denied
-ls: cannot read symbolic link '/proc/38/task/38/exe': Permission denied
-ls: cannot open directory '/proc/38/task/38/fd': Permission denied
-ls: cannot open directory '/proc/38/task/38/fdinfo': Permission denied
-ls: cannot open directory '/proc/38/task/38/ns': Permission denied
-ls: cannot read symbolic link '/proc/381/cwd': Permission denied
-ls: cannot read symbolic link '/proc/381/root': Permission denied
-ls: cannot read symbolic link '/proc/381/exe': Permission denied
-ls: cannot open directory '/proc/381/fd': Permission denied
-ls: cannot open directory '/proc/381/fdinfo': Permission denied
-ls: cannot open directory '/proc/381/map_files': Permission denied
-ls: cannot open directory '/proc/381/ns': Permission denied
-ls: cannot read symbolic link '/proc/381/task/381/cwd': Permission denied
-ls: cannot read symbolic link '/proc/381/task/381/root': Permission denied
-ls: cannot read symbolic link '/proc/381/task/381/exe': Permission denied
-ls: cannot open directory '/proc/381/task/381/fd': Permission denied
-ls: cannot open directory '/proc/381/task/381/fdinfo': Permission denied
-ls: cannot open directory '/proc/381/task/381/ns': Permission denied
-ls: cannot read symbolic link '/proc/381/task/390/cwd': Permission denied
-ls: cannot read symbolic link '/proc/381/task/390/root': Permission denied
-ls: cannot read symbolic link '/proc/381/task/390/exe': Permission denied
-ls: cannot open directory '/proc/381/task/390/fd': Permission denied
-ls: cannot open directory '/proc/381/task/390/fdinfo': Permission denied
-ls: cannot open directory '/proc/381/task/390/ns': Permission denied
-ls: cannot read symbolic link '/proc/381/task/391/cwd': Permission denied
-ls: cannot read symbolic link '/proc/381/task/391/root': Permission denied
-ls: cannot read symbolic link '/proc/381/task/391/exe': Permission denied
-ls: cannot open directory '/proc/381/task/391/fd': Permission denied
-ls: cannot open directory '/proc/381/task/391/fdinfo': Permission denied
-ls: cannot open directory '/proc/381/task/391/ns': Permission denied
-ls: cannot read symbolic link '/proc/381/task/392/cwd': Permission denied
-ls: cannot read symbolic link '/proc/381/task/392/root': Permission denied
-ls: cannot read symbolic link '/proc/381/task/392/exe': Permission denied
-ls: cannot open directory '/proc/381/task/392/fd': Permission denied
-ls: cannot open directory '/proc/381/task/392/fdinfo': Permission denied
-ls: cannot open directory '/proc/381/task/392/ns': Permission denied
-ls: cannot read symbolic link '/proc/381/task/393/cwd': Permission denied
-ls: cannot read symbolic link '/proc/381/task/393/root': Permission denied
-ls: cannot read symbolic link '/proc/381/task/393/exe': Permission denied
-ls: cannot open directory '/proc/381/task/393/fd': Permission denied
-ls: cannot open directory '/proc/381/task/393/fdinfo': Permission denied
-ls: cannot open directory '/proc/381/task/393/ns': Permission denied
-ls: cannot read symbolic link '/proc/381/task/396/cwd': Permission denied
-ls: cannot read symbolic link '/proc/381/task/396/root': Permission denied
-ls: cannot read symbolic link '/proc/381/task/396/exe': Permission denied
-ls: cannot open directory '/proc/381/task/396/fd': Permission denied
-ls: cannot open directory '/proc/381/task/396/fdinfo': Permission denied
-ls: cannot open directory '/proc/381/task/396/ns': Permission denied
-ls: cannot read symbolic link '/proc/381/task/397/cwd': Permission denied
-ls: cannot read symbolic link '/proc/381/task/397/root': Permission denied
-ls: cannot read symbolic link '/proc/381/task/397/exe': Permission denied
-ls: cannot open directory '/proc/381/task/397/fd': Permission denied
-ls: cannot open directory '/proc/381/task/397/fdinfo': Permission denied
-ls: cannot open directory '/proc/381/task/397/ns': Permission denied
-ls: cannot read symbolic link '/proc/381/task/398/cwd': Permission denied
-ls: cannot read symbolic link '/proc/381/task/398/root': Permission denied
-ls: cannot read symbolic link '/proc/381/task/398/exe': Permission denied
-ls: cannot open directory '/proc/381/task/398/fd': Permission denied
-ls: cannot open directory '/proc/381/task/398/fdinfo': Permission denied
-ls: cannot open directory '/proc/381/task/398/ns': Permission denied
-ls: cannot read symbolic link '/proc/381/task/399/cwd': Permission denied
-ls: cannot read symbolic link '/proc/381/task/399/root': Permission denied
-ls: cannot read symbolic link '/proc/381/task/399/exe': Permission denied
-ls: cannot open directory '/proc/381/task/399/fd': Permission denied
-ls: cannot open directory '/proc/381/task/399/fdinfo': Permission denied
-ls: cannot open directory '/proc/381/task/399/ns': Permission denied
-ls: cannot read symbolic link '/proc/39/cwd': Permission denied
-ls: cannot read symbolic link '/proc/39/root': Permission denied
-ls: cannot read symbolic link '/proc/39/exe': Permission denied
-ls: cannot open directory '/proc/39/fd': Permission denied
-ls: cannot open directory '/proc/39/fdinfo': Permission denied
-ls: cannot open directory '/proc/39/map_files': Permission denied
-ls: cannot open directory '/proc/39/ns': Permission denied
-ls: cannot read symbolic link '/proc/39/task/39/cwd': Permission denied
-ls: cannot read symbolic link '/proc/39/task/39/root': Permission denied
-ls: cannot read symbolic link '/proc/39/task/39/exe': Permission denied
-ls: cannot open directory '/proc/39/task/39/fd': Permission denied
-ls: cannot open directory '/proc/39/task/39/fdinfo': Permission denied
-ls: cannot open directory '/proc/39/task/39/ns': Permission denied
-ls: cannot read symbolic link '/proc/4/cwd': Permission denied
-ls: cannot read symbolic link '/proc/4/root': Permission denied
-ls: cannot read symbolic link '/proc/4/exe': Permission denied
-ls: cannot open directory '/proc/4/fd': Permission denied
-ls: cannot open directory '/proc/4/fdinfo': Permission denied
-ls: cannot open directory '/proc/4/map_files': Permission denied
-ls: cannot open directory '/proc/4/ns': Permission denied
-ls: cannot read symbolic link '/proc/4/task/4/cwd': Permission denied
-ls: cannot read symbolic link '/proc/4/task/4/root': Permission denied
-ls: cannot read symbolic link '/proc/4/task/4/exe': Permission denied
-ls: cannot open directory '/proc/4/task/4/fd': Permission denied
-ls: cannot open directory '/proc/4/task/4/fdinfo': Permission denied
-ls: cannot open directory '/proc/4/task/4/ns': Permission denied
-ls: cannot read symbolic link '/proc/40/cwd': Permission denied
-ls: cannot read symbolic link '/proc/40/root': Permission denied
-ls: cannot read symbolic link '/proc/40/exe': Permission denied
-ls: cannot open directory '/proc/40/fd': Permission denied
-ls: cannot open directory '/proc/40/fdinfo': Permission denied
-ls: cannot open directory '/proc/40/map_files': Permission denied
-ls: cannot open directory '/proc/40/ns': Permission denied
-ls: cannot read symbolic link '/proc/40/task/40/cwd': Permission denied
-ls: cannot read symbolic link '/proc/40/task/40/root': Permission denied
-ls: cannot read symbolic link '/proc/40/task/40/exe': Permission denied
-ls: cannot open directory '/proc/40/task/40/fd': Permission denied
-ls: cannot open directory '/proc/40/task/40/fdinfo': Permission denied
-ls: cannot open directory '/proc/40/task/40/ns': Permission denied
-ls: cannot read symbolic link '/proc/400/cwd': Permission denied
-ls: cannot read symbolic link '/proc/400/root': Permission denied
-ls: cannot read symbolic link '/proc/400/exe': Permission denied
-ls: cannot open directory '/proc/400/fd': Permission denied
-ls: cannot open directory '/proc/400/fdinfo': Permission denied
-ls: cannot open directory '/proc/400/map_files': Permission denied
-ls: cannot open directory '/proc/400/ns': Permission denied
-ls: cannot read symbolic link '/proc/400/task/400/cwd': Permission denied
-ls: cannot read symbolic link '/proc/400/task/400/root': Permission denied
-ls: cannot read symbolic link '/proc/400/task/400/exe': Permission denied
-ls: cannot open directory '/proc/400/task/400/fd': Permission denied
-ls: cannot open directory '/proc/400/task/400/fdinfo': Permission denied
-ls: cannot open directory '/proc/400/task/400/ns': Permission denied
-ls: cannot read symbolic link '/proc/41/cwd': Permission denied
-ls: cannot read symbolic link '/proc/41/root': Permission denied
-ls: cannot read symbolic link '/proc/41/exe': Permission denied
-ls: cannot open directory '/proc/41/fd': Permission denied
-ls: cannot open directory '/proc/41/fdinfo': Permission denied
-ls: cannot open directory '/proc/41/map_files': Permission denied
-ls: cannot open directory '/proc/41/ns': Permission denied
-ls: cannot read symbolic link '/proc/41/task/41/cwd': Permission denied
-ls: cannot read symbolic link '/proc/41/task/41/root': Permission denied
-ls: cannot read symbolic link '/proc/41/task/41/exe': Permission denied
-ls: cannot open directory '/proc/41/task/41/fd': Permission denied
-ls: cannot open directory '/proc/41/task/41/fdinfo': Permission denied
-ls: cannot open directory '/proc/41/task/41/ns': Permission denied
-ls: cannot read symbolic link '/proc/42/cwd': Permission denied
-ls: cannot read symbolic link '/proc/42/root': Permission denied
-ls: cannot read symbolic link '/proc/42/exe': Permission denied
-ls: cannot open directory '/proc/42/fd': Permission denied
-ls: cannot open directory '/proc/42/fdinfo': Permission denied
-ls: cannot open directory '/proc/42/map_files': Permission denied
-ls: cannot open directory '/proc/42/ns': Permission denied
-ls: cannot read symbolic link '/proc/42/task/42/cwd': Permission denied
-ls: cannot read symbolic link '/proc/42/task/42/root': Permission denied
-ls: cannot read symbolic link '/proc/42/task/42/exe': Permission denied
-ls: cannot open directory '/proc/42/task/42/fd': Permission denied
-ls: cannot open directory '/proc/42/task/42/fdinfo': Permission denied
-ls: cannot open directory '/proc/42/task/42/ns': Permission denied
-ls: cannot read symbolic link '/proc/424772/cwd': Permission denied
-ls: cannot read symbolic link '/proc/424772/root': Permission denied
-ls: cannot read symbolic link '/proc/424772/exe': Permission denied
-ls: cannot open directory '/proc/424772/fd': Permission denied
-ls: cannot open directory '/proc/424772/fdinfo': Permission denied
-ls: cannot open directory '/proc/424772/map_files': Permission denied
-ls: cannot open directory '/proc/424772/ns': Permission denied
-ls: cannot read symbolic link '/proc/424772/task/424772/cwd': Permission denied
-ls: cannot read symbolic link '/proc/424772/task/424772/root': Permission denied
-ls: cannot read symbolic link '/proc/424772/task/424772/exe': Permission denied
-ls: cannot open directory '/proc/424772/task/424772/fd': Permission denied
-ls: cannot open directory '/proc/424772/task/424772/fdinfo': Permission denied
-ls: cannot open directory '/proc/424772/task/424772/ns': Permission denied
-ls: cannot read symbolic link '/proc/427451/cwd': Permission denied
-ls: cannot read symbolic link '/proc/427451/root': Permission denied
-ls: cannot read symbolic link '/proc/427451/exe': Permission denied
-ls: cannot open directory '/proc/427451/fd': Permission denied
-ls: cannot open directory '/proc/427451/fdinfo': Permission denied
-ls: cannot open directory '/proc/427451/map_files': Permission denied
-ls: cannot open directory '/proc/427451/ns': Permission denied
-ls: cannot read symbolic link '/proc/427451/task/427451/cwd': Permission denied
-ls: cannot read symbolic link '/proc/427451/task/427451/root': Permission denied
-ls: cannot read symbolic link '/proc/427451/task/427451/exe': Permission denied
-ls: cannot open directory '/proc/427451/task/427451/fd': Permission denied
-ls: cannot open directory '/proc/427451/task/427451/fdinfo': Permission denied
-ls: cannot open directory '/proc/427451/task/427451/ns': Permission denied
-ls: cannot read symbolic link '/proc/429664/cwd': Permission denied
-ls: cannot read symbolic link '/proc/429664/root': Permission denied
-ls: cannot read symbolic link '/proc/429664/exe': Permission denied
-ls: cannot open directory '/proc/429664/fd': Permission denied
-ls: cannot open directory '/proc/429664/fdinfo': Permission denied
-ls: cannot open directory '/proc/429664/map_files': Permission denied
-ls: cannot open directory '/proc/429664/ns': Permission denied
-ls: cannot read symbolic link '/proc/429664/task/429664/cwd': Permission denied
-ls: cannot read symbolic link '/proc/429664/task/429664/root': Permission denied
-ls: cannot read symbolic link '/proc/429664/task/429664/exe': Permission denied
-ls: cannot open directory '/proc/429664/task/429664/fd': Permission denied
-ls: cannot open directory '/proc/429664/task/429664/fdinfo': Permission denied
-ls: cannot open directory '/proc/429664/task/429664/ns': Permission denied
-ls: cannot read symbolic link '/proc/43/cwd': Permission denied
-ls: cannot read symbolic link '/proc/43/root': Permission denied
-ls: cannot read symbolic link '/proc/43/exe': Permission denied
-ls: cannot open directory '/proc/43/fd': Permission denied
-ls: cannot open directory '/proc/43/fdinfo': Permission denied
-ls: cannot open directory '/proc/43/map_files': Permission denied
-ls: cannot open directory '/proc/43/ns': Permission denied
-ls: cannot read symbolic link '/proc/43/task/43/cwd': Permission denied
-ls: cannot read symbolic link '/proc/43/task/43/root': Permission denied
-ls: cannot read symbolic link '/proc/43/task/43/exe': Permission denied
-ls: cannot open directory '/proc/43/task/43/fd': Permission denied
-ls: cannot open directory '/proc/43/task/43/fdinfo': Permission denied
-ls: cannot open directory '/proc/43/task/43/ns': Permission denied
-ls: cannot read symbolic link '/proc/436244/cwd': Permission denied
-ls: cannot read symbolic link '/proc/436244/root': Permission denied
-ls: cannot read symbolic link '/proc/436244/exe': Permission denied
-ls: cannot open directory '/proc/436244/fd': Permission denied
-ls: cannot open directory '/proc/436244/fdinfo': Permission denied
-ls: cannot open directory '/proc/436244/map_files': Permission denied
-ls: cannot open directory '/proc/436244/ns': Permission denied
-ls: cannot read symbolic link '/proc/436244/task/436244/cwd': Permission denied
-ls: cannot read symbolic link '/proc/436244/task/436244/root': Permission denied
-ls: cannot read symbolic link '/proc/436244/task/436244/exe': Permission denied
-ls: cannot open directory '/proc/436244/task/436244/fd': Permission denied
-ls: cannot open directory '/proc/436244/task/436244/fdinfo': Permission denied
-ls: cannot open directory '/proc/436244/task/436244/ns': Permission denied
-ls: cannot read symbolic link '/proc/438480/cwd': Permission denied
-ls: cannot read symbolic link '/proc/438480/root': Permission denied
-ls: cannot read symbolic link '/proc/438480/exe': Permission denied
-ls: cannot open directory '/proc/438480/fd': Permission denied
-ls: cannot open directory '/proc/438480/fdinfo': Permission denied
-ls: cannot open directory '/proc/438480/map_files': Permission denied
-ls: cannot open directory '/proc/438480/ns': Permission denied
-ls: cannot read symbolic link '/proc/438480/task/438480/cwd': Permission denied
-ls: cannot read symbolic link '/proc/438480/task/438480/root': Permission denied
-ls: cannot read symbolic link '/proc/438480/task/438480/exe': Permission denied
-ls: cannot open directory '/proc/438480/task/438480/fd': Permission denied
-ls: cannot open directory '/proc/438480/task/438480/fdinfo': Permission denied
-ls: cannot open directory '/proc/438480/task/438480/ns': Permission denied
-ls: cannot read symbolic link '/proc/44/cwd': Permission denied
-ls: cannot read symbolic link '/proc/44/root': Permission denied
-ls: cannot read symbolic link '/proc/44/exe': Permission denied
-ls: cannot open directory '/proc/44/fd': Permission denied
-ls: cannot open directory '/proc/44/fdinfo': Permission denied
-ls: cannot open directory '/proc/44/map_files': Permission denied
-ls: cannot open directory '/proc/44/ns': Permission denied
-ls: cannot read symbolic link '/proc/44/task/44/cwd': Permission denied
-ls: cannot read symbolic link '/proc/44/task/44/root': Permission denied
-ls: cannot read symbolic link '/proc/44/task/44/exe': Permission denied
-ls: cannot open directory '/proc/44/task/44/fd': Permission denied
-ls: cannot open directory '/proc/44/task/44/fdinfo': Permission denied
-ls: cannot open directory '/proc/44/task/44/ns': Permission denied
-ls: cannot read symbolic link '/proc/449/cwd': Permission denied
-ls: cannot read symbolic link '/proc/449/root': Permission denied
-ls: cannot read symbolic link '/proc/449/exe': Permission denied
-ls: cannot open directory '/proc/449/fd': Permission denied
-ls: cannot open directory '/proc/449/fdinfo': Permission denied
-ls: cannot open directory '/proc/449/map_files': Permission denied
-ls: cannot open directory '/proc/449/ns': Permission denied
-ls: cannot read symbolic link '/proc/449/task/449/cwd': Permission denied
-ls: cannot read symbolic link '/proc/449/task/449/root': Permission denied
-ls: cannot read symbolic link '/proc/449/task/449/exe': Permission denied
-ls: cannot open directory '/proc/449/task/449/fd': Permission denied
-ls: cannot open directory '/proc/449/task/449/fdinfo': Permission denied
-ls: cannot open directory '/proc/449/task/449/ns': Permission denied
-ls: cannot read symbolic link '/proc/449/task/455/cwd': Permission denied
-ls: cannot read symbolic link '/proc/449/task/455/root': Permission denied
-ls: cannot read symbolic link '/proc/449/task/455/exe': Permission denied
-ls: cannot open directory '/proc/449/task/455/fd': Permission denied
-ls: cannot open directory '/proc/449/task/455/fdinfo': Permission denied
-ls: cannot open directory '/proc/449/task/455/ns': Permission denied
-ls: cannot read symbolic link '/proc/449/task/456/cwd': Permission denied
-ls: cannot read symbolic link '/proc/449/task/456/root': Permission denied
-ls: cannot read symbolic link '/proc/449/task/456/exe': Permission denied
-ls: cannot open directory '/proc/449/task/456/fd': Permission denied
-ls: cannot open directory '/proc/449/task/456/fdinfo': Permission denied
-ls: cannot open directory '/proc/449/task/456/ns': Permission denied
-ls: cannot read symbolic link '/proc/45/cwd': Permission denied
-ls: cannot read symbolic link '/proc/45/root': Permission denied
-ls: cannot read symbolic link '/proc/45/exe': Permission denied
-ls: cannot open directory '/proc/45/fd': Permission denied
-ls: cannot open directory '/proc/45/fdinfo': Permission denied
-ls: cannot open directory '/proc/45/map_files': Permission denied
-ls: cannot open directory '/proc/45/ns': Permission denied
-ls: cannot read symbolic link '/proc/45/task/45/cwd': Permission denied
-ls: cannot read symbolic link '/proc/45/task/45/root': Permission denied
-ls: cannot read symbolic link '/proc/45/task/45/exe': Permission denied
-ls: cannot open directory '/proc/45/task/45/fd': Permission denied
-ls: cannot open directory '/proc/45/task/45/fdinfo': Permission denied
-ls: cannot open directory '/proc/45/task/45/ns': Permission denied
-ls: cannot read symbolic link '/proc/46/cwd': Permission denied
-ls: cannot read symbolic link '/proc/46/root': Permission denied
-ls: cannot read symbolic link '/proc/46/exe': Permission denied
-ls: cannot open directory '/proc/46/fd': Permission denied
-ls: cannot open directory '/proc/46/fdinfo': Permission denied
-ls: cannot open directory '/proc/46/map_files': Permission denied
-ls: cannot open directory '/proc/46/ns': Permission denied
-ls: cannot read symbolic link '/proc/46/task/46/cwd': Permission denied
-ls: cannot read symbolic link '/proc/46/task/46/root': Permission denied
-ls: cannot read symbolic link '/proc/46/task/46/exe': Permission denied
-ls: cannot open directory '/proc/46/task/46/fd': Permission denied
-ls: cannot open directory '/proc/46/task/46/fdinfo': Permission denied
-ls: cannot open directory '/proc/46/task/46/ns': Permission denied
-ls: cannot read symbolic link '/proc/460/cwd': Permission denied
-ls: cannot read symbolic link '/proc/460/root': Permission denied
-ls: cannot read symbolic link '/proc/460/exe': Permission denied
-ls: cannot open directory '/proc/460/fd': Permission denied
-ls: cannot open directory '/proc/460/fdinfo': Permission denied
-ls: cannot open directory '/proc/460/map_files': Permission denied
-ls: cannot open directory '/proc/460/ns': Permission denied
-ls: cannot read symbolic link '/proc/460/task/460/cwd': Permission denied
-ls: cannot read symbolic link '/proc/460/task/460/root': Permission denied
-ls: cannot read symbolic link '/proc/460/task/460/exe': Permission denied
-ls: cannot open directory '/proc/460/task/460/fd': Permission denied
-ls: cannot open directory '/proc/460/task/460/fdinfo': Permission denied
-ls: cannot open directory '/proc/460/task/460/ns': Permission denied
-ls: cannot read symbolic link '/proc/461427/cwd': Permission denied
-ls: cannot read symbolic link '/proc/461427/root': Permission denied
-ls: cannot read symbolic link '/proc/461427/exe': Permission denied
-ls: cannot open directory '/proc/461427/fd': Permission denied
-ls: cannot open directory '/proc/461427/fdinfo': Permission denied
-ls: cannot open directory '/proc/461427/map_files': Permission denied
-ls: cannot open directory '/proc/461427/ns': Permission denied
-ls: cannot read symbolic link '/proc/461427/task/461427/cwd': Permission denied
-ls: cannot read symbolic link '/proc/461427/task/461427/root': Permission denied
-ls: cannot read symbolic link '/proc/461427/task/461427/exe': Permission denied
-ls: cannot open directory '/proc/461427/task/461427/fd': Permission denied
-ls: cannot open directory '/proc/461427/task/461427/fdinfo': Permission denied
-ls: cannot open directory '/proc/461427/task/461427/ns': Permission denied
-ls: cannot read symbolic link '/proc/47/cwd': Permission denied
-ls: cannot read symbolic link '/proc/47/root': Permission denied
-ls: cannot read symbolic link '/proc/47/exe': Permission denied
-ls: cannot open directory '/proc/47/fd': Permission denied
-ls: cannot open directory '/proc/47/fdinfo': Permission denied
-ls: cannot open directory '/proc/47/map_files': Permission denied
-ls: cannot open directory '/proc/47/ns': Permission denied
-ls: cannot read symbolic link '/proc/47/task/47/cwd': Permission denied
-ls: cannot read symbolic link '/proc/47/task/47/root': Permission denied
-ls: cannot read symbolic link '/proc/47/task/47/exe': Permission denied
-ls: cannot open directory '/proc/47/task/47/fd': Permission denied
-ls: cannot open directory '/proc/47/task/47/fdinfo': Permission denied
-ls: cannot open directory '/proc/47/task/47/ns': Permission denied
-ls: cannot read symbolic link '/proc/48/cwd': Permission denied
-ls: cannot read symbolic link '/proc/48/root': Permission denied
-ls: cannot read symbolic link '/proc/48/exe': Permission denied
-ls: cannot open directory '/proc/48/fd': Permission denied
-ls: cannot open directory '/proc/48/fdinfo': Permission denied
-ls: cannot open directory '/proc/48/map_files': Permission denied
-ls: cannot open directory '/proc/48/ns': Permission denied
-ls: cannot read symbolic link '/proc/48/task/48/cwd': Permission denied
-ls: cannot read symbolic link '/proc/48/task/48/root': Permission denied
-ls: cannot read symbolic link '/proc/48/task/48/exe': Permission denied
-ls: cannot open directory '/proc/48/task/48/fd': Permission denied
-ls: cannot open directory '/proc/48/task/48/fdinfo': Permission denied
-ls: cannot open directory '/proc/48/task/48/ns': Permission denied
-ls: cannot read symbolic link '/proc/489405/cwd': Permission denied
-ls: cannot read symbolic link '/proc/489405/root': Permission denied
-ls: cannot read symbolic link '/proc/489405/exe': Permission denied
-ls: cannot open directory '/proc/489405/fd': Permission denied
-ls: cannot open directory '/proc/489405/fdinfo': Permission denied
-ls: cannot open directory '/proc/489405/map_files': Permission denied
-ls: cannot open directory '/proc/489405/ns': Permission denied
-ls: cannot read symbolic link '/proc/489405/task/489405/cwd': Permission denied
-ls: cannot read symbolic link '/proc/489405/task/489405/root': Permission denied
-ls: cannot read symbolic link '/proc/489405/task/489405/exe': Permission denied
-ls: cannot open directory '/proc/489405/task/489405/fd': Permission denied
-ls: cannot open directory '/proc/489405/task/489405/fdinfo': Permission denied
-ls: cannot open directory '/proc/489405/task/489405/ns': Permission denied
-ls: cannot read symbolic link '/proc/492147/cwd': Permission denied
-ls: cannot read symbolic link '/proc/492147/root': Permission denied
-ls: cannot read symbolic link '/proc/492147/exe': Permission denied
-ls: cannot open directory '/proc/492147/fd': Permission denied
-ls: cannot open directory '/proc/492147/fdinfo': Permission denied
-ls: cannot open directory '/proc/492147/map_files': Permission denied
-ls: cannot open directory '/proc/492147/ns': Permission denied
-ls: cannot read symbolic link '/proc/492147/task/492147/cwd': Permission denied
-ls: cannot read symbolic link '/proc/492147/task/492147/root': Permission denied
-ls: cannot read symbolic link '/proc/492147/task/492147/exe': Permission denied
-ls: cannot open directory '/proc/492147/task/492147/fd': Permission denied
-ls: cannot open directory '/proc/492147/task/492147/fdinfo': Permission denied
-ls: cannot open directory '/proc/492147/task/492147/ns': Permission denied
-ls: cannot read symbolic link '/proc/495/cwd': Permission denied
-ls: cannot read symbolic link '/proc/495/root': Permission denied
-ls: cannot read symbolic link '/proc/495/exe': Permission denied
-ls: cannot open directory '/proc/495/fd': Permission denied
-ls: cannot open directory '/proc/495/fdinfo': Permission denied
-ls: cannot open directory '/proc/495/map_files': Permission denied
-ls: cannot open directory '/proc/495/ns': Permission denied
-ls: cannot read symbolic link '/proc/495/task/495/cwd': Permission denied
-ls: cannot read symbolic link '/proc/495/task/495/root': Permission denied
-ls: cannot read symbolic link '/proc/495/task/495/exe': Permission denied
-ls: cannot open directory '/proc/495/task/495/fd': Permission denied
-ls: cannot open directory '/proc/495/task/495/fdinfo': Permission denied
-ls: cannot open directory '/proc/495/task/495/ns': Permission denied
-ls: cannot read symbolic link '/proc/495/task/506/cwd': Permission denied
-ls: cannot read symbolic link '/proc/495/task/506/root': Permission denied
-ls: cannot read symbolic link '/proc/495/task/506/exe': Permission denied
-ls: cannot open directory '/proc/495/task/506/fd': Permission denied
-ls: cannot open directory '/proc/495/task/506/fdinfo': Permission denied
-ls: cannot open directory '/proc/495/task/506/ns': Permission denied
-ls: cannot read symbolic link '/proc/495/task/507/cwd': Permission denied
-ls: cannot read symbolic link '/proc/495/task/507/root': Permission denied
-ls: cannot read symbolic link '/proc/495/task/507/exe': Permission denied
-ls: cannot open directory '/proc/495/task/507/fd': Permission denied
-ls: cannot open directory '/proc/495/task/507/fdinfo': Permission denied
-ls: cannot open directory '/proc/495/task/507/ns': Permission denied
-ls: cannot read symbolic link '/proc/495/task/508/cwd': Permission denied
-ls: cannot read symbolic link '/proc/495/task/508/root': Permission denied
-ls: cannot read symbolic link '/proc/495/task/508/exe': Permission denied
-ls: cannot open directory '/proc/495/task/508/fd': Permission denied
-ls: cannot open directory '/proc/495/task/508/fdinfo': Permission denied
-ls: cannot open directory '/proc/495/task/508/ns': Permission denied
-ls: cannot read symbolic link '/proc/495/task/509/cwd': Permission denied
-ls: cannot read symbolic link '/proc/495/task/509/root': Permission denied
-ls: cannot read symbolic link '/proc/495/task/509/exe': Permission denied
-ls: cannot open directory '/proc/495/task/509/fd': Permission denied
-ls: cannot open directory '/proc/495/task/509/fdinfo': Permission denied
-ls: cannot open directory '/proc/495/task/509/ns': Permission denied
-ls: cannot read symbolic link '/proc/495/task/510/cwd': Permission denied
-ls: cannot read symbolic link '/proc/495/task/510/root': Permission denied
-ls: cannot read symbolic link '/proc/495/task/510/exe': Permission denied
-ls: cannot open directory '/proc/495/task/510/fd': Permission denied
-ls: cannot open directory '/proc/495/task/510/fdinfo': Permission denied
-ls: cannot open directory '/proc/495/task/510/ns': Permission denied
-ls: cannot read symbolic link '/proc/495/task/511/cwd': Permission denied
-ls: cannot read symbolic link '/proc/495/task/511/root': Permission denied
-ls: cannot read symbolic link '/proc/495/task/511/exe': Permission denied
-ls: cannot open directory '/proc/495/task/511/fd': Permission denied
-ls: cannot open directory '/proc/495/task/511/fdinfo': Permission denied
-ls: cannot open directory '/proc/495/task/511/ns': Permission denied
-ls: cannot read symbolic link '/proc/495/task/551/cwd': Permission denied
-ls: cannot read symbolic link '/proc/495/task/551/root': Permission denied
-ls: cannot read symbolic link '/proc/495/task/551/exe': Permission denied
-ls: cannot open directory '/proc/495/task/551/fd': Permission denied
-ls: cannot open directory '/proc/495/task/551/fdinfo': Permission denied
-ls: cannot open directory '/proc/495/task/551/ns': Permission denied
-ls: cannot read symbolic link '/proc/515406/cwd': Permission denied
-ls: cannot read symbolic link '/proc/515406/root': Permission denied
-ls: cannot read symbolic link '/proc/515406/exe': Permission denied
-ls: cannot open directory '/proc/515406/fd': Permission denied
-ls: cannot open directory '/proc/515406/fdinfo': Permission denied
-ls: cannot open directory '/proc/515406/map_files': Permission denied
-ls: cannot open directory '/proc/515406/ns': Permission denied
-ls: cannot read symbolic link '/proc/515406/task/515406/cwd': Permission denied
-ls: cannot read symbolic link '/proc/515406/task/515406/root': Permission denied
-ls: cannot read symbolic link '/proc/515406/task/515406/exe': Permission denied
-ls: cannot open directory '/proc/515406/task/515406/fd': Permission denied
-ls: cannot open directory '/proc/515406/task/515406/fdinfo': Permission denied
-ls: cannot open directory '/proc/515406/task/515406/ns': Permission denied
-ls: cannot read symbolic link '/proc/521304/cwd': Permission denied
-ls: cannot read symbolic link '/proc/521304/root': Permission denied
-ls: cannot read symbolic link '/proc/521304/exe': Permission denied
-ls: cannot open directory '/proc/521304/fd': Permission denied
-ls: cannot open directory '/proc/521304/fdinfo': Permission denied
-ls: cannot open directory '/proc/521304/map_files': Permission denied
-ls: cannot open directory '/proc/521304/ns': Permission denied
-ls: cannot read symbolic link '/proc/521304/task/521304/cwd': Permission denied
-ls: cannot read symbolic link '/proc/521304/task/521304/root': Permission denied
-ls: cannot read symbolic link '/proc/521304/task/521304/exe': Permission denied
-ls: cannot open directory '/proc/521304/task/521304/fd': Permission denied
-ls: cannot open directory '/proc/521304/task/521304/fdinfo': Permission denied
-ls: cannot open directory '/proc/521304/task/521304/ns': Permission denied
-ls: cannot open directory '/proc/525142': No such file or directory
-ls: cannot open directory '/proc/525144': No such file or directory
-ls: cannot open directory '/proc/525161': No such file or directory
-ls: cannot open directory '/proc/525169': No such file or directory
-ls: cannot open directory '/proc/525170': No such file or directory
-ls: cannot open directory '/proc/525171': No such file or directory
-ls: cannot open directory '/proc/525172': No such file or directory
-ls: cannot open directory '/proc/525173': No such file or directory
-ls: cannot read symbolic link '/proc/571/cwd': Permission denied
-ls: cannot read symbolic link '/proc/571/root': Permission denied
-ls: cannot read symbolic link '/proc/571/exe': Permission denied
-ls: cannot open directory '/proc/571/fd': Permission denied
-ls: cannot open directory '/proc/571/fdinfo': Permission denied
-ls: cannot open directory '/proc/571/map_files': Permission denied
-ls: cannot open directory '/proc/571/ns': Permission denied
-ls: cannot read symbolic link '/proc/571/task/571/cwd': Permission denied
-ls: cannot read symbolic link '/proc/571/task/571/root': Permission denied
-ls: cannot read symbolic link '/proc/571/task/571/exe': Permission denied
-ls: cannot open directory '/proc/571/task/571/fd': Permission denied
-ls: cannot open directory '/proc/571/task/571/fdinfo': Permission denied
-ls: cannot open directory '/proc/571/task/571/ns': Permission denied
-ls: cannot read symbolic link '/proc/571/task/572/cwd': Permission denied
-ls: cannot read symbolic link '/proc/571/task/572/root': Permission denied
-ls: cannot read symbolic link '/proc/571/task/572/exe': Permission denied
-ls: cannot open directory '/proc/571/task/572/fd': Permission denied
-ls: cannot open directory '/proc/571/task/572/fdinfo': Permission denied
-ls: cannot open directory '/proc/571/task/572/ns': Permission denied
-ls: cannot read symbolic link '/proc/571/task/573/cwd': Permission denied
-ls: cannot read symbolic link '/proc/571/task/573/root': Permission denied
-ls: cannot read symbolic link '/proc/571/task/573/exe': Permission denied
-ls: cannot open directory '/proc/571/task/573/fd': Permission denied
-ls: cannot open directory '/proc/571/task/573/fdinfo': Permission denied
-ls: cannot open directory '/proc/571/task/573/ns': Permission denied
-ls: cannot read symbolic link '/proc/585/cwd': Permission denied
-ls: cannot read symbolic link '/proc/585/root': Permission denied
-ls: cannot read symbolic link '/proc/585/exe': Permission denied
-ls: cannot open directory '/proc/585/fd': Permission denied
-ls: cannot open directory '/proc/585/fdinfo': Permission denied
-ls: cannot open directory '/proc/585/map_files': Permission denied
-ls: cannot open directory '/proc/585/ns': Permission denied
-ls: cannot read symbolic link '/proc/585/task/585/cwd': Permission denied
-ls: cannot read symbolic link '/proc/585/task/585/root': Permission denied
-ls: cannot read symbolic link '/proc/585/task/585/exe': Permission denied
-ls: cannot open directory '/proc/585/task/585/fd': Permission denied
-ls: cannot open directory '/proc/585/task/585/fdinfo': Permission denied
-ls: cannot open directory '/proc/585/task/585/ns': Permission denied
-ls: cannot read symbolic link '/proc/6/cwd': Permission denied
-ls: cannot read symbolic link '/proc/6/root': Permission denied
-ls: cannot read symbolic link '/proc/6/exe': Permission denied
-ls: cannot open directory '/proc/6/fd': Permission denied
-ls: cannot open directory '/proc/6/fdinfo': Permission denied
-ls: cannot open directory '/proc/6/map_files': Permission denied
-ls: cannot open directory '/proc/6/ns': Permission denied
-ls: cannot read symbolic link '/proc/6/task/6/cwd': Permission denied
-ls: cannot read symbolic link '/proc/6/task/6/root': Permission denied
-ls: cannot read symbolic link '/proc/6/task/6/exe': Permission denied
-ls: cannot open directory '/proc/6/task/6/fd': Permission denied
-ls: cannot open directory '/proc/6/task/6/fdinfo': Permission denied
-ls: cannot open directory '/proc/6/task/6/ns': Permission denied
-ls: cannot read symbolic link '/proc/77900/cwd': Permission denied
-ls: cannot read symbolic link '/proc/77900/root': Permission denied
-ls: cannot read symbolic link '/proc/77900/exe': Permission denied
-ls: cannot open directory '/proc/77900/fd': Permission denied
-ls: cannot open directory '/proc/77900/fdinfo': Permission denied
-ls: cannot open directory '/proc/77900/map_files': Permission denied
-ls: cannot open directory '/proc/77900/ns': Permission denied
-ls: cannot read symbolic link '/proc/77900/task/77900/cwd': Permission denied
-ls: cannot read symbolic link '/proc/77900/task/77900/root': Permission denied
-ls: cannot read symbolic link '/proc/77900/task/77900/exe': Permission denied
-ls: cannot open directory '/proc/77900/task/77900/fd': Permission denied
-ls: cannot open directory '/proc/77900/task/77900/fdinfo': Permission denied
-ls: cannot open directory '/proc/77900/task/77900/ns': Permission denied
-ls: cannot read symbolic link '/proc/77900/task/77901/cwd': Permission denied
-ls: cannot read symbolic link '/proc/77900/task/77901/root': Permission denied
-ls: cannot read symbolic link '/proc/77900/task/77901/exe': Permission denied
-ls: cannot open directory '/proc/77900/task/77901/fd': Permission denied
-ls: cannot open directory '/proc/77900/task/77901/fdinfo': Permission denied
-ls: cannot open directory '/proc/77900/task/77901/ns': Permission denied
-ls: cannot read symbolic link '/proc/77900/task/77903/cwd': Permission denied
-ls: cannot read symbolic link '/proc/77900/task/77903/root': Permission denied
-ls: cannot read symbolic link '/proc/77900/task/77903/exe': Permission denied
-ls: cannot open directory '/proc/77900/task/77903/fd': Permission denied
-ls: cannot open directory '/proc/77900/task/77903/fdinfo': Permission denied
-ls: cannot open directory '/proc/77900/task/77903/ns': Permission denied
-ls: cannot read symbolic link '/proc/77900/task/77904/cwd': Permission denied
-ls: cannot read symbolic link '/proc/77900/task/77904/root': Permission denied
-ls: cannot read symbolic link '/proc/77900/task/77904/exe': Permission denied
-ls: cannot open directory '/proc/77900/task/77904/fd': Permission denied
-ls: cannot open directory '/proc/77900/task/77904/fdinfo': Permission denied
-ls: cannot open directory '/proc/77900/task/77904/ns': Permission denied
-ls: cannot read symbolic link '/proc/77900/task/77908/cwd': Permission denied
-ls: cannot read symbolic link '/proc/77900/task/77908/root': Permission denied
-ls: cannot read symbolic link '/proc/77900/task/77908/exe': Permission denied
-ls: cannot open directory '/proc/77900/task/77908/fd': Permission denied
-ls: cannot open directory '/proc/77900/task/77908/fdinfo': Permission denied
-ls: cannot open directory '/proc/77900/task/77908/ns': Permission denied
-ls: cannot read symbolic link '/proc/8/cwd': Permission denied
-ls: cannot read symbolic link '/proc/8/root': Permission denied
-ls: cannot read symbolic link '/proc/8/exe': Permission denied
-ls: cannot open directory '/proc/8/fd': Permission denied
-ls: cannot open directory '/proc/8/fdinfo': Permission denied
-ls: cannot open directory '/proc/8/map_files': Permission denied
-ls: cannot open directory '/proc/8/ns': Permission denied
-ls: cannot read symbolic link '/proc/8/task/8/cwd': Permission denied
-ls: cannot read symbolic link '/proc/8/task/8/root': Permission denied
-ls: cannot read symbolic link '/proc/8/task/8/exe': Permission denied
-ls: cannot open directory '/proc/8/task/8/fd': Permission denied
-ls: cannot open directory '/proc/8/task/8/fdinfo': Permission denied
-ls: cannot open directory '/proc/8/task/8/ns': Permission denied
-ls: cannot read symbolic link '/proc/9/cwd': Permission denied
-ls: cannot read symbolic link '/proc/9/root': Permission denied
-ls: cannot read symbolic link '/proc/9/exe': Permission denied
-ls: cannot open directory '/proc/9/fd': Permission denied
-ls: cannot open directory '/proc/9/fdinfo': Permission denied
-ls: cannot open directory '/proc/9/map_files': Permission denied
-ls: cannot open directory '/proc/9/ns': Permission denied
-ls: cannot read symbolic link '/proc/9/task/9/cwd': Permission denied
-ls: cannot read symbolic link '/proc/9/task/9/root': Permission denied
-ls: cannot read symbolic link '/proc/9/task/9/exe': Permission denied
-ls: cannot open directory '/proc/9/task/9/fd': Permission denied
-ls: cannot open directory '/proc/9/task/9/fdinfo': Permission denied
-ls: cannot open directory '/proc/9/task/9/ns': Permission denied
-ls: cannot read symbolic link '/proc/91/cwd': Permission denied
-ls: cannot read symbolic link '/proc/91/root': Permission denied
-ls: cannot read symbolic link '/proc/91/exe': Permission denied
-ls: cannot open directory '/proc/91/fd': Permission denied
-ls: cannot open directory '/proc/91/fdinfo': Permission denied
-ls: cannot open directory '/proc/91/map_files': Permission denied
-ls: cannot open directory '/proc/91/ns': Permission denied
-ls: cannot read symbolic link '/proc/91/task/91/cwd': Permission denied
-ls: cannot read symbolic link '/proc/91/task/91/root': Permission denied
-ls: cannot read symbolic link '/proc/91/task/91/exe': Permission denied
-ls: cannot open directory '/proc/91/task/91/fd': Permission denied
-ls: cannot open directory '/proc/91/task/91/fdinfo': Permission denied
-ls: cannot open directory '/proc/91/task/91/ns': Permission denied
-ls: cannot read symbolic link '/proc/92/cwd': Permission denied
-ls: cannot read symbolic link '/proc/92/root': Permission denied
-ls: cannot read symbolic link '/proc/92/exe': Permission denied
-ls: cannot open directory '/proc/92/fd': Permission denied
-ls: cannot open directory '/proc/92/fdinfo': Permission denied
-ls: cannot open directory '/proc/92/map_files': Permission denied
-ls: cannot open directory '/proc/92/ns': Permission denied
-ls: cannot read symbolic link '/proc/92/task/92/cwd': Permission denied
-ls: cannot read symbolic link '/proc/92/task/92/root': Permission denied
-ls: cannot read symbolic link '/proc/92/task/92/exe': Permission denied
-ls: cannot open directory '/proc/92/task/92/fd': Permission denied
-ls: cannot open directory '/proc/92/task/92/fdinfo': Permission denied
-ls: cannot open directory '/proc/92/task/92/ns': Permission denied
-ls: cannot read symbolic link '/proc/93/cwd': Permission denied
-ls: cannot read symbolic link '/proc/93/root': Permission denied
-ls: cannot read symbolic link '/proc/93/exe': Permission denied
-ls: cannot open directory '/proc/93/fd': Permission denied
-ls: cannot open directory '/proc/93/fdinfo': Permission denied
-ls: cannot open directory '/proc/93/map_files': Permission denied
-ls: cannot open directory '/proc/93/ns': Permission denied
-ls: cannot read symbolic link '/proc/93/task/93/cwd': Permission denied
-ls: cannot read symbolic link '/proc/93/task/93/root': Permission denied
-ls: cannot read symbolic link '/proc/93/task/93/exe': Permission denied
-ls: cannot open directory '/proc/93/task/93/fd': Permission denied
-ls: cannot open directory '/proc/93/task/93/fdinfo': Permission denied
-ls: cannot open directory '/proc/93/task/93/ns': Permission denied
-ls: cannot read symbolic link '/proc/95/cwd': Permission denied
-ls: cannot read symbolic link '/proc/95/root': Permission denied
-ls: cannot read symbolic link '/proc/95/exe': Permission denied
-ls: cannot open directory '/proc/95/fd': Permission denied
-ls: cannot open directory '/proc/95/fdinfo': Permission denied
-ls: cannot open directory '/proc/95/map_files': Permission denied
-ls: cannot open directory '/proc/95/ns': Permission denied
-ls: cannot read symbolic link '/proc/95/task/95/cwd': Permission denied
-ls: cannot read symbolic link '/proc/95/task/95/root': Permission denied
-ls: cannot read symbolic link '/proc/95/task/95/exe': Permission denied
-ls: cannot open directory '/proc/95/task/95/fd': Permission denied
-ls: cannot open directory '/proc/95/task/95/fdinfo': Permission denied
-ls: cannot open directory '/proc/95/task/95/ns': Permission denied
-ls: cannot read symbolic link '/proc/96/cwd': Permission denied
-ls: cannot read symbolic link '/proc/96/root': Permission denied
-ls: cannot read symbolic link '/proc/96/exe': Permission denied
-ls: cannot open directory '/proc/96/fd': Permission denied
-ls: cannot open directory '/proc/96/fdinfo': Permission denied
-ls: cannot open directory '/proc/96/map_files': Permission denied
-ls: cannot open directory '/proc/96/ns': Permission denied
-ls: cannot read symbolic link '/proc/96/task/96/cwd': Permission denied
-ls: cannot read symbolic link '/proc/96/task/96/root': Permission denied
-ls: cannot read symbolic link '/proc/96/task/96/exe': Permission denied
-ls: cannot open directory '/proc/96/task/96/fd': Permission denied
-ls: cannot open directory '/proc/96/task/96/fdinfo': Permission denied
-ls: cannot open directory '/proc/96/task/96/ns': Permission denied
-ls: cannot read symbolic link '/proc/98/cwd': Permission denied
-ls: cannot read symbolic link '/proc/98/root': Permission denied
-ls: cannot read symbolic link '/proc/98/exe': Permission denied
-ls: cannot open directory '/proc/98/fd': Permission denied
-ls: cannot open directory '/proc/98/fdinfo': Permission denied
-ls: cannot open directory '/proc/98/map_files': Permission denied
-ls: cannot open directory '/proc/98/ns': Permission denied
-ls: cannot read symbolic link '/proc/98/task/98/cwd': Permission denied
-ls: cannot read symbolic link '/proc/98/task/98/root': Permission denied
-ls: cannot read symbolic link '/proc/98/task/98/exe': Permission denied
-ls: cannot open directory '/proc/98/task/98/fd': Permission denied
-ls: cannot open directory '/proc/98/task/98/fdinfo': Permission denied
-ls: cannot open directory '/proc/98/task/98/ns': Permission denied
-ls: cannot read symbolic link '/proc/99/cwd': Permission denied
-ls: cannot read symbolic link '/proc/99/root': Permission denied
-ls: cannot read symbolic link '/proc/99/exe': Permission denied
-ls: cannot open directory '/proc/99/fd': Permission denied
-ls: cannot open directory '/proc/99/fdinfo': Permission denied
-ls: cannot open directory '/proc/99/map_files': Permission denied
-ls: cannot open directory '/proc/99/ns': Permission denied
-ls: cannot read symbolic link '/proc/99/task/99/cwd': Permission denied
-ls: cannot read symbolic link '/proc/99/task/99/root': Permission denied
-ls: cannot read symbolic link '/proc/99/task/99/exe': Permission denied
-ls: cannot open directory '/proc/99/task/99/fd': Permission denied
-ls: cannot open directory '/proc/99/task/99/fdinfo': Permission denied
-ls: cannot open directory '/proc/99/task/99/ns': Permission denied
-ls: cannot open directory '/proc/tty/driver': Permission denied
-ls: cannot open directory '/root': Permission denied
-ls: cannot open directory '/run/lightdm': Permission denied
-ls: cannot open directory '/run/lock/lvm': Permission denied
-ls: cannot open directory '/run/lock/picocom': Permission denied
-ls: cannot open directory '/run/sudo': Permission denied
-ls: cannot open directory '/run/systemd/inaccessible/dir': Permission denied
-ls: cannot open directory '/run/systemd/unit-root': Permission denied
-ls: cannot open directory '/run/udisks2': Permission denied
-ls: cannot open directory '/run/user/1000/systemd/inaccessible/dir': Permission denied
-ls: cannot open directory '/run/wpa_supplicant': Permission denied
-ls: cannot open directory '/sys/fs/bpf': Permission denied
-ls: cannot open directory '/sys/fs/pstore': Permission denied
-ls: cannot open directory '/sys/kernel/debug': Permission denied
-ls: cannot open directory '/sys/kernel/tracing': Permission denied
-ls: cannot open directory '/tmp/systemd-private-d12f2f237c50437b83f2d3574c577330-systemd-logind.service-m7aHSf': Permission denied
-ls: cannot open directory '/usr/share/polkit-1/rules.d': Permission denied
-ls: cannot open directory '/var/cache/ldconfig': Permission denied
-ls: cannot open directory '/var/cache/lightdm': Permission denied
-ls: cannot open directory '/var/cache/private': Permission denied
-ls: cannot open directory '/var/db/sudo': Permission denied
-ls: cannot open directory '/var/lib/NetworkManager': Permission denied
-ls: cannot open directory '/var/lib/bluetooth': Permission denied
-ls: cannot open directory '/var/lib/iwd': Permission denied
-ls: cannot open directory '/var/lib/lightdm': Permission denied
-ls: cannot open directory '/var/lib/lightdm-data': Permission denied
-ls: cannot open directory '/var/lib/machines': Permission denied
-ls: cannot open directory '/var/lib/portables': Permission denied
-ls: cannot open directory '/var/lib/private': Permission denied
-ls: cannot open directory '/var/lib/udisks2': Permission denied
-ls: cannot open directory '/var/log/audit': Permission denied
-ls: cannot open directory '/var/log/lightdm': Permission denied
-ls: cannot open directory '/var/log/private': Permission denied
-ls: cannot open directory '/var/tmp/systemd-private-d12f2f237c50437b83f2d3574c577330-systemd-logind.service-g6U3Jg': Permission denied
+ls: .Spotlight-V100: Permission denied
+ls: .Trashes: Permission denied
+ls: .fseventsd: Permission denied
+ls: Data: Permission denied
+ls: Users: Permission denied
+ls: Client: Permission denied
+ls: Task Server: Permission denied
+ls: ApplePushService: Permission denied
+ls: com.apple.iconservices.store: Permission denied
+ls: DiagnosticReports: Permission denied
+ls: Cache: Permission denied
+ls: catalogs: Permission denied
+ls: 42: Permission denied
+ls: com.apple.coresymbolicationd: Permission denied
+ls: Default: Permission denied
+ls: User Template: Permission denied
+ls: Desktop: Permission denied
+ls: Documents: Permission denied
+ls: Downloads: Permission denied
+ls: Library: Permission denied
+ls: Movies: Permission denied
+ls: Music: Permission denied
+ls: Pictures: Permission denied
+ls: Drop Box: Permission denied
+ls: Desktop: Permission denied
+ls: Documents: Permission denied
+ls: Downloads: Permission denied
+ls: Library: Permission denied
+ls: Movies: Permission denied
+ls: Music: Permission denied
+ls: Pictures: Permission denied
+ls: Drop Box: Permission denied
+ls: Desktop: Permission denied
+ls: Documents: Permission denied
+ls: Downloads: Permission denied
+ls: Library: Permission denied
+ls: Movies: Permission denied
+ls: Music: Permission denied
+ls: Pictures: Permission denied
+ls: Drop Box: Permission denied
+ls: Desktop: Permission denied
+ls: Documents: Permission denied
+ls: Downloads: Permission denied
+ls: Library: Permission denied
+ls: Movies: Permission denied
+ls: Music: Permission denied
+ls: Pictures: Permission denied
+ls: Drop Box: Permission denied
+ls: .DocumentRevisions-V100: Permission denied
+ls: .TemporaryItems: Permission denied
+ls: .fseventsd: Permission denied
+ls: Desktop: Permission denied
+ls: Documents: Permission denied
+ls: Downloads: Permission denied
+ls: Library: Permission denied
+ls: Movies: Permission denied
+ls: Music: Permission denied
+ls: Pictures: Permission denied
+ls: Drop Box: Permission denied
+ls: bocal: Permission denied
+ls: deepthought: Permission denied
+ls: Desktop: Permission denied
+ls: Documents: Permission denied
+ls: Downloads: Permission denied
+ls: Library: Permission denied
+ls: Movies: Permission denied
+ls: Music: Permission denied
+ls: Pictures: Permission denied
+ls: Drop Box: Permission denied
+ls: Desktop: Permission denied
+ls: Documents: Permission denied
+ls: Downloads: Permission denied
+ls: Library: Permission denied
+ls: Movies: Permission denied
+ls: Music: Permission denied
+ls: Pictures: Permission denied
+ls: Drop Box: Permission denied
+ls: Desktop: Permission denied
+ls: Documents: Permission denied
+ls: Downloads: Permission denied
+ls: Library: Permission denied
+ls: Movies: Permission denied
+ls: Music: Permission denied
+ls: Pictures: Permission denied
+ls: Drop Box: Permission denied
+ls: Desktop: Permission denied
+ls: Documents: Permission denied
+ls: Downloads: Permission denied
+ls: Library: Permission denied
+ls: Movies: Permission denied
+ls: Music: Permission denied
+ls: Pictures: Permission denied
+ls: Drop Box: Permission denied
+ls: Desktop: Permission denied
+ls: Documents: Permission denied
+ls: Downloads: Permission denied
+ls: Library: Permission denied
+ls: Movies: Permission denied
+ls: Music: Permission denied
+ls: Pictures: Permission denied
+ls: Drop Box: Permission denied
+ls: Desktop: Permission denied
+ls: Documents: Permission denied
+ls: Downloads: Permission denied
+ls: Library: Permission denied
+ls: Movies: Permission denied
+ls: Music: Permission denied
+ls: Pictures: Permission denied
+ls: Drop Box: Permission denied
+ls: Desktop: Permission denied
+ls: Documents: Permission denied
+ls: Downloads: Permission denied
+ls: Library: Permission denied
+ls: Movies: Permission denied
+ls: Music: Permission denied
+ls: Pictures: Permission denied
+ls: Drop Box: Permission denied
+ls: Desktop: Permission denied
+ls: Documents: Permission denied
+ls: Downloads: Permission denied
+ls: Library: Permission denied
+ls: Movies: Permission denied
+ls: Music: Permission denied
+ls: Pictures: Permission denied
+ls: Drop Box: Permission denied
+ls: Desktop: Permission denied
+ls: Documents: Permission denied
+ls: Downloads: Permission denied
+ls: Library: Permission denied
+ls: Movies: Permission denied
+ls: Music: Permission denied
+ls: Pictures: Permission denied
+ls: Drop Box: Permission denied
+ls: Desktop: Permission denied
+ls: Documents: Permission denied
+ls: Downloads: Permission denied
+ls: Library: Permission denied
+ls: Movies: Permission denied
+ls: Music: Permission denied
+ls: Pictures: Permission denied
+ls: Drop Box: Permission denied
+ls: Desktop: Permission denied
+ls: Documents: Permission denied
+ls: Downloads: Permission denied
+ls: Library: Permission denied
+ls: Movies: Permission denied
+ls: Music: Permission denied
+ls: Pictures: Permission denied
+ls: Drop Box: Permission denied
+ls: 3: Not a directory
+ls: 4: directory causes a cycle
+ls: aanbari: Permission denied
+ls: abaddi: Permission denied
+ls: aboukhri: Permission denied
+ls: afaraji: Permission denied
+ls: ayennoui: Permission denied
+ls: imannouc: Permission denied
+ls: mel-adna: Permission denied
+ls: mel-jadi: Permission denied
+ls: nabdelba: Permission denied
+ls: nel-achk: Permission denied
+ls: oherba: Permission denied
+ls: sbouraq: Permission denied
+ls: sel-mort: Permission denied
+ls: ybouladh: Permission denied
+ls: yzemmour: Permission denied
+ls: zamazzal: Permission denied
+ls: certs: Permission denied
+ls: agentx: Permission denied
+ls: tabs: Permission denied
+ls: tmp: Permission denied
+ls: audit: Permission denied
+ls: backups: Permission denied
+ls: Setup: Permission denied
+ls: Store: Permission denied
+ls: RemoteManagement: Permission denied
+ls: Spotlight: Permission denied
+ls: TokenCache: Permission denied
+ls: analyticsd: Permission denied
+ls: applepay: Permission denied
+ls: opendirectory: Permission denied
+ls: cmiodalassistants: Permission denied
+ls: com.apple.xpc.roleaccountd.staging: Permission denied
+ls: datadetectors: Permission denied
+ls: dhcpclient: Permission denied
+ls: diagnostics: Permission denied
+ls: Default: Permission denied
+ls: fpsd: Permission denied
+ls: geod: Permission denied
+ls: hidd: Permission denied
+ls: locationd: Permission denied
+ls: lockdown: Permission denied
+ls: net-snmp: Permission denied
+ls: nsurlsessiond: Permission denied
+ls: reportmemoryexception: Permission denied
+ls: securityagent: Permission denied
+ls: Library: Permission denied
+ls: sudo: Permission denied
+ls: timed: Permission denied
+ls: com.apple.LaunchServices.dv: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: com.apple.Spotlight: Permission denied
+ls: com.apple.pluginkit: Permission denied
+ls: com.apple.revisiond.temp: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: com.apple.nsurlsessiond: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: com.apple.LaunchServices.dv: Permission denied
+ls: com.apple.dock.launchpad: Permission denied
+ls: com.apple.notificationcenter: Permission denied
+ls: com.apple.nsurlsessiond: Permission denied
+ls: com.apple.pluginkit: Permission denied
+ls: dv: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: com.apple.LaunchServices.dv: Permission denied
+ls: com.apple.dock.launchpad: Permission denied
+ls: com.apple.notificationcenter: Permission denied
+ls: com.apple.nsurlsessiond: Permission denied
+ls: com.apple.pluginkit: Permission denied
+ls: dv: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: com.apple.LaunchServices.dv: Permission denied
+ls: com.apple.dock.launchpad: Permission denied
+ls: com.apple.notificationcenter: Permission denied
+ls: com.apple.nsurlsessiond: Permission denied
+ls: com.apple.pluginkit: Permission denied
+ls: dv: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: com.apple.LaunchServices.dv: Permission denied
+ls: com.apple.dock.launchpad: Permission denied
+ls: com.apple.notificationcenter: Permission denied
+ls: com.apple.nsurlsessiond: Permission denied
+ls: com.apple.pluginkit: Permission denied
+ls: dv: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: com.apple.LaunchServices.dv: Permission denied
+ls: SafariFamily: Permission denied
+ls: com.apple.dock.launchpad: Permission denied
+ls: com.apple.notificationcenter: Permission denied
+ls: com.apple.nsurlsessiond: Permission denied
+ls: com.apple.pluginkit: Permission denied
+ls: dv: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: com.apple.LaunchServices.dv: Permission denied
+ls: com.apple.dock.launchpad: Permission denied
+ls: com.apple.notificationcenter: Permission denied
+ls: com.apple.nsurlsessiond: Permission denied
+ls: com.apple.pluginkit: Permission denied
+ls: dv: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: com.apple.LaunchServices.dv: Permission denied
+ls: com.apple.dock.launchpad: Permission denied
+ls: com.apple.notificationcenter: Permission denied
+ls: com.apple.nsurlsessiond: Permission denied
+ls: com.apple.pluginkit: Permission denied
+ls: dv: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: com.apple.LaunchServices.dv: Permission denied
+ls: com.apple.dock.launchpad: Permission denied
+ls: com.apple.notificationcenter: Permission denied
+ls: com.apple.nsurlsessiond: Permission denied
+ls: com.apple.pluginkit: Permission denied
+ls: dv: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: com.apple.LaunchServices.dv: Permission denied
+ls: SafariFamily: Permission denied
+ls: com.apple.dock.launchpad: Permission denied
+ls: com.apple.notificationcenter: Permission denied
+ls: com.apple.nsurlsessiond: Permission denied
+ls: com.apple.pluginkit: Permission denied
+ls: dv: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: com.apple.LaunchServices.dv: Permission denied
+ls: com.apple.dock.launchpad: Permission denied
+ls: com.apple.notificationcenter: Permission denied
+ls: com.apple.nsurlsessiond: Permission denied
+ls: com.apple.pluginkit: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: com.apple.LaunchServices.dv: Permission denied
+ls: SafariFamily: Permission denied
+ls: com.apple.dock.launchpad: Permission denied
+ls: com.apple.notificationcenter: Permission denied
+ls: com.apple.nsurlsessiond: Permission denied
+ls: com.apple.pluginkit: Permission denied
+ls: dv: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: com.apple.LaunchServices.dv: Permission denied
+ls: com.apple.dock.launchpad: Permission denied
+ls: com.apple.notificationcenter: Permission denied
+ls: com.apple.nsurlsessiond: Permission denied
+ls: com.apple.pluginkit: Permission denied
+ls: dv: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: com.apple.LaunchServices.dv: Permission denied
+ls: com.apple.dock.launchpad: Permission denied
+ls: com.apple.notificationcenter: Permission denied
+ls: com.apple.nsurlsessiond: Permission denied
+ls: com.apple.pluginkit: Permission denied
+ls: dv: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: com.apple.LaunchServices.dv: Permission denied
+ls: com.apple.dock.launchpad: Permission denied
+ls: com.apple.notificationcenter: Permission denied
+ls: com.apple.nsurlsessiond: Permission denied
+ls: com.apple.pluginkit: Permission denied
+ls: dv: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: com.apple.LaunchServices.dv: Permission denied
+ls: SafariFamily: Permission denied
+ls: com.apple.dock.launchpad: Permission denied
+ls: com.apple.notificationcenter: Permission denied
+ls: com.apple.nsurlsessiond: Permission denied
+ls: com.apple.pluginkit: Permission denied
+ls: dv: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: com.apple.LaunchServices.dv: Permission denied
+ls: SafariFamily: Permission denied
+ls: com.apple.dock.launchpad: Permission denied
+ls: com.apple.notificationcenter: Permission denied
+ls: com.apple.nsurlsessiond: Permission denied
+ls: com.apple.pluginkit: Permission denied
+ls: dv: Permission denied
+ls: C: Permission denied
+ls: T: Permission denied
+ls: install: Permission denied
+ls: jabberd: Permission denied
+ls: postfix: Permission denied
+ls: DiagnosticMessages: Permission denied
+ls: ma: Permission denied
+ls: Library: Permission denied
+ls: .deepthought: Permission denied
+ls: .ssh: Permission denied
+ls: Library: Permission denied
+ls: venv: Permission denied
+ls: mds: Permission denied
+ls: Desktop: Permission denied
+ls: Documents: Permission denied
+ls: Downloads: Permission denied
+ls: Library: Permission denied
+ls: Movies: Permission denied
+ls: Music: Permission denied
+ls: Pictures: Permission denied
+ls: Drop Box: Permission denied
+ls: cups: Permission denied
+ls: mqueue: Permission denied
+ls: active: Permission denied
+ls: bounce: Permission denied
+ls: corrupt: Permission denied
+ls: defer: Permission denied
+ls: deferred: Permission denied
+ls: flush: Permission denied
+ls: hold: Permission denied
+ls: incoming: Permission denied
+ls: maildrop: Permission denied
+ls: private: Permission denied
+ls: public: Permission denied
+ls: saved: Permission denied
+ls: trace: Permission denied
+ls: sgoinfre: No such file or directory
+ls: authserver: Permission denied

@@ -6,23 +6,24 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:28:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/29 03:27:36 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/30 05:28:44 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_op	g_op[_MAX_] =
+t_op	g_op[_MAX_OP] =
 {
-	{'l', "--long", "list in long format", _L},
+	{'l', "--long", "List in long format", _L},
 	{'R', "--Recursuvely", "Recursuvely list", _R_},
-	{'r', "--reverse", "reverse list", _R},
-	{'a', "--all", "include dir/files whose name begin with a dot (.)", _A},
-	{'t', "--sort_mtime", "sort by time modifies", _T},
-	{'G', "--color", "enable colorzed output", _G},
-	{'u', "--sort_atime", "sort by time last access", _U},
-	{'S', "--sort_size", "sort by size", _S},
-	{'f', "--no_sort", "output is no sorted", _F},
+	{'r', "--reverse", "Reverse list", _R},
+	{'a', "--all", "Include dir/files whose name begin with a dot (.)", _A},
+	{'t', "--sort_mtime", "Sort by time modifies", _T},
+	{'G', "--color", "Enable colorzed output", _G},
+	{'u', "--sort_atime", "Sort by time last access", _U},
+	{'S', "--sort_size", "Sort by size", _S},
+	{'f', "--no_sort", "Output is no sorted", _F},
+	{'n', "--id", "Display user and group ID", _N},
 	{0, 0, 0, 0}
 };
 
@@ -43,7 +44,7 @@ void		help_ls(t_all *d)
 
 	i = -1;
 	ft_dprintf(0, "./ft_ls :[options] [file ...]\n");
-	while (++i < _MAX_ - 1)
+	while (++i < _MAX_OP - 1)
 		ft_printf("\t%c\t%-13s\t:%s\n", g_op[i].c, g_op[i].str, g_op[i].desc);
 	free_all(d);
 	exit(_SUCCESS);
@@ -60,11 +61,12 @@ int			pars_word_option(char *flag, t_all *d)
 		help_ls(d);
 	else
 	{
-		while (++i < _MAX_ - 1)
+		while (++i < _MAX_OP - 1)
 		{
 			if (!(ft_strcmp(flag, g_op[i].str)))
 			{
 				d->options |= g_op[i].valu;
+				((d->options & _N)) ? d->options |= _L : 0;
 				return (_SUCCESS);
 			}
 		}
@@ -78,11 +80,12 @@ int			pars_char_option(char c, t_all *d)
 
 	i = -1;
 	(c == 'h') ? help_ls(d) : 0;
-	while (++i < _MAX_ - 1)
+	while (++i < _MAX_OP - 1)
 	{
 		if (c == g_op[i].c)
 		{
 			d->options |= g_op[i].valu;
+			((d->options & _N)) ? d->options |= _L : 0;
 			return (_SUCCESS);
 		}
 	}
@@ -144,7 +147,7 @@ int		init_pwd(t_all *d, t_files *new)
         d->ret = _FAILURE;
         return (_FAILURE);
     }
-	if (!(new->pwd->pw_name = ft_strdup(pwd->pw_name)))
+	if (!(d->options & _N) && !(new->pwd->pw_name = ft_strdup(pwd->pw_name)))
     {
         free_files(&new);
         error_ls(d, strerror(errno));
@@ -158,7 +161,7 @@ int			init_grp(t_all *d, t_files *new)
     struct group        *grp;
 
     errno = 0;
-    grp = getgrgid(new->grp->gr_gid);
+    grp = getgrgid(new->st->st_gid);
     if (errno)
     {
         ft_printf("%s\n", new->path);
@@ -172,7 +175,7 @@ int			init_grp(t_all *d, t_files *new)
         d->ret = _FAILURE;
         return (_FAILURE);
     }
-	if (!(new->grp->gr_name = strdup(grp->gr_name)))
+	if (!(d->options & _N) && !(new->grp->gr_name = strdup(grp->gr_name)))
     {
         free_files(&new);
         error_ls(d, strerror(errno));
@@ -232,11 +235,34 @@ void		get_lens(t_all *d, t_files *f, char *name)
 	((d->len[_LINK] < len)) ? d->len[_LINK] = len : 0;
 	len = ft_intlen(f->st->st_size);
 	((d->len[_SIZE] < len)) ? d->len[_SIZE] = len : 0;
-	len = (f->pwd && f->pwd->pw_name) ? ft_strlen(f->pwd->pw_name) : 0;
+	len = (!(d->options & _N) && f->pwd && f->pwd->pw_name) ? ft_strlen(f->pwd->pw_name) : 0;
+	((d->options & _N) && f->pwd) ? len = ft_intlen(f->pwd->pw_uid) : 0;
 	(len > d->len[_OWNER]) ? d->len[_OWNER] = len : 0;
-	len = (f->grp && f->grp->gr_name) ? ft_strlen(f->grp->gr_name) : 0;
+	len = (!(d->options & _N) && f->grp && f->grp->gr_name) ? ft_strlen(f->grp->gr_name) : 0;
+	((d->options & _N) && f->grp) ? len = ft_intlen(f->grp->gr_gid) : 0;
 	(len > d->len[_GROUP]) ? d->len[_GROUP] = len : 0;
 
+}
+
+int			read_link(t_all *d, t_files *f)
+{
+	ssize_t		size;
+
+	if ((f->st->st_mode & S_IFMT) != S_IFLNK)
+		return (_SUCCESS);
+	if (!(f->link = (char *)ft_memalloc(sizeof(char) * (f->st->st_size + 1))))
+	{
+		free_files(&f);
+		error_ls(d, strerror(errno));
+	}
+	size = readlink(f->path, f->link, f->st->st_size + 1);
+	if (size < 0 || size > f->st->st_size)
+	{
+		ft_dprintf(2, "readlink: %s [%s]\n", strerror(errno), f->path);
+		free_files(&f);
+		return (_FAILURE);
+	}
+	return (_SUCCESS);
 }
 
 void		parsing_files(t_all *d, char *f, t_files **lst, t_files **l_lst)
@@ -246,9 +272,10 @@ void		parsing_files(t_all *d, char *f, t_files **lst, t_files **l_lst)
 	file = init_files(d, f, NULL);
 	if ((d->options & _L) && ((lstat_file(d, f, file->st)) == _SUCCESS))
 	{
-		if (init_id(d, file) == _FAILURE)
+		if (init_id(d, file) == _FAILURE || read_link(d, file) == _FAILURE)
             return ;
 		push_files(d, file, lst, l_lst);
+		//extended attributes;
 		((file->st->st_mode & S_IFMT) != S_IFDIR) ? get_lens(d, file, f) : 0;
 	}
 	else if (!(d->options & _L) && (stat_file(d, f, file->st) == _SUCCESS))

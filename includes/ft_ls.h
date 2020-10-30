@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 16:45:13 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/29 02:04:41 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/30 05:35:02 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <pwd.h>
 # include <sys/ioctl.h>
 # include <grp.h>
+# include <sys/xattr.h>
 
 /*
  ** return
@@ -44,8 +45,9 @@
 # define _U			64
 # define _S			128
 # define _F			256
+# define _N			512
 
-# define _MAX_		10
+# define _MAX_OP	11
 
 /*
  * index in tab lens
@@ -102,6 +104,7 @@ typedef struct			s_files
 {
 	char				*name;
 	char				*path;
+	char				*link;
 	struct stat			*st;
 	struct passwd		*pwd;
 	struct group		*grp;
@@ -111,6 +114,7 @@ typedef struct			s_files
 
 typedef struct			s_dir
 {
+	ssize_t				total;
 	char				*path;
 	struct dirent		*dirent;
 	t_files				*l_files;
@@ -150,4 +154,6 @@ void					loop_print_files(t_all *d, t_files *lst, t_files *l_lst , t_waiting *cu
 t_waiting				*init_waiting(t_all *d, t_files *f);
 void					get_lens(t_all *d, t_files *f, char *name);
 int                     init_id(t_all *d, t_files *new);
+int						read_link(t_all *d, t_files *f);
+
 #endif

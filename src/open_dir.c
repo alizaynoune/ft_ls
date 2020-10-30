@@ -28,12 +28,13 @@ void		parsing_read_file(t_all *d, char *path, char *name)
 	{
 		if ((d->options & _L))
         {
-            if (init_id(d, new) == _FAILURE)
+            if (init_id(d, new) == _FAILURE || read_link(d, new) == _FAILURE)
                 return ;
         }
 		push_files(d, new, &d->dir->h_files, &d->dir->l_files);
 		((d->options & _R_) && ((new->st->st_mode & S_IFMT) == S_IFDIR)) ?
 			d->print_path = _SUCCESS : 0;
+		//extended attributes;
 		((d->options & _L)) ? get_lens(d, new, name) : 0;
 	}
 	else
