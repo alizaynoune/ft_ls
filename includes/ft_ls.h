@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 16:45:13 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/30 05:35:02 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/31 05:35:15 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,10 @@
 # define _T			16
 # define _G			32
 # define _U			64
-# define _S			128
+# define _S_		128
 # define _F			256
 # define _N			512
+# define _S			1024
 
 # define _MAX_OP	11
 
@@ -58,19 +59,20 @@
 # define _OWNER			1
 # define _GROUP			2
 # define _SIZE			3
-# define _MAX_LEN_TABLE	4
+# define _BLOCK			4
+# define _MAX_LEN_TABLE	5
 
 /*
  ** colors
  */
 
-# define C_BLK		""
-# define C_CHR		"\e[1;33m"
-# define C_DIR		"\e[1;34m"
+# define C_BLK		"\e[46;30m"//
+# define C_CHR		"\e[43;30m"//
+# define C_DIR		"\e[1;36m"//
 # define C_FIFO		"\e[1;90m"
-# define C_LNK		"\e[1;96m"
+# define C_LNK		"\e[0;35m"//
 # define C_SOCK		"\e[1;35m"
-# define C_EXE		"\e[1;32m"
+# define C_EXE		"\e[0;31m"
 # define C_DEF		"\e[1;0m"
 # define C_ERROR	"\e[1;32m"
 
@@ -125,6 +127,7 @@ typedef struct			s_dir
 
 typedef struct			s_all
 {
+	DIR					*fd_dir;
 	int					ret;
 	size_t				len[_MAX_LEN_TABLE];
 	int					print_path;
@@ -154,8 +157,9 @@ t_files					*init_files(t_all *d, char *name, char *path);
 void					free_dir(t_dir **dir);
 void					loop_print_files(t_all *d, t_files *lst, t_files *l_lst , t_waiting *curr);
 t_waiting				*init_waiting(t_all *d, t_files *f);
-void					get_lens(t_all *d, t_files *f, char *name);
+void					get_lens(t_all *d, t_files *f);
 int                     init_id(t_all *d, t_files *new);
 int						read_link(t_all *d, t_files *f);
+void					get_len_block(t_all *d, t_files *);
 
 #endif

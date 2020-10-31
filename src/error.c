@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 11:53:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/30 05:33:47 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/31 00:58:05 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void		free_files(t_files **lst)
         ft_voidfree((void *)&tmp);
 	}
 	(*lst) = NULL;
+	errno = 0;
 }
 
 void		free_dir(t_dir **dir)
@@ -81,6 +82,9 @@ int			error_ls(t_all *d,  char *err)
 {
     errno = 0;
 	ft_dprintf(2, "%s\n", err);
+	if (d->fd_dir)
+		((closedir(d->fd_dir) == -1)) ? ft_dprintf(2, "ls: connot close dir %s",
+		   	strerror(errno)) : 0;
 	free_all(d);
 	exit(_TROUBLE);
 }

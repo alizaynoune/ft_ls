@@ -6,13 +6,13 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 19:08:22 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/30 05:33:02 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/31 05:41:24 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void		print_type(unsigned int type)
+void		print_type(mode_t type)
 {
 	char	*str;
 	int		i;
@@ -29,7 +29,7 @@ void		print_type(unsigned int type)
 	ft_printf("%c", str[i]);
 }
 
-void		print_permission(unsigned int mode)
+void		print_permission(mode_t mode)
 {
 	int8_t		shift;
 	int8_t		perm;
@@ -40,8 +40,9 @@ void		print_permission(unsigned int mode)
 		perm = ((mode & (7 << (shift * 3))) >> (shift * 3));
 		(perm & P_R) ? ft_printf("r") : ft_printf("-");
 		(perm & P_W) ? ft_printf("w") : ft_printf("-");
-		(shift && (perm & P_X)) ? ft_printf("x") : ft_printf("-");
-		if (!shift)
+		if (shift)
+			(perm & P_X) ? ft_printf("x") : ft_printf("-");
+		else if (!shift)
 		{
 			if (!(mode & S_ISVTX))
 				(perm & P_X) ? ft_printf("x") : ft_printf("-");
@@ -76,49 +77,62 @@ void		print_uid_grid(t_all *d, t_files *f)
 
 void		extended_attribute(t_files *f)
 {
-	ssize_t		attr;
-   // acl_t       acl;
+   acl_t       acl;
 
-	if (listxattr(f->path, NULL, 0) > 0)
+	if (listxattr(f->path, NULL, 0, XATTR_NOFOLLOW) > 0)
         ft_printf("@");
- /*   else if ((acl = acl_get_link_np(f->path, ACL_TYPE_EXTENDED)))
+    else if ((acl = acl_get_link_np(f->path, ACL_TYPE_EXTENDED)))
         {
             acl_free(acl);
             ft_printf("+");
-        }*/
+        }
     else
         ft_printf(" ");
-	//((attr == 0)) ? ft_printf(" ") : 0;
-//	ft_printf("[%d]", errno);
+}
+
+void		print_color(t_files *f, mode_t type)
+{
+	(type == S_IFBLK) ? ft_printf(C_BLK) : 0;
+	(type == S_IFCHR) ? ft_printf(C_CHR) : 0;
+	(type == S_IFDIR) ? ft_printf(C_DIR) : 0;
+	(type == S_IFIFO) ? ft_printf(C_FIFO) : 0;
+	(type == S_IFLNK) ? ft_printf(C_LNK) : 0;
+	(type == S_IFSOCK) ? ft_printf(C_SOCK) : 0;
+	if (type == S_IFREG)
+		((f->st->st_mode & (S_IXUSR | S_IXGRP | S_IXOTH))) ? ft_printf(C_EXE) : 0;
+	ft_printf("%s", f->name);
+	ft_printf(C_DEF);
 }
 
 void		print_files(t_all *d, t_files *f)
 {
-	unsigned int		type;
+	mode_t		type;
 
 	type = (f->st->st_mode & S_IFMT);
 	if ((d->options & _L))
 	{
+		((d->options & _S)) ? ft_printf("%*d ", d->len[_BLOCK], f->st->st_blocks) : 0;
 		print_type((type));
 		print_permission(f->st->st_mode);
 		extended_attribute(f);
-		//print extended attributes
 		ft_printf(" %*d", d->len[_LINK], f->st->st_nlink);
 		(f->pwd && f->grp) ? print_uid_grid(d, f) : 0;
-		ft_printf("%*d ", d->len[_SIZE], f->st->st_size);
+		ft_printf(" %*d ", d->len[_SIZE], f->st->st_size);
         print_time(d, f);
-		ft_printf("%s", f->name);
+		(d->options & _G) ? print_color(f, type) : ft_printf("%s", f->name);
 		(f->link) ? ft_printf(" -> %s\n", f->link) : ft_printf("\n");
-        // if is link print name of stat file
 	}
 	else
-		ft_printf("%s\n", f->name);
+	{
+		((d->options & _S)) ? ft_printf("%*d ", d->len[_BLOCK], f->st->st_blocks) : 0;
+		(d->options & _G) ? print_color(f, type) : ft_printf("%s", f->name);
+		ft_printf("\n");
+	}
 }
 
-t_waiting		*recursuvely(t_all *d, t_files *f, t_waiting *curr)
+t_waiting		*recursuvely(t_all *d, t_files *f)
 {
 	t_waiting		*new;
-	char			*n_name;
 
 	if (!ft_strcmp(f->name, ".") || !ft_strcmp(f->name, ".."))
 		return (NULL);
@@ -141,9 +155,9 @@ void		loop_print_files(t_all *d, t_files *lst, t_files *l_lst, t_waiting *curr)
 		if ((d->options & _R_) && ((tmp->st->st_mode & S_IFMT) == S_IFDIR))
 		{
 			if (h_w)
-				((l_w->next = recursuvely(d, tmp, curr))) ? l_w = l_w->next : 0;
+				((l_w->next = recursuvely(d, tmp))) ? l_w = l_w->next : 0;
 			else
-				((h_w = recursuvely(d, tmp, curr))) ? l_w = h_w : 0;
+				((h_w = recursuvely(d, tmp))) ? l_w = h_w : 0;
 		}
 		tmp = ((d->options & _R)) ? tmp->prev : tmp->next;
 	}
@@ -152,5 +166,4 @@ void		loop_print_files(t_all *d, t_files *lst, t_files *l_lst, t_waiting *curr)
 		l_w->next = curr->next;
 		curr->next = h_w;
 	}
-    ft_memset((void *)d->len, 0, _MAX_LEN_TABLE);
 }

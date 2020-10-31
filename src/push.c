@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 16:58:04 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/26 23:28:11 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/31 05:42:15 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_files		*cmp_ascii(t_files *f, t_files *lst)
 	return (NULL);
 }
 
-t_files		*cmp_mtime(int options, t_files *f, t_files *lst)
+t_files		*cmp_mtime(t_files *f, t_files *lst)
 {
 	t_files		*tmp;
 	struct stat	*t_st;
@@ -97,10 +97,10 @@ t_files     *cmp_atime(t_files *f, t_files *lst)
 t_files		*get_position(t_all *d, t_files *f, t_files *lst)
 {
 	if ((d->options & _T))
-		return (cmp_mtime(d->options, f, lst));
+		return (cmp_mtime(f, lst));
 	else if ((d->options & _U))
 		return (cmp_atime(f, lst));
-	else if ((d->options & _S))
+	else if ((d->options & _S_))
 		return (cmp_size(f, lst));
 	 else
 		 return (cmp_ascii(f, lst));
