@@ -74,7 +74,7 @@ int			ft_printf(const char *format, ...)
 		return (-1);
 	ft_bzero(&d->wid_pre, sizeof(t_width_precision));
 	d->str = format;
-	d->fd = 0;
+	d->fd = _OUT;
 	va_start(d->ap, format);
 	while (d->str[d->i] && d->ret != -1)
 		d->str[d->i] == '%' ? read_format(d) : putformat_(d);

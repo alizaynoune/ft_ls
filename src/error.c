@@ -81,9 +81,9 @@ void		free_all(t_all *d)
 int			error_ls(t_all *d,  char *err)
 {
     errno = 0;
-	ft_dprintf(2, "%s\n", err);
+	ft_dprintf(_ERR, "%s\n", err);
 	if (d->fd_dir)
-		((closedir(d->fd_dir) == -1)) ? ft_dprintf(2, "ls: connot close dir %s",
+		((closedir(d->fd_dir) == -1)) ? ft_dprintf(_ERR, "ls: connot close dir %s",
 		   	strerror(errno)) : 0;
 	free_all(d);
 	exit(_TROUBLE);

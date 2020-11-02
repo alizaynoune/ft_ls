@@ -39,6 +39,9 @@
 # define SPACE_	16
 # define DOT_	32
 
+# define _OUT   1
+# define _ERR   2
+
 typedef struct			s_width_precision
 {
 	size_t				width;

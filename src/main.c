@@ -31,10 +31,10 @@ t_op	g_op[_MAX_OP + 1] =
 void		usage_ls(t_all *d, char c, char *str)
 {
 	if (str)
-		ft_dprintf(0, "ft_ls : illegal option %s\n", str);
+		ft_dprintf(_OUT, "ft_ls : illegal option %s\n", str);
 	else if (c)
-		ft_dprintf(0, "ft_ls : illegal option -- %c\n", c);
-	ft_dprintf(0, "try ft_ls -h or ft_ls --help\n");
+		ft_dprintf(_OUT, "ft_ls : illegal option -- %c\n", c);
+	ft_dprintf(_OUT, "try ft_ls -h or ft_ls --help\n");
 	free_all(d);
 	exit(_FAILURE);
 }
@@ -44,7 +44,7 @@ void		help_ls(t_all *d)
 	int		i;
 
 	i = -1;
-	ft_dprintf(0, "./ft_ls :[options] [file ...]\n");
+	ft_dprintf(_OUT, "./ft_ls :[options] [file ...]\n");
 	while (++i < _MAX_OP)
 		ft_printf("\t%c\t%-13s\t:%s\n", g_op[i].c, g_op[i].str, g_op[i].desc);
 	free_all(d);
@@ -113,7 +113,7 @@ int			stat_file(t_all *d, char *f, struct stat *st)
 {
 	if ((stat(f, st)) == -1)
 	{
-		ft_dprintf(2, "ls : %s: %s\n", f, strerror(errno));
+		ft_dprintf(_ERR, "ls : %s: %s\n", f, strerror(errno));
 		errno = 0;
 		d->ret = _FAILURE;
 		return (_FAILURE);
@@ -125,7 +125,7 @@ int			lstat_file(t_all *d, char *f, struct stat *st)
 {
 	if ((lstat(f, st)) == -1)
 	{
-		ft_dprintf(2, "ls : %s: %s\n", f, strerror(errno));
+		ft_dprintf(_ERR, "ls : %s: %s\n", f, strerror(errno));
 		errno = 0;
 		d->ret = _FAILURE;
 		return (_FAILURE);
@@ -141,7 +141,7 @@ int		init_pwd(t_all *d, t_files *new)
     pwd = getpwuid(new->st->st_uid);
     if (errno)
     {
-        ft_dprintf(2, "getpwuid: %s", strerror(errno));
+        ft_dprintf(_ERR, "getpwuid: %s", strerror(errno));
 		errno = 0;
         d->ret = _FAILURE;
         return (_FAILURE);
@@ -169,7 +169,7 @@ int			init_grp(t_all *d, t_files *new)
     if (errno)
     {
         ft_printf("%s\n", new->path);
-        ft_dprintf(2, "getgrgid: %s\n", strerror(errno));
+        ft_dprintf(_ERR, "getgrgid: %s\n", strerror(errno));
 		errno = 0;
         free_files(&new);
         d->ret = _FAILURE;
@@ -314,7 +314,7 @@ int			read_link(t_all *d, t_files *f)
 	}
 	if (size < 0 )
 	{
-		ft_dprintf(2, "readlink: '%s'  %s\n", strerror(errno), f->path);
+		ft_dprintf(_ERR, "readlink: '%s'  %s\n", strerror(errno), f->path);
 		d->ret = _FAILURE;
 		errno = 0;
 		free_files(&f);

@@ -50,7 +50,7 @@ void        read_dir(t_all *d, DIR *d_dir)
 		parsing_read_file(d, d->dir->path, dirent->d_name);
 	if (errno)
 	{
-		ft_dprintf(2, "ls: cannot read directory '%s' %s\n", d->dir->path, strerror(errno));
+		ft_dprintf(_ERR, "ls: cannot read directory '%s' %s\n", d->dir->path, strerror(errno));
 		d->ret = _FAILURE;
 		errno = 0;
 	}
@@ -71,14 +71,14 @@ void        loop_dir(t_all *d)
 			d->dir = init_dir(d, tmp->full_name);
 			read_dir(d, d->fd_dir);
 			if (closedir(d->fd_dir) == -1)
-				ft_dprintf(2, "ls: cannot close dir %s\n", strerror(errno));
+				ft_dprintf(_ERR, "ls: cannot close dir %s\n", strerror(errno));
 			((d->options & _L) && d->dir->h_files) ? ft_printf("total %d\n", d->dir->total) : 0;
 			loop_print_files(d, d->dir->h_files, d->dir->l_files, tmp);
 			free_dir(&d->dir);
 		}
 		else
 		{
-			ft_dprintf(2, "ls: cannot open directory '%s': %s\n",
+			ft_dprintf(_ERR, "ls: cannot open directory '%s': %s\n",
 					tmp->name, strerror(errno));
 			d->ret = _FAILURE;
 		}
