@@ -25,6 +25,7 @@
 # include <sys/xattr.h>
 # include <sys/types.h>
 # include <sys/acl.h>
+# include <sys/sysmacros.h>
 
 /*
  ** return

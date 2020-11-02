@@ -130,7 +130,7 @@ int			lstat_file(t_all *d, char *f, struct stat *st)
 		d->ret = _FAILURE;
 		return (_FAILURE);
 	}
-	return (_SUCCESS);
+    return (_SUCCESS);
 }
 
 int		init_pwd(t_all *d, t_files *new)
