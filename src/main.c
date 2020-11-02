@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:28:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/31 05:45:44 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/02 14:13:25 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,6 +237,17 @@ void		get_len_block(t_all *d, t_files *f)
 	(len > d->len[_BLOCK]) ? d->len[_BLOCK] = len : 0;
 }
 
+void		len_major_minor(t_all *d, t_files *f)
+{
+	size_t		len;
+
+	len = ft_intlen(major(f->st->st_rdev));
+	(len > d->len[_MAJ_MIN]) ? d->len[_MAJ_MIN] = len : 0;
+	len = ft_intlen(minor(f->st->st_rdev));
+	(len > d->len[_MAJ_MIN]) ? d->len[_MAJ_MIN] = len : 0;
+	(d->len[_MAJ_MIN] < 3) ? d->len[_MAJ_MIN] = 3 : 0;
+}
+
 void		get_lens(t_all *d, t_files *f)
 {
 	size_t		len;
@@ -252,7 +263,7 @@ void		get_lens(t_all *d, t_files *f)
 	((d->options & _N) && f->grp) ? len = ft_intlen(f->grp->gr_gid) : 0;
 	(len > d->len[_GROUP]) ? d->len[_GROUP] = len : 0;
 	((d->options & _S)) ? get_len_block(d, f) : 0;
-
+	((f->st->st_mode & S_IFMT) == S_IFCHR) ? len_major_minor(d, f) : 0;
 }
 
 ssize_t			fix_size_link(t_all *d, t_files *f, ssize_t size)
@@ -333,12 +344,22 @@ void		parsing_files(t_all *d, char *f, t_files **lst, t_files **l_lst)
 		free_files(&file);
 }
 
+void		fix_len_maj_size(t_all *d)
+{	
+	(((d->len[_MAJ_MIN] * 2) + 2) > d->len[_SIZE]) ?
+		d->len[_SIZE] = ((d->len[_MAJ_MIN] * 2) + 2) :0;
+	(((d->len[_MAJ_MIN] * 2) + 2) < d->len[_SIZE]) ?
+		d->len[_MAJ_MIN] = ((d->len[_SIZE] - 2) / 2) : 0;
+
+}
+
 void		parsing_dir(t_all *d)
 {
 	t_files		*tmp;
     size_t      len;
 
 	tmp = ((d->options & _R)) ?  d->l_arg_file : d->arg_file;
+	(d->len[_MAJ_MIN]) ? fix_len_maj_size(d) : 0;
 	while (tmp)
 	{
 		if (!(d->options & _L) && ((tmp->st->st_mode & S_IFMT) == S_IFLNK))

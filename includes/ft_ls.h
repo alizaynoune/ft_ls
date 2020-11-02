@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 16:45:13 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/31 05:35:15 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/02 14:15:00 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <sys/xattr.h>
 # include <sys/types.h>
 # include <sys/acl.h>
-# include <sys/sysmacros.h>
+//# include <sys/sysmacros.h>
 
 /*
  ** return
@@ -54,14 +54,15 @@
 # define _MAX_OP	11
 
 /*
- * index in tab lens
- * */
+ ** index in tab lens
+ */
 # define _LINK			0
 # define _OWNER			1
 # define _GROUP			2
 # define _SIZE			3
 # define _BLOCK			4
-# define _MAX_LEN_TABLE	5
+# define _MAJ_MIN		5
+# define _MAX_LEN_TABLE	6
 
 /*
  ** colors
@@ -78,7 +79,7 @@
 # define C_ERROR	"\e[1;32m"
 
 /*
-* * permission
+ ** permission
 */
 
 # define P_X		1
@@ -162,5 +163,6 @@ void					get_lens(t_all *d, t_files *f);
 int                     init_id(t_all *d, t_files *new);
 int						read_link(t_all *d, t_files *f);
 void					get_len_block(t_all *d, t_files *);
+void					fix_len_maj_size(t_all *d);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 19:08:22 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/31 05:41:24 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/02 14:19:15 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,14 @@ void		print_uid_grid(t_all *d, t_files *f)
 
 void		extended_attribute(t_files *f)
 {
-    //   acl_t       acl;
+	acl_t       acl;
 
     errno = 0;
-    if (listxattr(f->path, NULL, 0) > 0) //, XATTR_NOFOLLOW) > 0)
+    if (listxattr(f->path, NULL, 0, XATTR_NOFOLLOW) > 0)
         ft_printf("@");
-    else if (errno)//(acl = acl_get_link_np(f->path, ACL_TYPE_EXTENDED)))
+    else if ((acl = acl_get_link_np(f->path, ACL_TYPE_EXTENDED)))
     {
-        //         acl_free(acl);
+		acl_free(acl);
         ft_printf("+");
     }
     else
@@ -111,8 +111,8 @@ void		print_color(t_files *f, mode_t type)
 void        major_minor(t_all *d, t_files *f)
 {
     if (d)
-        ft_printf("%d, %d[%ld]", major(f->st->st_dev), minor(f->st->st_dev),
-                f->st->st_dev);
+		ft_printf(" %*d, %*d ", d->len[_MAJ_MIN], major(f->st->st_rdev),
+				d->len[_MAJ_MIN], minor(f->st->st_rdev));
 }
 
 void		print_files(t_all *d, t_files *f)
@@ -160,7 +160,8 @@ void		loop_print_files(t_all *d, t_files *lst, t_files *l_lst, t_waiting *curr)
     h_w = NULL;
     l_w = NULL;
     tmp = ((d->options & _R)) ? l_lst : lst;
-    while (tmp)
+	(d->len[_MAJ_MIN]) ? fix_len_maj_size(d) : 0;
+	while (tmp)
     {
         print_files(d, tmp);
         if ((d->options & _R_) && ((tmp->st->st_mode & S_IFMT) == S_IFDIR))

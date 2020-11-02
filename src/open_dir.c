@@ -18,7 +18,7 @@ void		parsing_read_file(t_all *d, char *path, char *name)
 {
 	t_files		*new;
 
-	if (!(d->options & _A) && name && name[0] == '.')
+	if (!(d->options & (_A | _F)) && name && name[0] == '.')
 		return ;
 	if ((path[0] == '/' && !path[1]))
 		path[0] = 0;
