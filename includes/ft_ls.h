@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 16:45:13 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/11/02 14:15:00 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/03 09:34:13 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <sys/xattr.h>
 # include <sys/types.h>
 # include <sys/acl.h>
-# include <sys/sysmacros.h>
+//# include <sys/sysmacros.h>
 
 /*
  ** return

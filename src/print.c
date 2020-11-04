@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 19:08:22 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/11/02 14:19:15 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/04 14:42:43 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,17 +80,17 @@ void		print_uid_grid(t_all *d, t_files *f)
 
 void		extended_attribute(t_files *f)
 {
-//	acl_t       acl;
+	acl_t       acl;
 
     errno = 0;
-    if (listxattr(f->path, NULL, 0) > 0)//, XATTR_NOFOLLOW) > 0)
+    if (listxattr(f->path, NULL, 0, XATTR_NOFOLLOW) > 0)
         ft_printf("@");
-/*    else if ((acl = acl_get_link_np(f->path, ACL_TYPE_EXTENDED)))
+	else if ((acl = acl_get_link_np(f->path, ACL_TYPE_EXTENDED)))
     {
 		acl_free(acl);
         ft_printf("+");
     }
-    */else
+    else
         ft_printf(" ");
 }
 
@@ -111,7 +111,7 @@ void		print_color(t_files *f, mode_t type)
 void        major_minor(t_all *d, t_files *f)
 {
     if (d)
-		ft_printf(" %*d, %*d ", d->len[_MAJ_MIN], major(f->st->st_rdev),
+		ft_printf("%*d, %*d ", d->len[_MAJ_MIN], major(f->st->st_rdev),
 				d->len[_MAJ_MIN], minor(f->st->st_rdev));
 }
 
@@ -128,7 +128,7 @@ void		print_files(t_all *d, t_files *f)
         extended_attribute(f);
         ft_printf(" %*d", d->len[_LINK], f->st->st_nlink);
         (f->pwd && f->grp) ? print_uid_grid(d, f) : 0;
-        (type != S_IFCHR) ? ft_printf(" %*lld ", d->len[_SIZE], f->st->st_size) : major_minor(d,f);
+        (type != S_IFCHR) ? ft_printf("%*lld ", d->len[_SIZE], f->st->st_size) : major_minor(d,f);
         print_time(d, f);
         (d->options & _G) ? print_color(f, type) : ft_printf("%s", f->name);
         (f->link) ? ft_printf(" -> %s\n", f->link) : ft_printf("\n");

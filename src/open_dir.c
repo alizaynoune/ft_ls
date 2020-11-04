@@ -76,6 +76,8 @@ void        loop_dir(t_all *d)
 			loop_print_files(d, d->dir->h_files, d->dir->l_files, tmp);
 			free_dir(&d->dir);
 		}
+		else if (errno & (EMFILE | ENFILE | ENOMEM))
+			error_ls(d, strerror(errno));
 		else
 		{
 			ft_dprintf(_ERR, "ls: cannot open directory '%s': %s\n",
