@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:28:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/11/04 14:41:47 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/05 10:57:32 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_op	g_op[_MAX_OP + 1] =
 	{'u', "--sort_atime", "Sort by time last access", _U},
 	{'S', "--sort_size", "Sort by size", _S_},
 	{'f', "--no_sort", "Output is no sorted", _F},
-	{'n', "--id", "Display user and group ID", _N},
+	{'n', "--id_nbr", "Display user and group ID", _N},
 	{'s', "--blocks", "Desplay number of blocks used by each file", _S},
 	{0, 0, 0, 0}
 };
@@ -263,7 +263,7 @@ void		get_lens(t_all *d, t_files *f)
 	((d->options & _N) && f->grp) ? len = ft_intlen(f->grp->gr_gid) : 0;
 	(len > d->len[_GROUP]) ? d->len[_GROUP] = len : 0;
 	((d->options & _S)) ? get_len_block(d, f) : 0;
-	((f->st->st_mode & S_IFMT) == S_IFCHR) ? len_major_minor(d, f) : 0;
+	((f->st->st_mode & S_IFMT) == S_IFCHR || (f->st->st_mode & S_IFMT) == S_IFBLK) ? len_major_minor(d, f) : 0;
 }
 
 ssize_t			fix_size_link(t_all *d, t_files *f, ssize_t size)
