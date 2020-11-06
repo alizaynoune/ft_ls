@@ -36,6 +36,7 @@ void		parsing_read_file(t_all *d, char *path, char *name)
 			d->print_path = _SUCCESS : 0;
 		((d->options & _L)) ? get_lens(d, new) : 0;
 		(!(d->options & _L) && (d->options & _S)) ? get_len_block(d, new) : 0;
+        (!(d->options & _L)) && (d->options & _I) ? get_len_inode(d, new) : 0;
 	}
 	else
 		free_files(&new);

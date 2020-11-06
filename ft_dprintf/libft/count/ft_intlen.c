@@ -26,3 +26,16 @@ size_t	ft_intlen(long long int n)
 	}
 	return (len);
 }
+
+size_t  ft_uintlen(unsigned long long int n)
+{
+    size_t  len;
+
+    len = 0;
+    while (n > 0)
+    {
+        (n >= 10) ? n /= 10 : 0;
+        len++;
+    }
+    return (len);
+}

@@ -58,10 +58,22 @@ void		print_permission(mode_t mode)
 
 void        print_time(t_all *d, t_files *f)
 {
-    char    *time;
+    char    *str_time;
+    time_t  tm;
 
-    if ((time = ctime(&f->st->st_mtime)))
-        (d->options & _T_) ? ft_printf("%.20s ", time + 4) : ft_printf("%.12s ", time + 4);
+    errno = 0;
+    tm = time(NULL);
+    if (!(tm == -1 && errno) && (str_time = ctime(&f->st->st_mtime)))
+    {
+        tm -= f->st->st_mtime;
+        if (ABS(tm) < _MONTHS_)
+            (d->options & _T_) ? ft_printf("%.20s ", str_time + 4) :
+                ft_printf("%.12s ", str_time + 4);
+        else
+        {
+            ft_printf("%.6s  %.4s ", str_time + 4, str_time + 20);
+        }
+    }
     else
     {
         ft_dprintf(2, "ctime: %s", strerror(errno));
@@ -80,19 +92,20 @@ void		print_uid_grid(t_all *d, t_files *f)
 
 void		extended_attribute(t_all *d, t_files *f)
 {
-	acl_t       acl;
+//	acl_t       acl;
 
+    if (d)
     errno = 0;
-    if (listxattr(f->path, NULL, 0, XATTR_NOFOLLOW) > 0)
+    if (listxattr(f->path, NULL, 0) > 0)//, XATTR_NOFOLLOW) > 0)
         ft_printf("@");
-	else if ((acl = acl_get_link_np(f->path, ACL_TYPE_EXTENDED)))
+/*	else if ((acl = acl_get_link_np(f->path, ACL_TYPE_EXTENDED)))
     {
 		acl_free(acl);
         ft_printf("+");
     }
 	else if (errno == ENOMEM)
 		error_ls(d, strerror(errno));
-    else
+  */  else
         ft_printf(" ");
 	errno = 0;
 }
@@ -122,8 +135,8 @@ void		print_files(t_all *d, t_files *f)
 {
     if ((d->options & _L))
     {
-		//ft_printf(_OUT, "%d ", f->st->st_inode);
-        ((d->options & _S)) ? ft_printf("%*d ", d->len[_BLOCK], f->st->st_blocks) : 0;
+		(d->options & _I) ? ft_printf("%*d ", d->len[_INODE], f->st->st_ino) : 0;
+        (d->options & _S) ? ft_printf("%*d ", d->len[_BLOCK], f->st->st_blocks) : 0;
         print_type((f->st->st_mode));//
         print_permission(f->st->st_mode);
         extended_attribute(d, f);
@@ -136,7 +149,8 @@ void		print_files(t_all *d, t_files *f)
     }
     else
     {
-        ((d->options & _S)) ? ft_printf("%*d ", d->len[_BLOCK], f->st->st_blocks) : 0;
+        (d->options & _I) ? ft_printf("%*d ", d->len[_INODE], f->st->st_ino) : 0;
+        (d->options & _S) ? ft_printf("%*d ", d->len[_BLOCK], f->st->st_blocks) : 0;
         (d->options & _G) ? print_color(f, f->st->st_mode) : ft_printf("%s", f->name);
         ft_printf("\n");
     }

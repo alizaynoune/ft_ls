@@ -42,11 +42,11 @@
 # define _OUT   1
 # define _ERR   2
 
-typedef struct			s_width_precision
+typedef struct			s_widpre
 {
 	size_t				width;
 	size_t				precision;
-}						t_width_precision;
+}						t_widpre;
 
 typedef struct			s_data
 {
@@ -59,7 +59,7 @@ typedef struct			s_data
 	int					flag;
 	short				specif;
 	short				length;
-	t_width_precision	wid_pre;
+	t_widpre            *wid_pre;
 }						t_data;
 
 int						ft_dprintf(int fd, const char *format, ...);

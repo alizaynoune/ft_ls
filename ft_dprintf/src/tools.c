@@ -14,13 +14,14 @@
 
 void		exit_error_(t_data *d)
 {
+    free(d->wid_pre);
 	free(d);
 	exit(-1);
 }
 
 void		reset_data(t_data *d)
 {
-	ft_bzero(&d->wid_pre, sizeof(t_width_precision));
+	ft_bzero((void *)d->wid_pre, sizeof(t_widpre));
 	d->flag = 0;
 	d->specif = 0;
 	d->length = 0;

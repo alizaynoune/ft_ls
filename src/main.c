@@ -27,6 +27,7 @@ t_op	g_op[_MAX_OP + 1] =
 	{'s', "--blocks", "Desplay number of blocks used by each file", _S},
 	{'T', "--time_info", "When used option '-l' print complet time information",
 		_T_},
+    {'i', "--inode", "print the index number of each file", _I},
 	{0, 0, 0, 0}
 };
 
@@ -239,6 +240,14 @@ void		get_len_block(t_all *d, t_files *f)
 	(len > d->len[_BLOCK]) ? d->len[_BLOCK] = len : 0;
 }
 
+void        get_len_inode(t_all *d, t_files *f)
+{
+    size_t      len;
+
+   len = ft_intlen(f->st->st_ino);
+   (len > d->len[_INODE]) ? d->len[_INODE] = len : 0;
+}
+
 void		len_major_minor(t_all *d, t_files *f)
 {
 	size_t		len;
@@ -266,6 +275,7 @@ void		get_lens(t_all *d, t_files *f)
 	(len > d->len[_GROUP]) ? d->len[_GROUP] = len : 0;
 	((d->options & _S)) ? get_len_block(d, f) : 0;
 	((S_ISCHR(f->st->st_mode)) || (S_ISBLK(f->st->st_mode))) ? len_major_minor(d, f) : 0;
+    ((d->options & _I)) ? get_len_inode(d, f) : 0;
 }
 
 ssize_t			fix_size_link(t_all *d, t_files *f, ssize_t size)
@@ -340,6 +350,7 @@ void		parsing_files(t_all *d, char *f, t_files **lst, t_files **l_lst)
 	else if (!(d->options & _L) && (stat_file(d, f, file->st) == _SUCCESS))
 	{
 		(d->options & _S) ? get_len_block(d, file) : 0;
+        (d->options & _I) ? get_len_inode(d, file) : 0;
 		push_files(d, file, lst, l_lst);
 	}
 	else

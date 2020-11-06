@@ -17,27 +17,27 @@ void	string_(t_data *d, char *str)
 	size_t	l;
 	size_t	i;
 
-	!str && (d->wid_pre.precision >= 6 ||\
+	!str && (d->wid_pre->precision >= 6 ||\
 			!(d->flag & DOT_)) ? str = "(null)" : 0;
 	!str ? str = "" : 0;
 	l = ft_strlen(str);
-	l = l > d->wid_pre.precision && (d->flag & DOT_) ?\
-		d->wid_pre.precision : l;
+	l = l > d->wid_pre->precision && (d->flag & DOT_) ?\
+		d->wid_pre->precision : l;
 	i = 0;
-	!(d->flag & LEFT_) && l < d->wid_pre.width ?\
-		loop_char(d, ' ', d->wid_pre.width - l) : 0;
+	!(d->flag & LEFT_) && l < d->wid_pre->width ?\
+		loop_char(d, ' ', d->wid_pre->width - l) : 0;
 	while (i < l && ++d->ret)
 		write(d->fd, &str[i++], 1);
-	(d->flag & LEFT_) && l < d->wid_pre.width ?\
-		loop_char(d, ' ', d->wid_pre.width - l) : 0;
+	(d->flag & LEFT_) && l < d->wid_pre->width ?\
+		loop_char(d, ' ', d->wid_pre->width - l) : 0;
 }
 
 void	char_(t_data *d, int c)
 {
-	!(d->flag & LEFT_) ? loop_char(d, ' ', d->wid_pre.width - 1) : 0;
+	!(d->flag & LEFT_) ? loop_char(d, ' ', d->wid_pre->width - 1) : 0;
 	write(d->fd, &c, 1);
 	d->ret++;
-	(d->flag & LEFT_) ? loop_char(d, ' ', d->wid_pre.width - 1) : 0;
+	(d->flag & LEFT_) ? loop_char(d, ' ', d->wid_pre->width - 1) : 0;
 }
 
 char	*unsigned_str_(t_data *d, unsigned long long int value)
@@ -50,7 +50,7 @@ char	*unsigned_str_(t_data *d, unsigned long long int value)
 	nbr = value;
 	while ((nbr /= 10))
 		i++;
-	if (!(str = (char *)ft_memalloc(i + 2)))
+	if (!(str = (char *)ft_memalloc(sizeof(char) * (i + 2))))
 		exit_error_(d);
 	while (i >= 0)
 	{
@@ -70,7 +70,7 @@ char	*base_str_(t_data *d, unsigned long long int v_, char *s_, size_t base)
 	nbr = v_;
 	while ((nbr /= base))
 		i++;
-	if (!(str = (char *)ft_memalloc(i + 2)))
+	if (!(str = (char *)ft_memalloc(sizeof(char) * (i + 2))))
 		exit_error_(d);
 	while (i >= 0)
 	{

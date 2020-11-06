@@ -27,6 +27,12 @@
 *** macros
 */
 
+# define ABS(x) x < 0 ? -x : x
+
+/*
+*** types
+*/
+
 typedef unsigned char	t_char;
 typedef unsigned int	t_int;
 
@@ -66,6 +72,7 @@ char					*ft_itoa_base(int value, int base);
 
 size_t					ft_strlen(const char *s);
 size_t					ft_intlen(long long int n);
+size_t                  ft_uintlen(unsigned long long int n);
 size_t					ft_strnlen(char *str, char *c);
 size_t					ft_count_char(char *str, char c);
 size_t					count_words(char *str, char *c);

@@ -30,12 +30,12 @@ void		width_(t_data *d)
 {
 	if (d->str[d->i] == '*')
 	{
-		d->wid_pre.width = va_arg(d->ap, unsigned int);
+		d->wid_pre->width = va_arg(d->ap, unsigned int);
 		d->i++;
 	}
 	else
 	{
-		d->wid_pre.width = ato_unsint_(&d->str[d->i]);
+		d->wid_pre->width = ato_unsint_(&d->str[d->i]);
 		while (ft_isdigit(d->str[d->i]))
 			d->i++;
 	}
@@ -45,12 +45,12 @@ void		precision_(t_data *d)
 {
 	if (d->str[d->i] == '*')
 	{
-		d->wid_pre.precision = va_arg(d->ap, unsigned int);
+		d->wid_pre->precision = va_arg(d->ap, unsigned int);
 		d->i++;
 	}
 	else
 	{
-		d->wid_pre.precision = ato_unsint_(&d->str[d->i]);
+		d->wid_pre->precision = ato_unsint_(&d->str[d->i]);
 		while (ft_isdigit(d->str[d->i]))
 			d->i++;
 	}

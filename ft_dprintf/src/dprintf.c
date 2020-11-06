@@ -52,33 +52,47 @@ void		read_format(t_data *d)
 int			ft_dprintf(int fd, const char *format, ...)
 {
 	t_data		*d;
+    int         ret;
 
 	if (!(d = (t_data *)ft_memalloc(sizeof(t_data))))
 		return (-1);
-	ft_bzero(&d->wid_pre, sizeof(t_width_precision));
+    if (!(d->wid_pre = (t_widpre *)ft_memalloc(sizeof(t_widpre))))
+    {
+        free(d);
+        return (-1);
+    }
 	d->str = format;
 	d->fd = fd;
 	va_start(d->ap, format);
 	while (d->str[d->i] && d->ret != -1)
 		d->str[d->i] == '%' ? read_format(d) : putformat_(d);
 	va_end(d->ap);
+    ret = d->ret;
+    free(d->wid_pre);
 	free(d);
-	return (d->ret);
+	return (ret);
 }
 
 int			ft_printf(const char *format, ...)
 {
 	t_data		*d;
+    int         ret;
 
 	if (!(d = (t_data *)ft_memalloc(sizeof(t_data))))
 		return (-1);
-	ft_bzero(&d->wid_pre, sizeof(t_width_precision));
+   if (!(d->wid_pre = (t_widpre *)ft_memalloc(sizeof(t_widpre))))
+   {
+       free(d);
+       return (-1);
+   }
 	d->str = format;
 	d->fd = _OUT;
 	va_start(d->ap, format);
 	while (d->str[d->i] && d->ret != -1)
 		d->str[d->i] == '%' ? read_format(d) : putformat_(d);
 	va_end(d->ap);
+    ret = d->ret;
+    free(d->wid_pre);
 	free(d);
-	return (d->ret);
+	return (ret);
 }
