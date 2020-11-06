@@ -32,7 +32,7 @@ void		parsing_read_file(t_all *d, char *path, char *name)
         }
 		push_files(d, new, &d->dir->h_files, &d->dir->l_files);
 		((d->options & _L)) ? d->dir->total += new->st->st_blocks : 0;
-		((d->options & _R_) && ((new->st->st_mode & S_IFMT) == S_IFDIR)) ?
+		((d->options & _R_) && (S_ISDIR(new->st->st_mode))) ?
 			d->print_path = _SUCCESS : 0;
 		((d->options & _L)) ? get_lens(d, new) : 0;
 		(!(d->options & _L) && (d->options & _S)) ? get_len_block(d, new) : 0;

@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:28:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/11/05 10:57:32 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/06 12:24:01 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ t_op	g_op[_MAX_OP + 1] =
 	{'f', "--no_sort", "Output is no sorted", _F},
 	{'n', "--id_nbr", "Display user and group ID", _N},
 	{'s', "--blocks", "Desplay number of blocks used by each file", _S},
+	{'T', "--time_info", "When used option '-l' print complet time information",
+		_T_},
 	{0, 0, 0, 0}
 };
 
@@ -46,7 +48,7 @@ void		help_ls(t_all *d)
 	i = -1;
 	ft_dprintf(_OUT, "./ft_ls :[options] [file ...]\n");
 	while (++i < _MAX_OP)
-		ft_printf("\t%c\t%-13s\t:%s\n", g_op[i].c, g_op[i].str, g_op[i].desc);
+		ft_printf("\t-%c\t%-13s\t:%s\n", g_op[i].c, g_op[i].str, g_op[i].desc);
 	free_all(d);
 	exit(_SUCCESS);
 }
@@ -263,19 +265,19 @@ void		get_lens(t_all *d, t_files *f)
 	((d->options & _N) && f->grp) ? len = ft_intlen(f->grp->gr_gid) : 0;
 	(len > d->len[_GROUP]) ? d->len[_GROUP] = len : 0;
 	((d->options & _S)) ? get_len_block(d, f) : 0;
-	((f->st->st_mode & S_IFMT) == S_IFCHR || (f->st->st_mode & S_IFMT) == S_IFBLK) ? len_major_minor(d, f) : 0;
+	((S_ISCHR(f->st->st_mode)) || (S_ISBLK(f->st->st_mode))) ? len_major_minor(d, f) : 0;
 }
 
 ssize_t			fix_size_link(t_all *d, t_files *f, ssize_t size)
 {
 	ssize_t		len;
 
+	errno = 0;
 	if (!(f->link = (char *)ft_memalloc(sizeof(char) * size + 1)))
 	{
 		free_files(&f);
 		error_ls(d, strerror(errno));
 	}
-	errno = 0;
 	len = readlink(f->path, f->link, size + 1);
 	if (len > size)
 		return (_FAILURE);
@@ -290,7 +292,7 @@ int			read_link(t_all *d, t_files *f)
 	ssize_t		size;
 	ssize_t		loop;
 
-	if ((f->st->st_mode & S_IFMT) != S_IFLNK)
+	if (!(S_ISLNK(f->st->st_mode)))
 		return (_SUCCESS);
 	if (!(f->link = (char *)ft_memalloc(sizeof(char) * (f->st->st_size + 1))))
 	{
@@ -333,7 +335,7 @@ void		parsing_files(t_all *d, char *f, t_files **lst, t_files **l_lst)
 		if (init_id(d, file) == _FAILURE || read_link(d, file) == _FAILURE)
             return ;
 		push_files(d, file, lst, l_lst);
-		((file->st->st_mode & S_IFMT) != S_IFDIR) ? get_lens(d, file) : 0;
+		(!(S_ISDIR(file->st->st_mode))) ? get_lens(d, file) : 0;
 	}
 	else if (!(d->options & _L) && (stat_file(d, f, file->st) == _SUCCESS))
 	{
@@ -362,10 +364,10 @@ void		parsing_dir(t_all *d)
 	(d->len[_MAJ_MIN]) ? fix_len_maj_size(d) : 0;
 	while (tmp)
 	{
-		if (!(d->options & _L) && ((tmp->st->st_mode & S_IFMT) == S_IFLNK))
-			(((tmp->st->st_mode & S_IFMT) == S_IFDIR)) ?
-				push_waiting(d, &*tmp) : print_files(d, tmp);
-		else if (((tmp->st->st_mode & S_IFMT) == S_IFDIR))
+		if (!(d->options & _L) && (S_ISLNK(tmp->st->st_mode)))
+			(S_ISDIR(tmp->st->st_mode)) ? push_waiting(d, &*tmp)
+				: print_files(d, tmp);
+		else if ((S_ISDIR(tmp->st->st_mode)))
         {
             len = ft_strlen(tmp->path);
             (tmp->path[len - 1] == '/') && len > 1 ? tmp->path[len - 1] = 0 : 0;

@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 16:45:13 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/11/03 09:34:13 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/06 12:17:47 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@
 # define _F			256
 # define _N			512
 # define _S			1024
+# define _T_		2048
 
-# define _MAX_OP	11
+# define _MAX_OP	12
 
 /*
  ** index in tab lens

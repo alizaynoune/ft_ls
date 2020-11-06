@@ -6,7 +6,7 @@
 #    By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/18 12:00:15 by alzaynou          #+#    #+#              #
-#    Updated: 2020/10/31 05:38:46 by alzaynou         ###   ########.fr        #
+#    Updated: 2020/11/06 14:14:53 by alzaynou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ all:
 	@$(GCC) $(OBJ) -I $(INC) -I $(INC_LIB) -L $(P_LIB) $(LIB) -o $(NAME)
 
 re:
-	@make -re --no-print-directory -C $(P_LIB)
+	@make re --no-print-directory -C $(P_LIB)
 	@$(GCC) $(OBJ) -I $(INC) -I $(INC_LIB) -L $(P_LIB) $(LIB) -o $(NAME)
 
 fclean:

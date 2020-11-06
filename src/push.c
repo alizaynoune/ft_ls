@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/21 16:58:04 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/11/02 11:24:02 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/06 12:32:08 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,9 @@ t_files     *cmp_atime(t_files *f, t_files *lst)
     tmp = lst;
     while (tmp)
     {
-        if (f->st->st_atime > tmp->st->st_atime)
+        if (f->st->st_ctime > tmp->st->st_ctime)
             return (tmp);
-        else if (f->st->st_atime == tmp->st->st_atime)
+        else if (f->st->st_ctime == tmp->st->st_ctime)
         {
             if (ft_strcmp(f->name, tmp->name) < 0)
                 return (tmp);

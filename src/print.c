@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 19:08:22 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/11/05 10:58:28 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/06 12:21:50 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ void		print_type(mode_t type)
 
     str = "?-bcdlps";
     i = 0;
-    ((type == S_IFREG)) ? i = 1 : 0;
-    ((type == S_IFBLK)) ? i = 2 : 0;
-    ((type == S_IFCHR)) ? i = 3 : 0;
-    ((type == S_IFDIR)) ? i = 4 : 0;
-    ((type == S_IFLNK)) ? i = 5 : 0;
-    ((type == S_IFIFO)) ? i = 6 : 0;
-    ((type == S_IFSOCK)) ? i = 7 : 0;
-    ft_printf("%c", str[i]);
+    (S_ISREG(type)) ? i = 1 : 0;
+    (S_ISBLK(type)) ? i = 2 : 0;
+    (S_ISCHR(type)) ? i = 3 : 0;
+    (S_ISDIR(type)) ? i = 4 : 0;
+    (S_ISLNK(type)) ? i = 5 : 0;
+    (S_ISFIFO(type)) ? i = 6 : 0;
+    (S_ISSOCK(type)) ? i = 7 : 0;
+   	ft_printf("%c", str[i]);
 }
 
 void		print_permission(mode_t mode)
@@ -61,7 +61,7 @@ void        print_time(t_all *d, t_files *f)
     char    *time;
 
     if ((time = ctime(&f->st->st_mtime)))
-        ft_printf("%.12s ", time + 4);
+        (d->options & _T_) ? ft_printf("%.20s ", time + 4) : ft_printf("%.12s ", time + 4);
     else
     {
         ft_dprintf(2, "ctime: %s", strerror(errno));
@@ -78,7 +78,7 @@ void		print_uid_grid(t_all *d, t_files *f)
 
 }
 
-void		extended_attribute(t_files *f)
+void		extended_attribute(t_all *d, t_files *f)
 {
 	acl_t       acl;
 
@@ -90,20 +90,22 @@ void		extended_attribute(t_files *f)
 		acl_free(acl);
         ft_printf("+");
     }
-	//check errno if eq error malloc exit
+	else if (errno == ENOMEM)
+		error_ls(d, strerror(errno));
     else
         ft_printf(" ");
+	errno = 0;
 }
 
 void		print_color(t_files *f, mode_t type)
 {
-    (type == S_IFBLK) ? ft_printf(C_BLK) : 0;
-    (type == S_IFCHR) ? ft_printf(C_CHR) : 0;
-    (type == S_IFDIR) ? ft_printf(C_DIR) : 0;
-    (type == S_IFIFO) ? ft_printf(C_FIFO) : 0;
-    (type == S_IFLNK) ? ft_printf(C_LNK) : 0;
-    (type == S_IFSOCK) ? ft_printf(C_SOCK) : 0;
-    if (type == S_IFREG)
+    (S_ISBLK(type)) ? ft_printf(C_BLK) : 0;
+    (S_ISCHR(type)) ? ft_printf(C_CHR) : 0;
+    (S_ISDIR(type)) ? ft_printf(C_DIR) : 0;
+    (S_ISFIFO(type)) ? ft_printf(C_FIFO) : 0;
+    (S_ISLNK(type)) ? ft_printf(C_LNK) : 0;
+    (S_ISSOCK(type)) ? ft_printf(C_SOCK) : 0;
+    if (S_ISREG(type))
         ((f->st->st_mode & (S_IXUSR | S_IXGRP | S_IXOTH))) ? ft_printf(C_EXE) : 0;
     ft_printf("%s", f->name);
     ft_printf(C_DEF);
@@ -118,26 +120,24 @@ void        major_minor(t_all *d, t_files *f)
 
 void		print_files(t_all *d, t_files *f)
 {
-    mode_t		type;
-
-    type = (f->st->st_mode & S_IFMT);
     if ((d->options & _L))
     {
+		//ft_printf(_OUT, "%d ", f->st->st_inode);
         ((d->options & _S)) ? ft_printf("%*d ", d->len[_BLOCK], f->st->st_blocks) : 0;
-        print_type((type));
+        print_type((f->st->st_mode));//
         print_permission(f->st->st_mode);
-        extended_attribute(f);
+        extended_attribute(d, f);
         ft_printf(" %*d", d->len[_LINK], f->st->st_nlink);
         (f->pwd && f->grp) ? print_uid_grid(d, f) : 0;
-        ((type != S_IFCHR) && (type != S_IFBLK)) ? ft_printf(" %*lld ", d->len[_SIZE], f->st->st_size) : major_minor(d,f);
+        (!(S_ISCHR(f->st->st_mode)) && !(S_ISBLK(f->st->st_mode))) ? ft_printf(" %*lld ", d->len[_SIZE], f->st->st_size) : major_minor(d,f);
         print_time(d, f);
-        (d->options & _G) ? print_color(f, type) : ft_printf("%s", f->name);
+        (d->options & _G) ? print_color(f, f->st->st_mode) : ft_printf("%s", f->name);
         (f->link) ? ft_printf(" -> %s\n", f->link) : ft_printf("\n");
     }
     else
     {
         ((d->options & _S)) ? ft_printf("%*d ", d->len[_BLOCK], f->st->st_blocks) : 0;
-        (d->options & _G) ? print_color(f, type) : ft_printf("%s", f->name);
+        (d->options & _G) ? print_color(f, f->st->st_mode) : ft_printf("%s", f->name);
         ft_printf("\n");
     }
 }
@@ -165,7 +165,7 @@ void		loop_print_files(t_all *d, t_files *lst, t_files *l_lst, t_waiting *curr)
 	while (tmp)
     {
         print_files(d, tmp);
-        if ((d->options & _R_) && ((tmp->st->st_mode & S_IFMT) == S_IFDIR))
+        if ((d->options & _R_) && (S_ISDIR(tmp->st->st_mode)))
         {
             if (h_w)
                 ((l_w->next = recursuvely(d, tmp))) ? l_w = l_w->next : 0;
