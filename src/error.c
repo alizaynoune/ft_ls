@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 11:53:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/31 00:58:05 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/07 10:18:18 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void		free_pwd(struct passwd **pwd)
 {
 	((*pwd)->pw_name) ? ft_strdel(&(*pwd)->pw_name) : 0;
-	ft_voidfree((void *)&(*pwd));
+	ft_memdel((void *)&(*pwd));
 }
 
 void		free_grp(struct group **grp)
 {
 	((*grp)->gr_name) ? ft_strdel(&(*grp)->gr_name) : 0;
-	ft_voidfree((void *)&(*grp));
+	ft_memdel((void *)&(*grp));
 }
 
 void		free_files(t_files **lst)
@@ -34,11 +34,11 @@ void		free_files(t_files **lst)
 		*lst = (*lst)->next;
 		(tmp->name) ? ft_strdel(&tmp->name) : 0;
 		(tmp->path) ? ft_strdel(&tmp->path) : 0;
-		(tmp->st) ? ft_voidfree((void *)&tmp->st) : 0;
+		(tmp->st) ? ft_memdel((void *)&tmp->st) : 0;
 		(tmp->pwd) ? free_pwd(&tmp->pwd) : 0;
 		(tmp->grp) ? free_grp(&tmp->grp) : 0;
 		(tmp->link) ? ft_strdel(&tmp->link) : 0;
-        ft_voidfree((void *)&tmp);
+        ft_memdel((void *)&tmp);
 	}
 	(*lst) = NULL;
 	errno = 0;
@@ -49,8 +49,8 @@ void		free_dir(t_dir **dir)
 	if (!*dir)
 		return ;
 	((*dir)->h_files) ? free_files(&(*dir)->h_files) : 0;
-	((*dir)->path) ? ft_voidfree((void *)&(*dir)->path) : 0;
-	ft_voidfree((void *)&(*dir));
+	((*dir)->path) ? ft_memdel((void *)&(*dir)->path) : 0;
+	ft_memdel((void *)&(*dir));
 }
 
 void		free_waiting(t_waiting **lst)
@@ -63,8 +63,8 @@ void		free_waiting(t_waiting **lst)
 		*lst = (*lst)->next;
 		(tmp->name) ? ft_strdel(&tmp->name) : 0;
 		(tmp->full_name) ? ft_strdel(&tmp->full_name) : 0;
-		(tmp->st) ? ft_voidfree((void *)&tmp->st) : 0;
-		ft_voidfree((void *)&tmp);
+		(tmp->st) ? ft_memdel((void *)&tmp->st) : 0;
+		ft_memdel((void *)&tmp);
 	}
 	(*lst) = NULL;
 }
@@ -75,7 +75,7 @@ void		free_all(t_all *d)
 	(d->files) ? free_files(&d->files) : 0;
 	(d->head_waiting) ? free_waiting(&d->head_waiting) : 0;
 	(d->dir) ? free_dir(&d->dir) : 0;
-	ft_voidfree((void *)&d);
+	ft_memdel((void *)&d);
 }
 
 int			error_ls(t_all *d,  char *err)

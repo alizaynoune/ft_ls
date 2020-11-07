@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 18:03:36 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/15 18:06:41 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/07 13:54:50 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	put_decimal_(t_data *d, char *str)
 	str[0] == '-' ? str++ : 0;
 	put_str_(d, str);
 	(d->flag & LEFT_) ? loop_char(d, ' ', d->wid_pre->width) : 0;
-	free(ptr);
+	ft_memdel((void *)&ptr);
 }
 
 void	put_octal_(t_data *d, char *str)
@@ -75,7 +75,7 @@ void	put_octal_(t_data *d, char *str)
 		loop_char(d, '0', d->wid_pre->width) : 0;
 	put_str_(d, str);
 	(d->flag & LEFT_) ? loop_char(d, ' ', d->wid_pre->width) : 0;
-	free(ptr);
+	ft_memdel((void *)&ptr);
 }
 
 void	put_hexa_(t_data *d, char *str)
@@ -102,5 +102,5 @@ void	put_hexa_(t_data *d, char *str)
 	(d->wid_pre->precision) ? loop_char(d, '0', d->wid_pre->precision) : 0;
 	put_str_(d, str);
 	(d->flag & LEFT_) ? loop_char(d, ' ', d->wid_pre->width) : 0;
-	free(ptr);
+	ft_memdel((void *)&ptr);
 }

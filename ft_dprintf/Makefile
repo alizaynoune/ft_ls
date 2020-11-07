@@ -6,7 +6,7 @@
 #    By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/17 13:12:14 by alzaynou          #+#    #+#              #
-#    Updated: 2020/10/21 19:42:49 by alzaynou         ###   ########.fr        #
+#    Updated: 2020/11/07 11:21:12 by alzaynou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,6 @@ LIBFT_MEM = 	ft_memalloc.c				\
 				ft_memchr.c					\
 				ft_memcmp.c					\
 				ft_memcpy.c					\
-				ft_memdel.c					\
 				ft_memmove.c				\
 				ft_memset.c					\
 				ft_memdynamic.c
@@ -128,7 +127,7 @@ LIBFT_STR = 		ft_strcat.c				\
 LIBFT_FREE = 		free_rev.c				\
 					free_tab_char.c			\
 					ft_strdel.c				\
-					ft_voidfree.c
+					ft_memdel.c	
 
 DPRINTF = 			dprintf.c				\
 					specifier.c				\

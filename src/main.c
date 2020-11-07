@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:28:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/11/06 12:24:01 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/07 14:25:51 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ t_op	g_op[_MAX_OP + 1] =
 	{'T', "--time_info", "When used option '-l' print complet time information",
 		_T_},
     {'i', "--inode", "print the index number of each file", _I},
+	{'d', "--dir_as_file",
+		"Directories are listed as plain files (ignor recursively)", _D},
 	{0, 0, 0, 0}
 };
 
@@ -59,9 +61,9 @@ int			pars_word_option(char *flag, t_all *d)
 	int		i;
 
 	i = -1;
-	if (!(ft_strcmp(flag, "--")))
+	if (!flag[2] && !(ft_strcmp(flag, "--")))
 		return (_SUCCESS);
-	else if (!(ft_strcmp(flag, "--help")))
+	else if (flag[2] == 'h' && !(ft_strcmp(flag, "--help")))
 		help_ls(d);
 	else
 	{
@@ -70,7 +72,7 @@ int			pars_word_option(char *flag, t_all *d)
 			if (!(ft_strcmp(flag, g_op[i].str)))
 			{
 				d->options |= g_op[i].valu;
-				((d->options & _N)) ? d->options |= _L : 0;
+				(g_op[i].valu & _N) ? d->options |= _L : 0;
 				return (_SUCCESS);
 			}
 		}
@@ -89,7 +91,8 @@ int			pars_char_option(char c, t_all *d)
 		if (c == g_op[i].c)
 		{
 			d->options |= g_op[i].valu;
-			((d->options & _N)) ? d->options |= _L : 0;
+			((g_op[i].valu & _N)) ? d->options |= _L : 0;
+			((g_op[i].valu & _D)) ? d->options -= (d->options & _R_) : 0;
 			return (_SUCCESS);
 		}
 	}
@@ -183,7 +186,7 @@ int			init_grp(t_all *d, t_files *new)
         d->ret = _FAILURE;
         return (_FAILURE);
     }
-	if (!(d->options & _N) && !(new->grp->gr_name = strdup(grp->gr_name)))
+	if (!(d->options & _N) && !(new->grp->gr_name = ft_strdup(grp->gr_name)))
     {
         free_files(&new);
         error_ls(d, strerror(errno));
@@ -244,7 +247,7 @@ void        get_len_inode(t_all *d, t_files *f)
 {
     size_t      len;
 
-   len = ft_intlen(f->st->st_ino);
+   len = ft_uintlen(f->st->st_ino);
    (len > d->len[_INODE]) ? d->len[_INODE] = len : 0;
 }
 
@@ -376,9 +379,9 @@ void		parsing_dir(t_all *d)
 	while (tmp)
 	{
 		if (!(d->options & _L) && (S_ISLNK(tmp->st->st_mode)))
-			(S_ISDIR(tmp->st->st_mode)) ? push_waiting(d, &*tmp)
-				: print_files(d, tmp);
-		else if ((S_ISDIR(tmp->st->st_mode)))
+			(!(d->options & _D) && S_ISDIR(tmp->st->st_mode)) ?
+				push_waiting(d, &*tmp) : print_files(d, tmp);
+		else if (!(d->options & _D) && (S_ISDIR(tmp->st->st_mode)))
         {
             len = ft_strlen(tmp->path);
             (tmp->path[len - 1] == '/') && len > 1 ? tmp->path[len - 1] = 0 : 0;

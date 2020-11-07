@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 16:45:13 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/11/06 12:17:47 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/07 11:19:39 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # include <sys/xattr.h>
 # include <sys/types.h>
 # include <sys/acl.h>
-# include <sys/sysmacros.h>
+//# include <sys/sysmacros.h>
 
 /*
 *** return
@@ -56,8 +56,8 @@
 # define _S			    1024
 # define _T_	    	2048
 # define _I             4096
-
-# define _MAX_OP	    13
+# define _D				8192
+# define _MAX_OP	    14
 
 /*
 *** index in tab lens

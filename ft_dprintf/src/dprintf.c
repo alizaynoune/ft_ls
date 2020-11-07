@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 17:59:29 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/16 17:52:09 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/07 14:36:16 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int			ft_dprintf(int fd, const char *format, ...)
 		return (-1);
     if (!(d->wid_pre = (t_widpre *)ft_memalloc(sizeof(t_widpre))))
     {
-        free(d);
+        free((void *)&d);
         return (-1);
     }
 	d->str = format;
@@ -67,9 +67,9 @@ int			ft_dprintf(int fd, const char *format, ...)
 	while (d->str[d->i] && d->ret != -1)
 		d->str[d->i] == '%' ? read_format(d) : putformat_(d);
 	va_end(d->ap);
-    ret = d->ret;
-    free(d->wid_pre);
-	free(d);
+	ret = d->ret;
+	ft_memdel((void *)&d->wid_pre);
+	ft_memdel((void *)&d);
 	return (ret);
 }
 
@@ -82,7 +82,7 @@ int			ft_printf(const char *format, ...)
 		return (-1);
    if (!(d->wid_pre = (t_widpre *)ft_memalloc(sizeof(t_widpre))))
    {
-       free(d);
+       ft_memdel((void*)&d);
        return (-1);
    }
 	d->str = format;
@@ -92,7 +92,7 @@ int			ft_printf(const char *format, ...)
 		d->str[d->i] == '%' ? read_format(d) : putformat_(d);
 	va_end(d->ap);
     ret = d->ret;
-    free(d->wid_pre);
-	free(d);
+    ft_memdel((void *)&d->wid_pre);
+	ft_memdel((void *)&d);
 	return (ret);
 }

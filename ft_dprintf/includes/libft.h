@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 14:42:11 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/28 23:10:58 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/07 10:19:25 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,6 @@ void					*ft_memmove(void *dst, const void *src, size_t len);
 void					*ft_memchr(const void *s, int c, size_t n);
 int						ft_memcmp(const void *s1, const void *s2, size_t n);
 void					*ft_memalloc(size_t size);
-void					ft_memdel(void **ap);
 void					*ft_memset(void *b, int c, size_t len);
 void					*ft_memdynamic(void *src, size_t len);
 
@@ -185,6 +184,6 @@ char					*ft_nstrjoin(size_t n, ...);
 void					ft_free_rev(void **tab, int len);
 void					ft_free_tab_char(char **tab);
 void					ft_strdel(char **as);
-void					ft_voidfree(void **ptr);
+void					ft_memdel(void **ap);
 
 #endif
