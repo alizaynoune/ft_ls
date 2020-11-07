@@ -92,26 +92,26 @@ void		print_uid_grid(t_all *d, t_files *f)
 
 void		extended_attribute(t_all *d, t_files *f)
 {
-	acl_t       acl;
+//	acl_t       acl;
 
 ///	ssize_t		size;
 //	int		buff[1];
 
-//	if (d)
+	if (d)
     errno = 0;
 //	size = 0;
 //	size = getxattr(f->path, f->name, &buff, sizeof(buff), 0, 0);
 //	ft_printf("[%llu]", size);
-    if (listxattr(f->path, NULL, 0, XATTR_NOFOLLOW) > 0)
+    if (listxattr(f->path, NULL, 0) > 0)//, XATTR_NOFOLLOW) > 0)
         ft_printf("@");
-	else if ((acl = acl_get_link_np(f->path, ACL_TYPE_EXTENDED)))
+/*	else if ((acl = acl_get_link_np(f->path, ACL_TYPE_EXTENDED)))
     {
 		acl_free(acl);
         ft_printf("+");
     }
 	else if (errno == ENOMEM)
 		error_ls(d, strerror(errno));
-    else
+  */  else
         ft_printf(" ");
 	errno = 0;
 }

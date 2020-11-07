@@ -58,7 +58,7 @@ int			ft_dprintf(int fd, const char *format, ...)
 		return (-1);
     if (!(d->wid_pre = (t_widpre *)ft_memalloc(sizeof(t_widpre))))
     {
-        free((void *)&d);
+        ft_memdel((void *)&d);
         return (-1);
     }
 	d->str = format;
