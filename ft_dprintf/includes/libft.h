@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 14:42:11 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/11/07 10:19:25 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/08 11:55:45 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ int						ft_memcmp(const void *s1, const void *s2, size_t n);
 void					*ft_memalloc(size_t size);
 void					*ft_memset(void *b, int c, size_t len);
 void					*ft_memdynamic(void *src, size_t len);
+void					*ft_memdup(const void *ptr, size_t size);
 
 /*
 *** functions put

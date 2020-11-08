@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:28:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/11/07 14:25:51 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/08 14:48:20 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,19 +150,18 @@ int		init_pwd(t_all *d, t_files *new)
         ft_dprintf(_ERR, "getpwuid: %s", strerror(errno));
 		errno = 0;
         d->ret = _FAILURE;
-        return (_FAILURE);
+		return (_FAILURE);
     }
-    if (!pwd)
-    {
-        d->ret = _FAILURE;
-        return (_FAILURE);
-    }
-	if (!(d->options & _N) && !(new->pwd->pw_name = ft_strdup(pwd->pw_name)))
+	else if (!pwd)
+	{
+		d->ret = _FAILURE;
+        return ( _FAILURE);
+	}
+	else if (!(d->options & _N) && !(new->pwd->pw_name = ft_strdup(pwd->pw_name)))
     {
         free_files(&new);
         error_ls(d, strerror(errno));
     }
-	new->pwd->pw_uid = pwd->pw_uid;
     return (_SUCCESS);
 }
 
@@ -177,21 +176,19 @@ int			init_grp(t_all *d, t_files *new)
         ft_printf("%s\n", new->path);
         ft_dprintf(_ERR, "getgrgid: %s\n", strerror(errno));
 		errno = 0;
-        free_files(&new);
         d->ret = _FAILURE;
-        return (_FAILURE);
+		return (_FAILURE);
     }
-    if (!grp)
+	else if (!grp)
     {
         d->ret = _FAILURE;
-        return (_FAILURE);
+		return (_FAILURE);
     }
-	if (!(d->options & _N) && !(new->grp->gr_name = ft_strdup(grp->gr_name)))
+	else if (!(d->options & _N) && !(new->grp->gr_name = ft_strdup(grp->gr_name)))
     {
         free_files(&new);
         error_ls(d, strerror(errno));
     }
-	new->grp->gr_gid = grp->gr_gid;
     return (_SUCCESS);
 }
 
@@ -203,11 +200,10 @@ int		init_id(t_all *d, t_files *new)
 		free_files(&new);
 		error_ls(d, strerror(errno));
 	}
-    if ((init_pwd(d, new) == _FAILURE) || (init_grp(d, new) == _FAILURE))
-    {
-        free_files(&new);
-        return (_FAILURE);
-    }
+    if ((init_pwd(d, new) == _FAILURE))
+		ft_memdel((void *)&new->pwd);
+	if ((init_grp(d, new) == _FAILURE))
+		ft_memdel((void *)&new->grp);
     return (_SUCCESS);
 }
 
@@ -270,11 +266,11 @@ void		get_lens(t_all *d, t_files *f)
 	((d->len[_LINK] < len)) ? d->len[_LINK] = len : 0;
 	len = ft_intlen(f->st->st_size);
 	((d->len[_SIZE] < len)) ? d->len[_SIZE] = len : 0;
-	len = (!(d->options & _N) && f->pwd && f->pwd->pw_name) ? ft_strlen(f->pwd->pw_name) : 0;
-	((d->options & _N) && f->pwd) ? len = ft_intlen(f->pwd->pw_uid) : 0;
+	len = (!(d->options & _N) && f->pwd && f->pwd->pw_name) ? ft_strlen(f->pwd->pw_name) :
+		ft_uintlen(f->st->st_uid);
 	(len > d->len[_OWNER]) ? d->len[_OWNER] = len : 0;
-	len = (!(d->options & _N) && f->grp && f->grp->gr_name) ? ft_strlen(f->grp->gr_name) : 0;
-	((d->options & _N) && f->grp) ? len = ft_intlen(f->grp->gr_gid) : 0;
+	len = (!(d->options & _N) && f->grp && f->grp->gr_name) ? ft_strlen(f->grp->gr_name) :
+		ft_uintlen(f->st->st_gid);
 	(len > d->len[_GROUP]) ? d->len[_GROUP] = len : 0;
 	((d->options & _S)) ? get_len_block(d, f) : 0;
 	((S_ISCHR(f->st->st_mode)) || (S_ISBLK(f->st->st_mode))) ? len_major_minor(d, f) : 0;
@@ -329,10 +325,9 @@ int			read_link(t_all *d, t_files *f)
 	}
 	if (size < 0 )
 	{
-		ft_dprintf(_ERR, "readlink: '%s'  %s\n", strerror(errno), f->path);
+		ft_dprintf(_ERR, "readlink1: '%s'  %s\n", strerror(errno), f->path);
 		d->ret = _FAILURE;
 		errno = 0;
-		free_files(&f);
 		return (_FAILURE);
 	}
 	return (_SUCCESS);
@@ -345,8 +340,9 @@ void		parsing_files(t_all *d, char *f, t_files **lst, t_files **l_lst)
 	file = init_files(d, f, NULL);
 	if ((d->options & _L) && ((lstat_file(d, f, file->st)) == _SUCCESS))
 	{
-		if (init_id(d, file) == _FAILURE || read_link(d, file) == _FAILURE)
-            return ;
+		init_id(d, file);
+		read_link(d, file);
+          //  return ;
 		push_files(d, file, lst, l_lst);
 		(!(S_ISDIR(file->st->st_mode))) ? get_lens(d, file) : 0;
 	}
@@ -398,16 +394,31 @@ void		parsing_dir(t_all *d)
 	(d->head_waiting && (d->print_path == _SUCCESS)) ? ft_printf("\n") : 0;
 }
 
+void		stock_file_args(t_all *d, char *name)
+{
+	t_files		*file;
+
+	file = init_files(d, name, NULL);
+//	push_files(d, file, &d->arg_file, &d->larg_file);
+}
+
 void		parsing_arg(int ac, char **av, t_all *d)
 {
 	int		i;
+//	t_files *tmp;
 
 	i = -1;
 	while (++i < ac)
 		(av[i][0] == '-') ? parsing_option(av[i], d) : 0;
 	i = -1;
-	while (++i < ac)
+/*	while (++i < ac)
+		((av[i][0] != '-') || (av[i][0] == '-' && !av[i][1])) ?  stock_file_args(d, av[i]) : 0;
+	tmp = d->arg_file;
+	while (tmp)
+		parsing_files(d, tmp->name);
+*/	while (++i < ac)
 	((av[i][0] != '-') || (av[i][0] == '-' && !av[i][1])) ?  parsing_files(d, av[i], &d->arg_file, &d->l_arg_file) : 0;
+	/// befor parsing_files (stock name and sort them)////////////
 }
 
 void        start_curr(t_all *d)

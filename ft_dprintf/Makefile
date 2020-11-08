@@ -6,7 +6,7 @@
 #    By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/17 13:12:14 by alzaynou          #+#    #+#              #
-#    Updated: 2020/11/07 11:21:12 by alzaynou         ###   ########.fr        #
+#    Updated: 2020/11/08 12:13:12 by alzaynou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,8 @@ LIBFT_COUNT = 	count_words.c				\
 				ft_strnlen.c				\
 				ft_strlen.c					\
 				start_end_words.c			\
-				ft_intlen.c
+				ft_intlen.c					\
+				ft_uintlen.c
 
 LIBFT_EDIT = 	ft_bzero.c					\
 				remove_last_space.c			\
@@ -83,7 +84,8 @@ LIBFT_MEM = 	ft_memalloc.c				\
 				ft_memcpy.c					\
 				ft_memmove.c				\
 				ft_memset.c					\
-				ft_memdynamic.c
+				ft_memdynamic.c				\
+				ft_memdup.c
 
 LIBFT_PUT = 		ft_putchar.c			\
 					ft_putchar_fd.c			\

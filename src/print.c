@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 19:08:22 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/11/07 14:30:25 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/08 12:26:58 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,35 +83,28 @@ void        print_time(t_all *d, t_files *f)
 
 void		print_uid_grid(t_all *d, t_files *f)
 {
-    ((d->options & _N)) ? ft_printf(" %-*d ", d->len[_OWNER], f->pwd->pw_uid) :
-        ft_printf(" %-*s ", d->len[_OWNER], f->pwd->pw_name);
-    ((d->options & _N)) ? ft_printf(" %-*d ", d->len[_GROUP], f->grp->gr_gid) :
+	((d->options & _N) || !f->pwd) ? ft_printf(" %-*d ", d->len[_OWNER], f->st->st_uid)
+			: ft_printf(" %-*s ", d->len[_OWNER], f->pwd->pw_name);
+	((d->options & _N) || !f->grp) ? ft_printf(" %-*d ", d->len[_GROUP], f->st->st_gid) :
         ft_printf(" %-*s ", d->len[_GROUP], f->grp->gr_name); 
 
 }
 
 void		extended_attribute(t_all *d, t_files *f)
 {
-//	acl_t       acl;
+	acl_t       acl;
 
-///	ssize_t		size;
-//	int		buff[1];
-
-	if (d)
     errno = 0;
-//	size = 0;
-//	size = getxattr(f->path, f->name, &buff, sizeof(buff), 0, 0);
-//	ft_printf("[%llu]", size);
-    if (listxattr(f->path, NULL, 0) > 0)//, XATTR_NOFOLLOW) > 0)
+    if (listxattr(f->path, NULL, 0, XATTR_NOFOLLOW) > 0)
         ft_printf("@");
-/*	else if ((acl = acl_get_link_np(f->path, ACL_TYPE_EXTENDED)))
+	else if ((acl = acl_get_link_np(f->path, ACL_TYPE_EXTENDED)))
     {
 		acl_free(acl);
         ft_printf("+");
     }
 	else if (errno == ENOMEM)
 		error_ls(d, strerror(errno));
-  */  else
+    else
         ft_printf(" ");
 	errno = 0;
 }
@@ -147,7 +140,7 @@ void		print_files(t_all *d, t_files *f)
         print_permission(f->st->st_mode);
         extended_attribute(d, f);
         ft_printf(" %*d", d->len[_LINK], f->st->st_nlink);
-        (f->pwd && f->grp) ? print_uid_grid(d, f) : 0;
+        print_uid_grid(d, f);
         (!(S_ISCHR(f->st->st_mode)) && !(S_ISBLK(f->st->st_mode))) ? ft_printf(" %*lld ", d->len[_SIZE], f->st->st_size) : major_minor(d,f);
         print_time(d, f);
         (d->options & _G) ? print_color(f, f->st->st_mode) : ft_printf("%s", f->name);

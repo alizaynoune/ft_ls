@@ -77,7 +77,7 @@ void        loop_dir(t_all *d)
 			loop_print_files(d, d->dir->h_files, d->dir->l_files, tmp);
 			free_dir(&d->dir);
 		}
-		else if (errno & (EMFILE | ENFILE | ENOMEM))
+		else if (errno == ENOMEM)
 			error_ls(d, strerror(errno));
 		else
 		{
