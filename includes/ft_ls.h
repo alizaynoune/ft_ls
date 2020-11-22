@@ -29,7 +29,7 @@
 # include <sys/xattr.h>
 # include <sys/types.h>
 # include <sys/acl.h>
-//# include <sys/sysmacros.h>
+# include <sys/sysmacros.h>
 
 /*
 *** return
@@ -109,7 +109,7 @@ typedef struct			s_op
 	char				c;
 	char				*str;
 	char				*desc;
-	int					valu;
+	int					value;
 }						t_op;
 
 typedef struct			s_waiting

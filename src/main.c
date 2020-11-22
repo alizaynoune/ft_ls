@@ -71,8 +71,7 @@ int			pars_word_option(char *flag, t_all *d)
 		{
 			if (!(ft_strcmp(flag, g_op[i].str)))
 			{
-				d->options |= g_op[i].valu;
-				(g_op[i].valu & _N) ? d->options |= _L : 0;
+				d->options |= g_op[i].value;
 				return (_SUCCESS);
 			}
 		}
@@ -90,13 +89,17 @@ int			pars_char_option(char c, t_all *d)
 	{
 		if (c == g_op[i].c)
 		{
-			d->options |= g_op[i].valu;
-			((g_op[i].valu & _N)) ? d->options |= _L : 0;
-			((g_op[i].valu & _D)) ? d->options -= (d->options & _R_) : 0;
+			d->options |= g_op[i].value;
 			return (_SUCCESS);
 		}
 	}
 	return (_FAILURE);
+}
+
+void        override_active_options(t_all *d)
+{
+    (d->options & _N) ? d->options |= _L : 0;
+    (d->options & _D) ? d->options -= (d->options & _R_) : 0;
 }
 
 void		parsing_option(char *flag, t_all *d)
@@ -325,10 +328,9 @@ int			read_link(t_all *d, t_files *f)
 	}
 	if (size < 0 )
 	{
-		ft_dprintf(_ERR, "readlink1: '%s'  %s\n", strerror(errno), f->path);
+		ft_dprintf(_ERR, "readlink: '%s'  %s\n", strerror(errno), f->path);
 		d->ret = _FAILURE;
 		errno = 0;
-		return (_FAILURE);
 	}
 	return (_SUCCESS);
 }
@@ -342,7 +344,6 @@ void		parsing_files(t_all *d, char *f, t_files **lst, t_files **l_lst)
 	{
 		init_id(d, file);
 		read_link(d, file);
-          //  return ;
 		push_files(d, file, lst, l_lst);
 		(!(S_ISDIR(file->st->st_mode))) ? get_lens(d, file) : 0;
 	}
@@ -357,11 +358,14 @@ void		parsing_files(t_all *d, char *f, t_files **lst, t_files **l_lst)
 }
 
 void		fix_len_maj_size(t_all *d)
-{	
-	(((d->len[_MAJ_MIN] * 2) + 2) > d->len[_SIZE]) ?
-		d->len[_SIZE] = ((d->len[_MAJ_MIN] * 2) + 2) :0;
-	(((d->len[_MAJ_MIN] * 2) + 2) < d->len[_SIZE]) ?
-		d->len[_MAJ_MIN] = ((d->len[_SIZE] - 2) / 2) : 0;
+{
+	if (((d->len[_MAJ_MIN] * 2) + 2) > d->len[_SIZE])
+        d->len[_SIZE] = ((d->len[_MAJ_MIN] * 2) + 2);
+    else
+    {
+        (d->len[_SIZE] % 2) ? d->len[_SIZE]++ : 0;
+		d->len[_MAJ_MIN] = ((d->len[_SIZE] - 2) / 2);
+    }
 
 }
 
@@ -394,31 +398,42 @@ void		parsing_dir(t_all *d)
 	(d->head_waiting && (d->print_path == _SUCCESS)) ? ft_printf("\n") : 0;
 }
 
-void		stock_file_args(t_all *d, char *name)
+void        sort_arg(char **av, int ac)
 {
-	t_files		*file;
+    int     i;
+    int     j;
+    char    *bck;
 
-	file = init_files(d, name, NULL);
-//	push_files(d, file, &d->arg_file, &d->larg_file);
+    i = 0;
+    while (i < ac)
+    {
+        j = i + 1;
+        while (j < ac)
+        {
+            if (ft_strcmp(av[i], av[j]) > 0)
+            {
+                bck = av[i];
+                av[i] = av[j];
+                av[j] = bck;
+            }
+            j++;
+        }
+        i++;
+    }
 }
 
 void		parsing_arg(int ac, char **av, t_all *d)
 {
 	int		i;
-//	t_files *tmp;
 
 	i = -1;
 	while (++i < ac)
 		(av[i][0] == '-') ? parsing_option(av[i], d) : 0;
+    override_active_options(d);
+    (d->options & _F) ? 0 : sort_arg(av, ac);
 	i = -1;
-/*	while (++i < ac)
-		((av[i][0] != '-') || (av[i][0] == '-' && !av[i][1])) ?  stock_file_args(d, av[i]) : 0;
-	tmp = d->arg_file;
-	while (tmp)
-		parsing_files(d, tmp->name);
-*/	while (++i < ac)
+	while (++i < ac)
 	((av[i][0] != '-') || (av[i][0] == '-' && !av[i][1])) ?  parsing_files(d, av[i], &d->arg_file, &d->l_arg_file) : 0;
-	/// befor parsing_files (stock name and sort them)////////////
 }
 
 void        start_curr(t_all *d)

@@ -60,15 +60,18 @@ void        print_time(t_all *d, t_files *f)
 {
     char    *str_time;
     time_t  tm;
+    time_t  set_time;
 
     errno = 0;
     tm = time(NULL);
-    if (!(tm == -1 && errno) && (str_time = ctime(&f->st->st_mtime)))
+    set_time = (d->options & _U) ? f->st->st_atime : f->st->st_mtime;
+    if (!(tm == -1 && errno) && (str_time = ctime(&set_time)))
     {
-        tm -= f->st->st_mtime;
-        if (ABS(tm) < _MONTHS_)
-            (d->options & _T_) ? ft_printf("%.20s ", str_time + 4) :
-                ft_printf("%.12s ", str_time + 4);
+        tm -= set_time;
+        if (d->options & _T_)
+            ft_printf("%.20s ", str_time + 4);
+        else if (ABS(tm) < _MONTHS_)
+            ft_printf("%.12s ", str_time + 4);
         else
         {
             ft_printf("%.6s  %.4s ", str_time + 4, str_time + 20);
@@ -92,17 +95,17 @@ void		print_uid_grid(t_all *d, t_files *f)
 
 void		extended_attribute(t_all *d, t_files *f)
 {
-	acl_t       acl;
+//	acl_t       acl;
 
     errno = 0;
-    if (listxattr(f->path, NULL, 0, XATTR_NOFOLLOW) > 0)
+    if (listxattr(f->path, NULL, 0) > 0)//, XATTR_NOFOLLOW) > 0)
         ft_printf("@");
-	else if ((acl = acl_get_link_np(f->path, ACL_TYPE_EXTENDED)))
+/*	else if ((acl = acl_get_link_np(f->path, ACL_TYPE_EXTENDED)))
     {
 		acl_free(acl);
         ft_printf("+");
     }
-	else if (errno == ENOMEM)
+*/	else if (errno == ENOMEM)
 		error_ls(d, strerror(errno));
     else
         ft_printf(" ");
