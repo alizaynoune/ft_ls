@@ -6,12 +6,12 @@
 #    By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/18 12:00:15 by alzaynou          #+#    #+#              #
-#    Updated: 2020/11/07 11:21:22 by alzaynou         ###   ########.fr        #
+#    Updated: 2020/11/23 17:29:58 by alzaynou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_ls
-GCC = gcc -g -Wall -Werror -Wextra
+GCC = gcc -g # -Wall -Werror -Wextra
 LIB = -lftdprintf
 P_LIB = ./ft_dprintf/
 INC_LIB = ./ft_dprintf/includes/

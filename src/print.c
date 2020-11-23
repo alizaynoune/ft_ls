@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/25 19:08:22 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/11/08 12:26:58 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/23 18:41:28 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,22 +93,50 @@ void		print_uid_grid(t_all *d, t_files *f)
 
 }
 
+void		print_xattr(t_all *d, t_files *f)
+{
+	char		*buff;
+	ssize_t		read;
+	ssize_t		size;
+	ssize_t		len;
+
+	len = 0;
+	read = 0;
+	buff = NULL;
+	if (!(buff = (char *)ft_memalloc(sizeof(char) * (f->len_xattr))))
+		error_ls(d, strerror(errno));
+	listxattr(f->path, buff, f->len_xattr, XATTR_NOFOLLOW);
+	while (len < f->len_xattr)
+	{
+		len += ft_printf("\t%s", buff + len);
+		size = getxattr(f->path, buff + read, NULL, 0, 0,  0);
+		ft_printf("\t  %lld\n", size);
+		read += len;
+	}
+	ft_strdel(&buff);
+
+}
+
 void		extended_attribute(t_all *d, t_files *f)
 {
-//	acl_t       acl;
-
-    errno = 0;
-    if (listxattr(f->path, NULL, 0) > 0)//, XATTR_NOFOLLOW) > 0)
+	acl_t       acl;
+    
+	errno = 0;
+    if ((f->len_xattr = listxattr(f->path, NULL, 0, XATTR_NOFOLLOW)) > 0)
         ft_printf("@");
-/*	else if ((acl = acl_get_link_np(f->path, ACL_TYPE_EXTENDED)))
+	else if ((acl = acl_get_link_np(f->path, ACL_TYPE_EXTENDED)))
     {
 		acl_free(acl);
         ft_printf("+");
+		f->len_xattr = 0;
     }
-*/	else if (errno == ENOMEM)
+	else if (errno == ENOMEM)
 		error_ls(d, strerror(errno));
     else
+	{
+		f->len_xattr = 0;
         ft_printf(" ");
+	}
 	errno = 0;
 }
 
@@ -139,7 +167,7 @@ void		print_files(t_all *d, t_files *f)
     {
 		(d->options & _I) ? ft_printf("%*d ", d->len[_INODE], f->st->st_ino) : 0;
         (d->options & _S) ? ft_printf("%*d ", d->len[_BLOCK], f->st->st_blocks) : 0;
-        print_type((f->st->st_mode));//
+        print_type((f->st->st_mode));
         print_permission(f->st->st_mode);
         extended_attribute(d, f);
         ft_printf(" %*d", d->len[_LINK], f->st->st_nlink);
@@ -148,6 +176,7 @@ void		print_files(t_all *d, t_files *f)
         print_time(d, f);
         (d->options & _G) ? print_color(f, f->st->st_mode) : ft_printf("%s", f->name);
         (f->link) ? ft_printf(" -> %s\n", f->link) : ft_printf("\n");
+		((d->options & _XATT) && f->len_xattr) ? print_xattr(d, f) : 0;
     }
     else
     {

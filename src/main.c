@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 17:28:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/11/08 14:48:20 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/23 19:08:07 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_op	g_op[_MAX_OP + 1] =
     {'i', "--inode", "print the index number of each file", _I},
 	{'d', "--dir_as_file",
 		"Directories are listed as plain files (ignor recursively)", _D},
+	{'@', "--xatt", "Display extended attribute key and size in long (-l) output", _XATT},
 	{0, 0, 0, 0}
 };
 
@@ -122,10 +123,10 @@ int			stat_file(t_all *d, char *f, struct stat *st)
 {
 	if ((stat(f, st)) == -1)
 	{
-		ft_dprintf(_ERR, "ls : %s: %s\n", f, strerror(errno));
+/*		ft_dprintf(_ERR, "ls : %s: %s\n", f, strerror(errno));
 		errno = 0;
 		d->ret = _FAILURE;
-		return (_FAILURE);
+*/		return (_FAILURE);
 	}
 	return (_SUCCESS);
 }
@@ -134,10 +135,10 @@ int			lstat_file(t_all *d, char *f, struct stat *st)
 {
 	if ((lstat(f, st)) == -1)
 	{
-		ft_dprintf(_ERR, "ls : %s: %s\n", f, strerror(errno));
+/*		ft_dprintf(_ERR, "ls : %s: %s\n", f, strerror(errno));
 		errno = 0;
 		d->ret = _FAILURE;
-		return (_FAILURE);
+*/		return (_FAILURE);
 	}
     return (_SUCCESS);
 }
@@ -340,21 +341,27 @@ void		parsing_files(t_all *d, char *f, t_files **lst, t_files **l_lst)
 	t_files			*file;
 
 	file = init_files(d, f, NULL);
-	if ((d->options & _L) && ((lstat_file(d, f, file->st)) == _SUCCESS))
+	if (!(d->options & _L) && (stat_file(d, f, file->st) == _SUCCESS))
+	{
+		(d->options & _S) ? get_len_block(d, file) : 0;
+        (d->options & _I) ? get_len_inode(d, file) : 0;
+		push_files(d, file, lst, l_lst);
+	}
+	else if (((lstat_file(d, f, file->st)) == _SUCCESS))
 	{
 		init_id(d, file);
 		read_link(d, file);
 		push_files(d, file, lst, l_lst);
 		(!(S_ISDIR(file->st->st_mode))) ? get_lens(d, file) : 0;
 	}
-	else if (!(d->options & _L) && (stat_file(d, f, file->st) == _SUCCESS))
-	{
-		(d->options & _S) ? get_len_block(d, file) : 0;
-        (d->options & _I) ? get_len_inode(d, file) : 0;
-		push_files(d, file, lst, l_lst);
-	}
+
 	else
+	{
+		ft_dprintf(_ERR, "ls : %s: %s\n", f, strerror(errno));
+		errno = 0;
+		d->ret = _FAILURE;
 		free_files(&file);
+	}
 }
 
 void		fix_len_maj_size(t_all *d)
@@ -379,8 +386,15 @@ void		parsing_dir(t_all *d)
 	while (tmp)
 	{
 		if (!(d->options & _L) && (S_ISLNK(tmp->st->st_mode)))
-			(!(d->options & _D) && S_ISDIR(tmp->st->st_mode)) ?
-				push_waiting(d, &*tmp) : print_files(d, tmp);
+		{
+			if (!(d->options & _D) && S_ISDIR(tmp->st->st_mode))
+				push_waiting(d, &*tmp);
+			else
+			{
+				print_files(d, tmp);
+				d->print_path = _SUCCESS;
+			}
+		}
 		else if (!(d->options & _D) && (S_ISDIR(tmp->st->st_mode)))
         {
             len = ft_strlen(tmp->path);

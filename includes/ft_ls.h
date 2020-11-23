@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 16:45:13 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/11/08 10:11:54 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/23 17:22:23 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # include <sys/xattr.h>
 # include <sys/types.h>
 # include <sys/acl.h>
-# include <sys/sysmacros.h>
+//# include <sys/sysmacros.h>
 
 /*
 *** return
@@ -57,7 +57,8 @@
 # define _T_	    	2048
 # define _I             4096
 # define _D				8192
-# define _MAX_OP	    14
+# define _XATT			16384
+# define _MAX_OP	    15
 
 /*
 *** index in tab lens
@@ -125,6 +126,7 @@ typedef struct			s_files
 	char				*name;
 	char				*path;
 	char				*link;
+	ssize_t				len_xattr;
 	struct stat			*st;
 	struct passwd		*pwd;
 	struct group		*grp;

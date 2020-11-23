@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 11:53:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/11/07 10:18:18 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/23 17:40:03 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void		free_pwd(struct passwd **pwd)
 {
 	((*pwd)->pw_name) ? ft_strdel(&(*pwd)->pw_name) : 0;
-	ft_memdel((void *)&(*pwd));
+	(*pwd) ? ft_memdel((void *)&(*pwd)) : 0;
 }
 
 void		free_grp(struct group **grp)
 {
 	((*grp)->gr_name) ? ft_strdel(&(*grp)->gr_name) : 0;
-	ft_memdel((void *)&(*grp));
+	 (*grp) ? ft_memdel((void *)&(*grp)) : 0;
 }
 
 void		free_files(t_files **lst)
@@ -50,7 +50,7 @@ void		free_dir(t_dir **dir)
 		return ;
 	((*dir)->h_files) ? free_files(&(*dir)->h_files) : 0;
 	((*dir)->path) ? ft_memdel((void *)&(*dir)->path) : 0;
-	ft_memdel((void *)&(*dir));
+	(*dir) ? ft_memdel((void *)&(*dir)) : 0;
 }
 
 void		free_waiting(t_waiting **lst)
@@ -75,7 +75,7 @@ void		free_all(t_all *d)
 	(d->files) ? free_files(&d->files) : 0;
 	(d->head_waiting) ? free_waiting(&d->head_waiting) : 0;
 	(d->dir) ? free_dir(&d->dir) : 0;
-	ft_memdel((void *)&d);
+	(d) ? ft_memdel((void *)&d) : 0;
 }
 
 int			error_ls(t_all *d,  char *err)
