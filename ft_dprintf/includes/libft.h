@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 14:42:11 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/11/08 11:55:45 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/24 17:11:14 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,6 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <stdarg.h>
-
-/*
-*** macros
-*/
-
-# define ABS(x) x < 0 ? -x : x
 
 /*
 *** types
@@ -65,6 +59,7 @@ int						ft_tolower(int c);
 int						ft_atoi_base(const char *str, int str_base);
 int						ft_power(int nbr, int power);
 char					*ft_itoa_base(int value, int base);
+long long int			ft_abs(long long int value);
 
 /*
 *** functions count

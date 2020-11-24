@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 16:45:13 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/11/23 17:22:23 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/24 20:48:14 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # include <sys/xattr.h>
 # include <sys/types.h>
 # include <sys/acl.h>
-# include <sys/sysmacros.h>
+//# include <sys/sysmacros.h>
 
 /*
 *** return
@@ -156,7 +156,7 @@ typedef struct			s_all
 	t_files				*l_files;
 	t_waiting			*head_waiting;
 	t_waiting			*lst_waiting;
-    t_dir               *dir;
+	t_dir				*dir;
 }						t_all;
 
 /*
@@ -173,24 +173,38 @@ int						error_ls(t_all *d, char *err);
 void					free_files(t_files **lst);
 void					free_all(t_all *d);
 void					push_files(t_all *d, t_files *f, t_files **lst,
-                        t_files **l_lst);
+						t_files **l_lst);
 void					print_files(t_all *d, t_files *f);
-void                    push_waiting(t_all *d, t_files *f);
-void                    loop_dir(t_all *d);
+void					push_waiting(t_all *d, t_files *f);
+void					loop_dir(t_all *d);
 void					parsing_files(t_all *d, char *f, t_files **lst,
-                        t_files **l_lst);
-int						lstat_file(t_all *d, char *f, struct stat *st);
-int						stat_file(t_all *d, char *f, struct stat *st);
+						t_files **l_lst);
+int						lstat_file(char *f, struct stat *st);
+int						stat_file(char *f, struct stat *st);
 t_files					*init_files(t_all *d, char *name, char *path);
 void					free_dir(t_dir **dir);
 void					loop_print_files(t_all *d, t_files *lst,
-                        t_files *l_lst, t_waiting *curr);
+						t_files *l_lst, t_waiting *curr);
 t_waiting				*init_waiting(t_all *d, t_files *f);
 void					get_lens(t_all *d, t_files *f);
-int                     init_id(t_all *d, t_files *new);
+int						init_id(t_all *d, t_files *new);
 int						read_link(t_all *d, t_files *f);
-void					get_len_block(t_all *d, t_files *);
+void					get_len_block(t_all *d, t_files *f);
 void					fix_len_maj_size(t_all *d);
-void                    get_len_inode(t_all *d, t_files *f);
-
+void					get_len_inode(t_all *d, t_files *f);
+void					free_waiting(t_waiting **lst);
+void					parsing_arg(int ac, char **av, t_all *d);
+t_dir					*init_dir(t_all *d, char *name);
+void					parsing_option(char *flag, t_all *d);
+void					override_active_options(t_all *d);
+void					parsing_link_arg(t_all *d, t_files *f);
+void					help_ls(t_all *d);
+void					usage_ls(t_all *d, char c, char *str);
+void					print_type(mode_t type);
+void					print_permission(mode_t mode);
+void					print_uid_grid(t_all *d, t_files *f);
+void					print_time(t_all *d, t_files *f);
+void					print_xattr(t_all *d, t_files *f);
+t_files					*get_position(t_all *d, t_files *f, t_files *lst);
+t_waiting				*recursuvely(t_all *d, t_files *f);
 #endif

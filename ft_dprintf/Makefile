@@ -6,7 +6,7 @@
 #    By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/17 13:12:14 by alzaynou          #+#    #+#              #
-#    Updated: 2020/11/08 12:13:12 by alzaynou         ###   ########.fr        #
+#    Updated: 2020/11/24 17:08:02 by alzaynou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,8 @@ LIBFT_CONV = 	ft_atoi_all.c				\
 				ft_toupper.c				\
 				ft_atoi_base.c				\
 				ft_power.c					\
-				ft_itoa_base.c
+				ft_itoa_base.c				\
+				ft_abs.c
 
 LIBFT_COUNT = 	count_words.c				\
 				ft_count_char.c				\

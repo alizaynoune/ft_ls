@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   free_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/18 11:53:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/11/23 17:40:03 by alzaynou         ###   ########.fr       */
+/*   Created: 2020/11/24 19:45:15 by alzaynou          #+#    #+#             */
+/*   Updated: 2020/11/24 20:51:36 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		free_pwd(struct passwd **pwd)
 void		free_grp(struct group **grp)
 {
 	((*grp)->gr_name) ? ft_strdel(&(*grp)->gr_name) : 0;
-	 (*grp) ? ft_memdel((void *)&(*grp)) : 0;
+	(*grp) ? ft_memdel((void *)&(*grp)) : 0;
 }
 
 void		free_files(t_files **lst)
@@ -38,7 +38,7 @@ void		free_files(t_files **lst)
 		(tmp->pwd) ? free_pwd(&tmp->pwd) : 0;
 		(tmp->grp) ? free_grp(&tmp->grp) : 0;
 		(tmp->link) ? ft_strdel(&tmp->link) : 0;
-        ft_memdel((void *)&tmp);
+		ft_memdel((void *)&tmp);
 	}
 	(*lst) = NULL;
 	errno = 0;
@@ -76,16 +76,5 @@ void		free_all(t_all *d)
 	(d->head_waiting) ? free_waiting(&d->head_waiting) : 0;
 	(d->dir) ? free_dir(&d->dir) : 0;
 	(d) ? ft_memdel((void *)&d) : 0;
-}
-
-int			error_ls(t_all *d,  char *err)
-{
-    errno = 0;
-	ft_dprintf(_ERR, "%s\n", err);
-	if (d->fd_dir)
-		((closedir(d->fd_dir) == -1)) ? ft_dprintf(_ERR, "ls: connot close dir %s",
-		   	strerror(errno)) : 0;
-	free_all(d);
-	exit(_TROUBLE);
 }
 

@@ -1,45 +1,36 @@
 #include "ft_ls.h"
 
-t_dir       *init_dir(t_all *d, char *name)
-{
-	t_dir   *new;
-
-	if (!(new = (t_dir *)ft_memalloc(sizeof(t_dir))))
-		error_ls(d, strerror(errno));
-	if (!(new->path = ft_strdup(name)))
-	{
-		free(new);
-		error_ls(d, strerror(errno));
-	}
-	return (new);
-}
-
 void		parsing_read_file(t_all *d, char *path, char *name)
 {
 	t_files		*new;
 
-	if (!(d->options & (_A | _F)) && name && name[0] == '.')
+	if (!(d->options & _A) && name && name[0] == '.')
 		return ;
 	if ((path[0] == '/' && !path[1]))
 		path[0] = 0;
 	new = init_files(d, name, path);
-	if ((lstat_file(d, new->path, new->st) == _SUCCESS))
+	if ((lstat_file(new->path, new->st) == _SUCCESS))
 	{
 		if ((d->options & _L))
-        {
-            if (init_id(d, new) == _FAILURE || read_link(d, new) == _FAILURE)
-                return ;
-        }
+		{
+			init_id(d, new);
+			read_link(d, new);
+		}
 		push_files(d, new, &d->dir->h_files, &d->dir->l_files);
 		((d->options & _L || d->options & _S)) ? d->dir->total += new->st->st_blocks : 0;
 		((d->options & _R_) && (S_ISDIR(new->st->st_mode))) ?
 			d->print_path = _SUCCESS : 0;
 		((d->options & _L)) ? get_lens(d, new) : 0;
 		(!(d->options & _L) && (d->options & _S)) ? get_len_block(d, new) : 0;
-        (!(d->options & _L)) && (d->options & _I) ? get_len_inode(d, new) : 0;
+		(!(d->options & _L)) && (d->options & _I) ? get_len_inode(d, new) : 0;
 	}
 	else
+	{
+		ft_dprintf(_ERR, "ls: %s: %s\n", new->name, strerror(errno));
+		errno = 0;
 		free_files(&new);
+		d->ret = _FAILURE;
+	}
 }
 
 void        read_dir(t_all *d, DIR *d_dir)
@@ -62,6 +53,18 @@ void		closs_dir(t_all *d)
 	if (closedir(d->fd_dir) == -1)
 		ft_dprintf(_ERR, "ls: cannot close dir %s\n", strerror(errno));
 	d->fd_dir = 0;
+}
+
+void		free_printed(t_all *d)
+{
+	t_waiting		*tmp;
+
+	tmp = d->head_waiting;
+	d->head_waiting = d->head_waiting->next;
+	if (!d->head_waiting)
+		d->lst_waiting = NULL;
+	tmp->next = NULL;
+	free_waiting(&tmp);
 }
 
 void        loop_dir(t_all *d)
@@ -92,6 +95,7 @@ void        loop_dir(t_all *d)
 			d->ret = _FAILURE;
 		}
 		tmp = tmp->next;
+		free_printed(d);
 		(tmp) ? ft_printf("\n") : 0;
 	}
 }
