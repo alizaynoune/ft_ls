@@ -335,7 +335,30 @@ int			read_link(t_all *d, t_files *f)
 	}
 	return (_SUCCESS);
 }
+/*
+void        parsing_link_arg(t_all *d, t_files *f)
+{
+    struct stat     *st;
 
+    read_link(d, f);
+    //st = f->st;
+    if (!(st = (struct stat *)ft_memalloc(sizeof(struct stat))))
+    {
+        free_files(&f);
+        error_ls(d, strerror(errno));
+    }
+    if (lstat_file(d, f->link, st) == _SUCCESS)
+    {
+        if (S_ISDIR(st->st_mode))
+        {
+            ft_memdel((void *)&f->st);
+            f->st = st;
+        }
+        else
+            ft_memdel((void *)&f->st);
+    }
+}
+*/
 void		parsing_files(t_all *d, char *f, t_files **lst, t_files **l_lst)
 {
 	t_files			*file;
@@ -347,10 +370,10 @@ void		parsing_files(t_all *d, char *f, t_files **lst, t_files **l_lst)
         (d->options & _I) ? get_len_inode(d, file) : 0;
 		push_files(d, file, lst, l_lst);
 	}
-	else if (((lstat_file(d, f, file->st)) == _SUCCESS))
+   else if (((lstat_file(d, f, file->st)) == _SUCCESS))
 	{
 		init_id(d, file);
-		read_link(d, file);
+		(S_ISLNK(file->st->st_mode)) ? read_link(d, file) : 0;
 		push_files(d, file, lst, l_lst);
 		(!(S_ISDIR(file->st->st_mode))) ? get_lens(d, file) : 0;
 	}

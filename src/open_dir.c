@@ -31,7 +31,7 @@ void		parsing_read_file(t_all *d, char *path, char *name)
                 return ;
         }
 		push_files(d, new, &d->dir->h_files, &d->dir->l_files);
-		((d->options & _L)) ? d->dir->total += new->st->st_blocks : 0;
+		((d->options & _L || d->options & _S)) ? d->dir->total += new->st->st_blocks : 0;
 		((d->options & _R_) && (S_ISDIR(new->st->st_mode))) ?
 			d->print_path = _SUCCESS : 0;
 		((d->options & _L)) ? get_lens(d, new) : 0;
@@ -79,7 +79,7 @@ void        loop_dir(t_all *d)
 			d->dir = init_dir(d, tmp->full_name);
 			read_dir(d, d->fd_dir);
 			closs_dir(d);
-			((d->options & _L) && d->dir->h_files) ? ft_printf("total %d\n", d->dir->total) : 0;
+			((d->options & _L) && d->dir->h_files) || d->options & _S ? ft_printf("total %d\n", d->dir->total) : 0;
 			loop_print_files(d, d->dir->h_files, d->dir->l_files, tmp);
 			free_dir(&d->dir);
 		}
