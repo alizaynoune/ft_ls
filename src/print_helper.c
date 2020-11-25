@@ -108,11 +108,11 @@ void        print_xattr(t_all *d, t_files *f)
 	buff = NULL;
 	if (!(buff = (char *)ft_memalloc(sizeof(char) * (f->len_xattr))))
 		error_ls(d, strerror(errno));
-	listxattr(f->path, buff, f->len_xattr, XATTR_NOFOLLOW);
+	listxattr(f->path, buff, f->len_xattr); //, XATTR_NOFOLLOW);
 	while (len < f->len_xattr)
 	{
 		len += ft_printf("\t%s", buff + len);
-		size = getxattr(f->path, buff + read, NULL, 0, 0,  0);
+		size = getxattr(f->path, buff + read, NULL, 0);//, 0,  0);
 		ft_printf("\t  %lld\n", size);
 		read += len;
 	}

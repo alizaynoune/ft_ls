@@ -14,18 +14,18 @@
 
 void		extended_attribute(t_all *d, t_files *f)
 {
-	acl_t       acl;
+//	acl_t       acl;
 
 	errno = 0;
-	if ((f->len_xattr = listxattr(f->path, NULL, 0, XATTR_NOFOLLOW)) > 0)
+	if ((f->len_xattr = listxattr(f->path, NULL, 0)) > 0)//, XATTR_NOFOLLOW)) > 0)
 		ft_printf("@");
-	else if ((acl = acl_get_link_np(f->path, ACL_TYPE_EXTENDED)))
+/*	else if ((acl = acl_get_link_np(f->path, ACL_TYPE_EXTENDED)))
 	{
 		acl_free(acl);
 		ft_printf("+");
 		f->len_xattr = 0;
 	}
-	else if (errno == ENOMEM)
+*/	else if (errno == ENOMEM)
 		error_ls(d, strerror(errno));
 	else
 	{

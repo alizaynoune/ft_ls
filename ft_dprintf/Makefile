@@ -241,7 +241,7 @@ $(OBJS)%.o: $(PATH_DPRINTF)%.c $(DPRINTF_INC)
 
 clean:
 	@rm -rf $(OBJS)
-	@printf "$(SILVER)[$(PURPLE)Path objects$(DEF) $(OBJS)$(SILVER)] $(RED)Deleted.$(DEF)\n"
+	@printf "$(SILVER)[$(PURPLE)Path objects$(YELLOW) $(OBJS)$(SILVER)] $(RED)Deleted.$(DEF)\n"
 
 fclean: clean
 	@$(call remove_lib, $(NAME))
