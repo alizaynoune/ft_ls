@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   sort.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/24 19:39:57 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/11/24 20:44:28 by alzaynou         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_ls.h"
 
 t_files     *cmp_ascii(t_files *f, t_files *lst)
@@ -78,3 +66,26 @@ t_files     *get_position(t_all *d, t_files *f, t_files *lst)
 		return (cmp_ascii(f, lst));
 }
 
+void        sort_arg(char **av, int ac)
+{
+	int     i;
+	int     j;
+	char    *bck;
+
+	i = 0;
+	while (i < ac)
+	{
+		j = i + 1;
+		while (j < ac)
+		{
+			if (ft_strcmp(av[i], av[j]) > 0)
+			{
+				bck = av[i];
+				av[i] = av[j];
+				av[j] = bck;
+			}
+			j++;
+		}
+		i++;
+	}
+}

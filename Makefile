@@ -10,32 +10,42 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_ls
-GCC = gcc -g -Wall -Werror -Wextra
-LIB = -lftdprintf
-PATH_LIB = ft_dprintf/
-PATH_INC_LIB = ft_dprintf/includes/
-PATH_INC = includes/
-PATH_SRC = src/
-PATH_OBJ = objs/
-INC =	$(PATH_INC)ft_ls.h
+NAME =			ft_ls
+GCC =			gcc -Wall -Werror -Wextra
+LIB =			-lftdprintf
+PATH_LIB =		ft_dprintf/
+PATH_INC_LIB =	ft_dprintf/includes/
+PATH_INC =		includes/
+PATH_SRC =		src/
+PATH_OBJ =		objs/
+INC =			$(PATH_INC)ft_ls.h
 
-SRC =	free_error.c\
-		get_lines.c\
-		init.c\
-		links.c\
-		main.c\
-		open_dir.c\
-		parse_arg.c\
-		parse_files.c\
-		parse_options.c\
-		print.c\
-		print_helper.c\
-		push.c\
-		sort.c\
-		tools.c
+#*
+#** Src files
+#*
+
+SRC =	dirs.c					\
+		free.c					\
+		free_extended.c			\
+		init.c					\
+		init_extended.c			\
+		length.c				\
+		main.c					\
+		parsing.c				\
+		parsing_arg.c			\
+		printing.c				\
+		printing_extended.c		\
+		push.c					\
+		sort.c					\
+		tools.c					\
+		tools_helper.c
 
 OBJS =  $(addprefix $(PATH_OBJ), $(SRC:.c=.o))
+
+#*
+#** Colors
+#*
+
 
 DEF = 		\x1B[1;0m
 RED = 		\x1B[1;31m
@@ -46,7 +56,7 @@ SILVER = 	\x1B[1;90m
 YELLOW = 	\x1B[1;33m
 
 #*
-#** functions
+#** Functions
 #*
 
 define compile_obj

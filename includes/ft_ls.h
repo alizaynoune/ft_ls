@@ -188,7 +188,7 @@ void					loop_print_files(t_all *d, t_files *lst,
 t_waiting				*init_waiting(t_all *d, t_files *f);
 void					get_lens(t_all *d, t_files *f);
 int						init_id(t_all *d, t_files *new);
-int						read_link(t_all *d, t_files *f);
+void					read_link(t_all *d, t_files *f);
 void					get_len_block(t_all *d, t_files *f);
 void					fix_len_maj_size(t_all *d);
 void					get_len_inode(t_all *d, t_files *f);
@@ -207,4 +207,17 @@ void					print_time(t_all *d, t_files *f);
 void					print_xattr(t_all *d, t_files *f);
 t_files					*get_position(t_all *d, t_files *f, t_files *lst);
 t_waiting				*recursuvely(t_all *d, t_files *f);
+void                    free_printed(t_all *d);
+void                    parsing_read_file(t_all *d, char *path, char *name);
+void                    parsing_arg(int ac, char **av, t_all *d);
+void                    parsing_dir(t_all *d);
+void                    sort_arg(char **av, int ac);
+void                    extended_attribute(t_all *d, t_files *f);
+void                    major_minor(t_all *d, t_files *f);
+void                    print_color(t_files *f, mode_t type);
+void                    push_recursuvely(t_waiting *last, t_waiting *head,
+                        t_waiting *curr);
+void                    long_format(t_all *d, t_files *f);
+void                    error_read_link(t_all *d, char *name);
+
 #endif

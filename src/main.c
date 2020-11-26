@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/17 17:28:05 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/11/24 20:43:25 by alzaynou         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_ls.h"
 
 t_op	g_op[_MAX_OP + 1] =
@@ -30,7 +18,8 @@ t_op	g_op[_MAX_OP + 1] =
     {'i', "--inode", "print the index number of each file", _I},
 	{'d', "--dir_as_file",
 		"Directories are listed as plain files (ignor recursively)", _D},
-	{'@', "--xatt", "Display extended attribute key and size in long (-l) output", _XATT},
+	{'@', "--xatt", "Display extended attribute key and size in long -l output",
+        _XATT},
 	{0, 0, 0, 0}
 };
 
@@ -55,35 +44,6 @@ void		help_ls(t_all *d)
 		ft_printf("\t-%c\t%-13s\t:%s\n", g_op[i].c, g_op[i].str, g_op[i].desc);
 	free_all(d);
 	exit(_SUCCESS);
-}
-
-
-void		parsing_dir(t_all *d)
-{
-	t_files		*tmp;
-    size_t      len;
-
-	tmp = ((d->options & _R)) ?  d->l_arg_file : d->arg_file;
-	(d->len[_MAJ_MIN]) ? fix_len_maj_size(d) : 0;
-	while (tmp)
-	{
-		if (!(d->options & _D) && (S_ISDIR(tmp->st->st_mode)))
-        {
-            len = ft_strlen(tmp->path);
-            (tmp->path[len - 1] == '/') && len > 1 ? tmp->path[len - 1] = 0 : 0;
-            push_waiting(d, tmp);
-        }
-		else
-		{
-			d->print_path = _SUCCESS;
-			print_files(d, tmp);
-		}
-
-		tmp = ((d->options & _R)) ? tmp->prev : tmp->next;
-	}
-	free_files(&d->arg_file);
-	(d->head_waiting && (d->print_path == _SUCCESS)) ? ft_printf("\n") : 0;
-	(d->print_path == _TROUBLE) ? d->print_path = _SUCCESS : 0;
 }
 
 void        start_curr(t_all *d)
