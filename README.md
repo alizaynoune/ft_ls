@@ -10,6 +10,7 @@ Description :   ft_ls is a project of 42_shool in branch system
                 this project is revers engineering fo ls command
 
 usag : ./ft_ls [-options] [files]
+        
         options in  : linux  [lRratGuSUnsTid@]
                     : OS/bsd [lRratGuSfnsTid@]
     ./ft_ls -h or ./fl_ls --help to get information about evrey each option
