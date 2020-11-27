@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/27 10:42:34 by alzaynou          #+#    #+#             */
+/*   Updated: 2020/11/27 10:52:56 by alzaynou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 t_op	g_op[_MAX_OP + 1] =
@@ -15,11 +27,11 @@ t_op	g_op[_MAX_OP + 1] =
 	{'s', "--blocks", "Desplay number of blocks used by each file", _S},
 	{'T', "--time_info", "When used option '-l' print complet time information",
 		_T_},
-    {'i', "--inode", "print the index number of each file", _I},
+	{'i', "--inode", "print the index number of each file", _I},
 	{'d', "--dir_as_file",
 		"Directories are listed as plain files (ignor recursively)", _D},
 	{'@', "--xatt", "Display extended attribute key and size in long -l output",
-        _XATT},
+		_XATT},
 	{0, 0, 0, 0}
 };
 
@@ -46,12 +58,12 @@ void		help_ls(t_all *d)
 	exit(_SUCCESS);
 }
 
-void        start_curr(t_all *d)
+void		start_curr(t_all *d)
 {
 	if (d->ret == _FAILURE)
 		return ;
-    parsing_files(d, ".", &d->arg_file, &d->l_arg_file);
-    parsing_dir(d);
+	parsing_files(d, ".", &d->arg_file, &d->l_arg_file);
+	parsing_dir(d);
 }
 
 int			main(int ac, char **av)
@@ -67,8 +79,8 @@ int			main(int ac, char **av)
 	if (ac > 1)
 		parsing_arg(ac - 1, &av[1], d);
 	(d->arg_file) ? parsing_dir(d) : start_curr(d);
-    (d->head_waiting) ? loop_dir(d) : 0;
-    ret = d->ret;
+	(d->head_waiting) ? loop_dir(d) : 0;
+	ret = d->ret;
 	free_all(d);
 	return (ret);
 }

@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_extended.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/27 10:42:16 by alzaynou          #+#    #+#             */
+/*   Updated: 2020/11/27 10:50:48 by alzaynou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
-int     init_pwd(t_all *d, t_files *new)
+int			init_pwd(t_all *d, t_files *new)
 {
-	struct passwd       *pwd;
+	struct passwd		*pwd;
 
 	errno = 0;
 	pwd = getpwuid(new->st->st_uid);
@@ -16,10 +28,10 @@ int     init_pwd(t_all *d, t_files *new)
 	else if (!pwd)
 	{
 		d->ret = _FAILURE;
-		return ( _FAILURE);
+		return (_FAILURE);
 	}
 	else if (!(d->options & _N) &&
-            !(new->pwd->pw_name = ft_strdup(pwd->pw_name)))
+			!(new->pwd->pw_name = ft_strdup(pwd->pw_name)))
 	{
 		free_files(&new);
 		error_ls(d, strerror(errno));
@@ -27,9 +39,9 @@ int     init_pwd(t_all *d, t_files *new)
 	return (_SUCCESS);
 }
 
-int         init_grp(t_all *d, t_files *new)
+int			init_grp(t_all *d, t_files *new)
 {
-	struct group        *grp;
+	struct group		*grp;
 
 	errno = 0;
 	grp = getgrgid(new->st->st_gid);
@@ -47,7 +59,7 @@ int         init_grp(t_all *d, t_files *new)
 		return (_FAILURE);
 	}
 	else if (!(d->options & _N) &&
-            !(new->grp->gr_name = ft_strdup(grp->gr_name)))
+			!(new->grp->gr_name = ft_strdup(grp->gr_name)))
 	{
 		free_files(&new);
 		error_ls(d, strerror(errno));
@@ -55,7 +67,7 @@ int         init_grp(t_all *d, t_files *new)
 	return (_SUCCESS);
 }
 
-int     init_id(t_all *d, t_files *new)
+int			init_id(t_all *d, t_files *new)
 {
 	if (!(new->pwd = (struct passwd *)ft_memalloc(sizeof(struct passwd))) ||
 			!(new->grp = (struct group *)ft_memalloc(sizeof(struct group))))

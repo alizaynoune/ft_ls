@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_arg.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/27 10:42:51 by alzaynou          #+#    #+#             */
+/*   Updated: 2020/11/27 10:58:08 by alzaynou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
-void        parsing_arg(int ac, char **av, t_all *d)
+void		parsing_arg(int ac, char **av, t_all *d)
 {
-	int     i;
+	int		i;
 
 	i = -1;
 	while (++i < ac)
@@ -15,9 +27,9 @@ void        parsing_arg(int ac, char **av, t_all *d)
 			parsing_files(d, av[i], &d->arg_file, &d->l_arg_file) : 0;
 }
 
-int         pars_word_option(char *flag, t_all *d)
+int			pars_word_option(char *flag, t_all *d)
 {
-	int     i;
+	int		i;
 
 	i = -1;
 	if (!flag[2] && !(ft_strcmp(flag, "--")))
@@ -38,9 +50,9 @@ int         pars_word_option(char *flag, t_all *d)
 	return (_FAILURE);
 }
 
-int         pars_char_option(char c, t_all *d)
+int			pars_char_option(char c, t_all *d)
 {
-	int         i;
+	int		i;
 
 	i = -1;
 	(c == 'h') ? help_ls(d) : 0;
@@ -55,19 +67,19 @@ int         pars_char_option(char c, t_all *d)
 	return (_FAILURE);
 }
 
-void        parsing_option(char *flag, t_all *d)
+void		parsing_option(char *flag, t_all *d)
 {
-	int     i;
+	int		i;
 
 	i = 1;
 	if (flag[i] == '-')
 	{
-		((pars_word_option(flag, d)  == _FAILURE)) ? usage_ls(d, 0, flag) : 0;
+		((pars_word_option(flag, d) == _FAILURE)) ? usage_ls(d, 0, flag) : 0;
 	}
 	else
 	{
 		while (flag[i])
 			(pars_char_option(flag[i], d)) == _SUCCESS ? i++ :
-                usage_ls(d, flag[i], NULL);
+				usage_ls(d, flag[i], NULL);
 	}
 }

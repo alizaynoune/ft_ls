@@ -6,13 +6,13 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 20:31:55 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/28 23:15:44 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/27 11:55:41 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void		helper(size_t **tab, char *str, char *c)
+static void			helper(size_t **tab, char *str, char *c)
 {
 	size_t		i;
 	size_t		words;

@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 14:42:11 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/11/24 17:11:14 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/27 12:00:13 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ long long int			ft_abs(long long int value);
 
 size_t					ft_strlen(const char *s);
 size_t					ft_intlen(long long int n);
-size_t                  ft_uintlen(unsigned long long int n);
+size_t					ft_uintlen(unsigned long long int n);
 size_t					ft_strnlen(char *str, char *c);
 size_t					ft_count_char(char *str, char c);
 size_t					count_words(char *str, char *c);
@@ -91,7 +91,7 @@ int						ft_isdigit(int c);
 int						ft_isalnum(int c);
 int						ft_isascii(int c);
 int						ft_isprint(int c);
-int                     ft_all_digit(char *str);
+int						ft_all_digit(char *str);
 
 /*
 *** functions lst

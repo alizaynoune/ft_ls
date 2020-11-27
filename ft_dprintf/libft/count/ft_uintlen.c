@@ -6,21 +6,21 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/08 12:11:20 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/11/08 12:12:52 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/27 11:54:40 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t  ft_uintlen(unsigned long long int n)
+size_t		ft_uintlen(unsigned long long int n)
 {
-    size_t  len;
+	size_t		len;
 
-    len = 0;
-    while (n > 0)
-    {
-        n /= 10;
-        len++;
-    }
-    return (len);
+	len = 0;
+	while (n > 0)
+	{
+		n /= 10;
+		len++;
+	}
+	return (len);
 }

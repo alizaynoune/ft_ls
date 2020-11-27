@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 17:16:38 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/11/07 13:45:10 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/27 11:58:32 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct			s_data
 	int					flag;
 	short				specif;
 	short				length;
-	t_widpre            *wid_pre;
+	t_widpre			*wid_pre;
 }						t_data;
 
 int						ft_dprintf(int fd, const char *format, ...);
@@ -90,4 +90,5 @@ void					exit_error_(t_data *d);
 void					reset_data(t_data *d);
 size_t					ato_unsint_(const char *str);
 int						ft_printf(const char *format, ...);
+
 #endif

@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   printing.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/27 10:43:00 by alzaynou          #+#    #+#             */
+/*   Updated: 2020/11/27 11:00:32 by alzaynou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
-void        print_type(mode_t type)
+void		print_type(mode_t type)
 {
-	char    *str;
-	int     i;
+	char	*str;
+	int		i;
 
 	str = "?-bcdlps";
 	i = 0;
@@ -17,10 +29,10 @@ void        print_type(mode_t type)
 	ft_printf("%c", str[i]);
 }
 
-void        print_permission(mode_t mode)
+void		print_permission(mode_t mode)
 {
-	int8_t      shift;
-	int8_t      perm;
+	int8_t		shift;
+	int8_t		perm;
 
 	shift = 2;
 	while (shift >= 0)
@@ -44,11 +56,11 @@ void        print_permission(mode_t mode)
 	}
 }
 
-void        print_time(t_all *d, t_files *f)
+void		print_time(t_all *d, t_files *f)
 {
-	char        *str_time;
-	time_t      tm;
-	time_t      set_time;
+	char		*str_time;
+	time_t		tm;
+	time_t		set_time;
 
 	errno = 0;
 	tm = time(NULL);
@@ -82,7 +94,7 @@ void		long_format(t_all *d, t_files *f)
 	ft_printf(" %*d", d->len[_LINK], f->st->st_nlink);
 	print_uid_grid(d, f);
 	(!(S_ISCHR(f->st->st_mode)) && !(S_ISBLK(f->st->st_mode))) ?
-		ft_printf(" %*lld ", d->len[_SIZE], f->st->st_size) : major_minor(d,f);
+		ft_printf(" %*lld ", d->len[_SIZE], f->st->st_size) : major_minor(d, f);
 	print_time(d, f);
 	(d->options & _G) ? print_color(f, f->st->st_mode) :
 		ft_printf("%s", f->name);
@@ -116,5 +128,5 @@ void		loop_print_files(t_all *d, t_files *lst, t_files *l_lst,
 		}
 		tmp = ((d->options & _R)) ? tmp->prev : tmp->next;
 	}
-    (head_wait) ?push_recursuvely(last_wait, head_wait, curr) : 0;
+	(head_wait) ? push_recursuvely(last_wait, head_wait, curr) : 0;
 }

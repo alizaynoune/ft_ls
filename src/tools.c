@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tools.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/27 10:43:43 by alzaynou          #+#    #+#             */
+/*   Updated: 2020/11/27 11:48:01 by alzaynou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
-ssize_t         fix_size_link(t_all *d, t_files *f, ssize_t size)
+ssize_t			fix_size_link(t_all *d, t_files *f, ssize_t size)
 {
-	ssize_t     len;
+	ssize_t		len;
 
 	errno = 0;
 	if (!(f->link = (char *)ft_memalloc(sizeof(char) * size + 1)))
@@ -19,10 +31,10 @@ ssize_t         fix_size_link(t_all *d, t_files *f, ssize_t size)
 		return (_SUCCESS);
 }
 
-void         read_link(t_all *d, t_files *f)
+void			read_link(t_all *d, t_files *f)
 {
-	ssize_t     size;
-	ssize_t     loop;
+	ssize_t		size;
+	ssize_t		loop;
 
 	if (!(S_ISLNK(f->st->st_mode)))
 		return ;
@@ -44,17 +56,17 @@ void         read_link(t_all *d, t_files *f)
 		}
 		(loop < 0) ? size = loop : 0;
 	}
-    (size < 0 ) ? error_read_link(d, f->path) : 0;
+	(size < 0) ? error_read_link(d, f->path) : 0;
 }
 
-int         stat_file(char *f, struct stat *st)
+int				stat_file(char *f, struct stat *st)
 {
 	if ((stat(f, st)) == -1)
 		return (_FAILURE);
 	return (_SUCCESS);
 }
 
-int         lstat_file(char *f, struct stat *st)
+int				lstat_file(char *f, struct stat *st)
 {
 	if ((lstat(f, st)) == -1)
 		return (_FAILURE);

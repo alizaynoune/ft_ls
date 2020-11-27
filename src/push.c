@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/27 10:43:19 by alzaynou          #+#    #+#             */
+/*   Updated: 2020/11/27 11:45:40 by alzaynou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
 void		push_to_tail(t_files *f, t_files **l_lst)
@@ -11,7 +23,6 @@ void		push_sort(t_all *d, t_files *f, t_files **lst, t_files **l_lst)
 {
 	t_files		*tmp;
 	t_files		*prev;
-
 
 	if ((tmp = get_position(d, f, *lst)))
 	{
@@ -39,9 +50,9 @@ void		push_files(t_all *d, t_files *f, t_files **lst, t_files **l_lst)
 		push_sort(d, f, lst, l_lst);
 }
 
-void        push_waiting(t_all *d, t_files *f)
+void		push_waiting(t_all *d, t_files *f)
 {
-	t_waiting       *new;
+	t_waiting		*new;
 
 	new = init_waiting(d, f);
 	if (!d->head_waiting)
@@ -56,9 +67,8 @@ void        push_waiting(t_all *d, t_files *f)
 	}
 }
 
-void        push_recursuvely(t_waiting *last, t_waiting *head, t_waiting *curr)
+void		push_recursuvely(t_waiting *last, t_waiting *head, t_waiting *curr)
 {
-    last->next = curr->next;
-    curr->next = head;
+	last->next = curr->next;
+	curr->next = head;
 }
-

@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/27 10:43:29 by alzaynou          #+#    #+#             */
+/*   Updated: 2020/11/27 11:46:53 by alzaynou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_ls.h"
 
-t_files     *cmp_ascii(t_files *f, t_files *lst)
+t_files			*cmp_ascii(t_files *f, t_files *lst)
 {
-	t_files     *tmp;
+	t_files		*tmp;
 
 	tmp = lst;
 	while (tmp)
@@ -14,11 +26,11 @@ t_files     *cmp_ascii(t_files *f, t_files *lst)
 	return (NULL);
 }
 
-t_files     *cmp_time(t_files *f, t_files *lst, int options)
+t_files			*cmp_time(t_files *f, t_files *lst, int options)
 {
-	t_files     *tmp;
-	time_t      f_time;
-	time_t      t_time;
+	t_files		*tmp;
+	time_t		f_time;
+	time_t		t_time;
 
 	tmp = lst;
 	f_time = (options & _U) ? f->st->st_atime : f->st->st_mtime;
@@ -37,9 +49,9 @@ t_files     *cmp_time(t_files *f, t_files *lst, int options)
 	return (NULL);
 }
 
-t_files     *cmp_size(t_files *f, t_files *lst)
+t_files			*cmp_size(t_files *f, t_files *lst)
 {
-	t_files     *tmp;
+	t_files		*tmp;
 
 	tmp = lst;
 	while (tmp)
@@ -56,7 +68,7 @@ t_files     *cmp_size(t_files *f, t_files *lst)
 	return (NULL);
 }
 
-t_files     *get_position(t_all *d, t_files *f, t_files *lst)
+t_files			*get_position(t_all *d, t_files *f, t_files *lst)
 {
 	if ((d->options & _S_))
 		return (cmp_size(f, lst));
@@ -66,11 +78,11 @@ t_files     *get_position(t_all *d, t_files *f, t_files *lst)
 		return (cmp_ascii(f, lst));
 }
 
-void        sort_arg(char **av, int ac)
+void			sort_arg(char **av, int ac)
 {
-	int     i;
-	int     j;
-	char    *bck;
+	int			i;
+	int			j;
+	char		*bck;
 
 	i = 0;
 	while (i < ac)
