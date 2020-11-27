@@ -12,7 +12,7 @@
 
 #include "ft_ls.h"
 
-void		print_color(t_files *f, mode_t type)
+void		print_color(t_files *f, mode_t type, char *name)
 {
 	(S_ISBLK(type)) ? ft_printf(C_BLK) : 0;
 	(S_ISCHR(type)) ? ft_printf(C_CHR) : 0;
@@ -23,7 +23,7 @@ void		print_color(t_files *f, mode_t type)
 	if (S_ISREG(type))
 		((f->st->st_mode & (S_IXUSR | S_IXGRP | S_IXOTH))) ? ft_printf(C_EXE)
 			: 0;
-	ft_printf("%s", f->name);
+	ft_printf("%s", name);
 	ft_printf(C_DEF);
 }
 
@@ -38,7 +38,7 @@ void		print_files(t_all *d, t_files *f)
 		(d->options & _S) ?
 			ft_printf("%*d ", d->len[_BLOCK], f->st->st_blocks) : 0;
 		(d->options & _G) ?
-			print_color(f, f->st->st_mode) : ft_printf("%s", f->name);
+			print_color(f, f->st->st_mode, f->name) : ft_printf("%s", f->name);
 		ft_printf("\n");
 	}
 }

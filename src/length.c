@@ -14,12 +14,14 @@
 
 void		fix_len_maj_size(t_all *d)
 {
-	if (((d->len[_MAJ_MIN] * 2) + 2) > d->len[_SIZE])
-		d->len[_SIZE] = ((d->len[_MAJ_MIN] * 2) + 2);
+	if (((d->len[_MAJ] + d->len[_MIN]) + 2) > d->len[_SIZE])
+		d->len[_SIZE] = ((d->len[_MAJ] + d->len[_MIN]) + 2);
 	else
 	{
-		(d->len[_SIZE] % 2) ? d->len[_SIZE]++ : 0;
-		d->len[_MAJ_MIN] = ((d->len[_SIZE] - 2) / 2);
+		((d->len[_SIZE] - (d->len[_MIN] + d->len[_MAJ])) % 2) ?
+            d->len[_SIZE]++ : 0;
+		d->len[_MAJ] = ((d->len[_SIZE] - d->len[_MIN]) / 2);
+        d->len[_MIN] = ((d->len[_SIZE] - d->len[_MAJ]) / 2);
 	}
 }
 
@@ -44,9 +46,9 @@ void		len_major_minor(t_all *d, t_files *f)
 	size_t		len;
 
 	len = ft_intlen(major(f->st->st_rdev));
-	(len > d->len[_MAJ_MIN]) ? d->len[_MAJ_MIN] = len : 0;
+	(len > d->len[_MAJ]) ? d->len[_MAJ] = len : 0;
 	len = ft_intlen(minor(f->st->st_rdev));
-	(len > d->len[_MAJ_MIN]) ? d->len[_MAJ_MIN] = len : 0;
+	(len > d->len[_MIN]) ? d->len[_MIN] = len : 0;
 }
 
 void		get_lens(t_all *d, t_files *f)

@@ -48,6 +48,6 @@ void				extended_attribute(t_all *d, t_files *f)
 void				major_minor(t_all *d, t_files *f)
 {
 	if (d)
-		ft_printf("%*d, %*d ", d->len[_MAJ_MIN], major(f->st->st_rdev),
-				d->len[_MAJ_MIN], minor(f->st->st_rdev));
+		ft_printf("%*d, %*d ", d->len[_MAJ], major(f->st->st_rdev),
+				d->len[_MIN], minor(f->st->st_rdev));
 }

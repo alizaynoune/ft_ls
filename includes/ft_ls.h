@@ -72,9 +72,10 @@
 # define _GROUP			2
 # define _SIZE			3
 # define _BLOCK			4
-# define _MAJ_MIN		5
-# define _INODE         6
-# define _MAX_LEN_TABLE	7
+# define _MAJ           5
+# define _MIN           6
+# define _INODE         7
+# define _MAX_LEN_TABLE	8
 
 /*
 *** colors
@@ -217,7 +218,7 @@ void					parsing_dir(t_all *d);
 void					sort_arg(char **av, int ac);
 void					extended_attribute(t_all *d, t_files *f);
 void					major_minor(t_all *d, t_files *f);
-void					print_color(t_files *f, mode_t type);
+void					print_color(t_files *f, mode_t type, char *name);
 void					push_recursuvely(t_waiting *last, t_waiting *head,
 						t_waiting *curr);
 void					long_format(t_all *d, t_files *f);

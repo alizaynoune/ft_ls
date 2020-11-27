@@ -100,7 +100,7 @@ void		parsing_dir(t_all *d)
 	size_t		len;
 
 	tmp = ((d->options & _R)) ? d->l_arg_file : d->arg_file;
-	(d->len[_MAJ_MIN]) ? fix_len_maj_size(d) : 0;
+	(d->len[_MAJ] + d->len[_MIN]) ? fix_len_maj_size(d) : 0;
 	while (tmp)
 	{
 		if (!(d->options & _D) && (S_ISDIR(tmp->st->st_mode)))
