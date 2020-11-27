@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 14:38:28 by alzaynou          #+#    #+#             */
-/*   Updated: 2019/12/26 18:49:58 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/07 14:42:40 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	ft_memset(s, '\0', n);
+	ft_memset(s, '\0', sizeof(void) * n);
 }

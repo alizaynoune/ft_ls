@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/29 14:42:11 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/15 20:14:03 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/27 12:00:13 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # include <stdarg.h>
 
 /*
-*** macros
+*** types
 */
 
 typedef unsigned char	t_char;
@@ -59,17 +59,19 @@ int						ft_tolower(int c);
 int						ft_atoi_base(const char *str, int str_base);
 int						ft_power(int nbr, int power);
 char					*ft_itoa_base(int value, int base);
+long long int			ft_abs(long long int value);
 
 /*
 *** functions count
 */
 
 size_t					ft_strlen(const char *s);
-int						ft_intlen(long long int n);
+size_t					ft_intlen(long long int n);
+size_t					ft_uintlen(unsigned long long int n);
 size_t					ft_strnlen(char *str, char *c);
-int						ft_count_char(char *str, char c);
-int						count_words(char *str, char *c);
-int						**start_end_words(char *str, char *c);
+size_t					ft_count_char(char *str, char c);
+size_t					count_words(char *str, char *c);
+size_t					**start_end_words(char *str, char *c);
 
 /*
 *** functions edit
@@ -89,6 +91,7 @@ int						ft_isdigit(int c);
 int						ft_isalnum(int c);
 int						ft_isascii(int c);
 int						ft_isprint(int c);
+int						ft_all_digit(char *str);
 
 /*
 *** functions lst
@@ -113,9 +116,9 @@ void					*ft_memmove(void *dst, const void *src, size_t len);
 void					*ft_memchr(const void *s, int c, size_t n);
 int						ft_memcmp(const void *s1, const void *s2, size_t n);
 void					*ft_memalloc(size_t size);
-void					ft_memdel(void **ap);
 void					*ft_memset(void *b, int c, size_t len);
 void					*ft_memdynamic(void *src, size_t len);
+void					*ft_memdup(const void *ptr, size_t size);
 
 /*
 *** functions put
@@ -178,5 +181,6 @@ char					*ft_nstrjoin(size_t n, ...);
 void					ft_free_rev(void **tab, int len);
 void					ft_free_tab_char(char **tab);
 void					ft_strdel(char **as);
+void					ft_memdel(void **ap);
 
 #endif

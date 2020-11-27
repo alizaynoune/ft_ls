@@ -6,17 +6,17 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 20:31:55 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/15 20:32:51 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/27 11:55:41 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void		helper(int **tab, char *str, char *c)
+static void			helper(size_t **tab, char *str, char *c)
 {
-	size_t	i;
-	int		words;
-	int		len;
+	size_t		i;
+	size_t		words;
+	size_t		len;
 
 	i = 0;
 	words = 1;
@@ -33,18 +33,18 @@ static void		helper(int **tab, char *str, char *c)
 	}
 }
 
-int				**start_end_words(char *str, char *c)
+size_t				**start_end_words(char *str, char *c)
 {
 	size_t		i;
 	size_t		words;
-	int			**tab;
+	size_t		**tab;
 
 	i = 0;
 	words = count_words(str, c);
-	if (!words || !(tab = (int **)malloc(sizeof(int *) * (words + 1))))
+	if (!words || !(tab = (size_t **)malloc(sizeof(size_t *) * (words + 1))))
 		return (NULL);
 	while (i <= words)
-		if (!(tab[i++] = (int *)malloc(sizeof(int) * 2)))
+		if (!(tab[i++] = (size_t *)malloc(sizeof(size_t) * 2)))
 		{
 			ft_free_rev((void **)tab, i - 2);
 			return (NULL);

@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 17:16:38 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/15 18:32:28 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/27 11:58:32 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,14 @@
 # define SPACE_	16
 # define DOT_	32
 
-typedef struct			s_width_precision
+# define _OUT   1
+# define _ERR   2
+
+typedef struct			s_widpre
 {
 	size_t				width;
 	size_t				precision;
-}						t_width_precision;
+}						t_widpre;
 
 typedef struct			s_data
 {
@@ -56,8 +59,37 @@ typedef struct			s_data
 	int					flag;
 	short				specif;
 	short				length;
-	t_width_precision	wid_pre;
+	t_widpre			*wid_pre;
 }						t_data;
+
+int						ft_dprintf(int fd, const char *format, ...);
+void					get_arg(t_data *d);
+void					flags_(t_data *d);
+void					width_precision(t_data *d);
+void					length_(t_data *d);
+void					specifier_(t_data *d);
+void					string_(t_data *d, char *str);
+void					char_(t_data *d, int c);
+void					octal_(t_data *d);
+void					binary_(t_data *d);
+char					*unsigned_str_(t_data *d, unsigned long long int value);
+char					*base_str_(t_data *d, unsigned long long int v,
+						char *s_, size_t base);
+void					fix_len_decimal_(t_data *d, char *str);
+void					fix_len_octal_(t_data *d, char *str);
+void					fix_p_(t_data *d, char **str);
+void					loop_char(t_data *d, char c, int loop);
+void					put_hash_(t_data *d);
+void					put_str_(t_data *d, char *str);
+void					put_octal_(t_data *d, char *str);
+void					put_decimal_(t_data *d, char *str);
+void					put_decimal_(t_data *d, char *str);
+void					put_flag_(t_data *d, char c);
+void					put_hexa_(t_data *d, char *str);
+void					exit_error_(t_data *d);
+void					reset_data(t_data *d);
+size_t					ato_unsint_(const char *str);
+int						ft_printf(const char *format, ...);
 
 int						ft_dprintf(int fd, const char *format, ...);
 void					get_arg(t_data *d);

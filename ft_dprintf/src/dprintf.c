@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 17:59:29 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/15 18:03:00 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/27 11:52:13 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,47 @@ void		read_format(t_data *d)
 int			ft_dprintf(int fd, const char *format, ...)
 {
 	t_data		*d;
+	int			ret;
 
 	if (!(d = (t_data *)ft_memalloc(sizeof(t_data))))
 		return (-1);
-	ft_bzero(&d->wid_pre, sizeof(t_width_precision));
+	if (!(d->wid_pre = (t_widpre *)ft_memalloc(sizeof(t_widpre))))
+	{
+		ft_memdel((void *)&d);
+		return (-1);
+	}
 	d->str = format;
 	d->fd = fd;
 	va_start(d->ap, format);
 	while (d->str[d->i] && d->ret != -1)
 		d->str[d->i] == '%' ? read_format(d) : putformat_(d);
 	va_end(d->ap);
-	free(d);
-	return (d->ret);
+	ret = d->ret;
+	ft_memdel((void *)&d->wid_pre);
+	ft_memdel((void *)&d);
+	return (ret);
+}
+
+int			ft_printf(const char *format, ...)
+{
+	t_data		*d;
+	int			ret;
+
+	if (!(d = (t_data *)ft_memalloc(sizeof(t_data))))
+		return (-1);
+	if (!(d->wid_pre = (t_widpre *)ft_memalloc(sizeof(t_widpre))))
+	{
+		ft_memdel((void*)&d);
+		return (-1);
+	}
+	d->str = format;
+	d->fd = _OUT;
+	va_start(d->ap, format);
+	while (d->str[d->i] && d->ret != -1)
+		d->str[d->i] == '%' ? read_format(d) : putformat_(d);
+	va_end(d->ap);
+	ret = d->ret;
+	ft_memdel((void *)&d->wid_pre);
+	ft_memdel((void *)&d);
+	return (ret);
 }

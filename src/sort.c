@@ -1,72 +1,103 @@
-# include "ft_ls.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/27 10:43:29 by alzaynou          #+#    #+#             */
+/*   Updated: 2020/11/27 11:46:53 by alzaynou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int	_ls_alpha(char s1, char s2)
+#include "ft_ls.h"
+
+t_files			*cmp_ascii(t_files *f, t_files *lst)
 {
-	s1 = s1 >= 'A' && s1 <= 'Z' ? s1 + 32 : s1;
-	s2 = s2 >= 'A' && s2 <= 'Z' ? s2 + 32 : s2;
-	return(s1 - s2);
+	t_files		*tmp;
+
+	tmp = lst;
+	while (tmp)
+	{
+		if (ft_strcmp(f->name, tmp->name) < 0)
+			return (tmp);
+		tmp = tmp->next;
+	}
+	return (NULL);
 }
 
-int	_ls_alpha_helper(char s1, char s2)
+t_files			*cmp_time(t_files *f, t_files *lst, int options)
 {
-	s1 += (s1 >= 'A' && s1 <= 'Z') ? 32 : -32;
-	s2 += (s2 >= 'A' && s2 <= 'Z') ? 32 : -32;
-	return (s1 - s2);
+	t_files		*tmp;
+	time_t		f_time;
+	time_t		t_time;
+
+	tmp = lst;
+	f_time = (options & _U) ? f->st->st_atime : f->st->st_mtime;
+	while (tmp)
+	{
+		t_time = (options & _U) ? tmp->st->st_atime : tmp->st->st_mtime;
+		if (f_time > t_time)
+			return (tmp);
+		else if (f_time == t_time)
+		{
+			if (ft_strcmp(f->name, tmp->name) < 0)
+				return (tmp);
+		}
+		tmp = tmp->next;
+	}
+	return (NULL);
 }
 
-int	_ls_type(char s1, char s2)
+t_files			*cmp_size(t_files *f, t_files *lst)
 {
-	if (!s1 || !s2)
-		return (s1 - s2);
-	if (ft_isalnum(s1) && !ft_isalnum(s2))
-		return (1);
-	if (!ft_isalnum(s1) && ft_isalnum(s2))
-		return (-1);
-	if (!ft_isalnum(s1) && !ft_isalnum(s2))
-		return (s1 - s2);
-	if (ft_isalpha(s1) && ft_isdigit(s2))
-		return (1);
-	if (ft_isdigit(s1) && ft_isalpha(s2))
-		return (-1);
-	if (ft_isdigit(s1) && ft_isdigit(s2))
-		return (s1 - s2);
-	return (s1 - s2);
+	t_files		*tmp;
+
+	tmp = lst;
+	while (tmp)
+	{
+		if (f->st->st_size > tmp->st->st_size)
+			return (tmp);
+		else if (f->st->st_size == tmp->st->st_size)
+		{
+			if (ft_strcmp(f->name, tmp->name) < 0)
+				return (tmp);
+		}
+		tmp = tmp->next;
+	}
+	return (NULL);
 }
 
-
-int	_ls_cmp(const char *s1, const char *s2)
+t_files			*get_position(t_all *d, t_files *f, t_files *lst)
 {
-	size_t	i;
-	size_t	j;
-	int	ret;
+	if ((d->options & _S_))
+		return (cmp_size(f, lst));
+	else if ((d->options & _T))
+		return (cmp_time(f, lst, d->options));
+	else
+		return (cmp_ascii(f, lst));
+}
+
+void			sort_arg(char **av, int ac)
+{
+	int			i;
+	int			j;
+	char		*bck;
 
 	i = 0;
-	j = 0;
-	ret = 0;
-	while(!ret && (s1[i] || s2[j]))
+	while (i < ac)
 	{
-		while (s1[i] == '.')
-			i++;
-		while (s2[j] == '.')
+		j = i + 1;
+		while (j < ac)
+		{
+			if (ft_strcmp(av[i], av[j]) > 0)
+			{
+				bck = av[i];
+				av[i] = av[j];
+				av[j] = bck;
+			}
 			j++;
-		ret = (ft_isalpha(s1[i]) && ft_isalpha(s2[j])) ?
-			_ls_alpha(s1[i], s2[j]) : _ls_type(s1[i], s2[j]);
-		s1[i] ? i++ : 0;
-		s2[j] ? j++ : 0;
+		}
+		i++;
 	}
-	if (ret)
-		return (ret);
-	i = 0;
-	j = 0;
-	while(!ret && (s1[i] || s2[j]))
-	{
-		while (s1[i] == '.')
-			i++;
-		while (s2[j] == '.')
-			j++;
-		ret = (ft_isalpha(s1[i]) && ft_isalpha(s2[j])) ? _ls_alpha_helper(s1[i], s2[j]) : _ls_type(s1[i], s2[j]);
-		s1[i] ? i++ : 0;
-		s2[j] ? j++ : 0;
-	}
-	return (((ret) ? ret : ft_strhcmp(s1, s2)));
 }

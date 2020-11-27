@@ -6,16 +6,16 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 02:42:25 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/15 20:30:26 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/10/28 23:11:44 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int			count_words(char *str, char *c)
+size_t			count_words(char *str, char *c)
 {
 	size_t		i;
-	int			words;
+	size_t		words;
 	char		*chr;
 
 	i = 0;

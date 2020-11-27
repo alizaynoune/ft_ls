@@ -6,7 +6,7 @@
 /*   By: alzaynou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/15 18:22:59 by alzaynou          #+#    #+#             */
-/*   Updated: 2020/10/15 19:45:14 by alzaynou         ###   ########.fr       */
+/*   Updated: 2020/11/27 11:52:31 by alzaynou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 void		exit_error_(t_data *d)
 {
-	free(d);
+	(d) ? va_end(d->ap) : 0;
+	(d && d->wid_pre) ? ft_memdel((void *)&d->wid_pre) : 0;
+	(d) ? ft_memdel((void *)&d) : 0;
 	exit(-1);
 }
 
 void		reset_data(t_data *d)
 {
-	ft_bzero(&d->wid_pre, sizeof(t_width_precision));
+	ft_bzero((void *)d->wid_pre, sizeof(t_widpre));
 	d->flag = 0;
 	d->specif = 0;
 	d->length = 0;
