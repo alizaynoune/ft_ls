@@ -34,9 +34,9 @@ void		print_files(t_all *d, t_files *f)
 	else
 	{
 		(d->options & _I) ?
-			ft_printf("%*d ", d->len[_INODE], f->st->st_ino) : 0;
+			ft_printf("%*lu ", d->len[_INODE], f->st->st_ino) : 0;
 		(d->options & _S) ?
-			ft_printf("%*d ", d->len[_BLOCK], f->st->st_blocks) : 0;
+			ft_printf("%*lu ", d->len[_BLOCK], f->st->st_blocks) : 0;
 		(d->options & _G) ?
 			print_color(f, f->st->st_mode) : ft_printf("%s", f->name);
 		ft_printf("\n");
@@ -72,7 +72,7 @@ void		print_xattr(t_all *d, t_files *f)
 	{
 		len += ft_printf("\t%s", buff + len);
 		size = getxattr(f->path, buff + read, NULL, 0, 0, XATTR_NOFOLLOW);
-		ft_printf("\t  %lld\n", size);
+		ft_printf("\t  %ld\n", size);
 		read = len;
 	}
 	ft_strdel(&buff);

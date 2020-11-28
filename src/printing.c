@@ -86,15 +86,15 @@ void		print_time(t_all *d, t_files *f)
 
 void		long_format(t_all *d, t_files *f)
 {
-	(d->options & _I) ? ft_printf("%*d ", d->len[_INODE], f->st->st_ino) : 0;
-	(d->options & _S) ? ft_printf("%*d ", d->len[_BLOCK], f->st->st_blocks) : 0;
+	(d->options & _I) ? ft_printf("%*lu ", d->len[_INODE], f->st->st_ino) : 0;
+	(d->options & _S) ?ft_printf("%*lu ", d->len[_BLOCK], f->st->st_blocks) : 0;
 	print_type((f->st->st_mode));
 	print_permission(f->st->st_mode);
 	extended_attribute(d, f);
-	ft_printf(" %*d", d->len[_LINK], f->st->st_nlink);
+	ft_printf(" %*ld", d->len[_LINK], f->st->st_nlink);
 	print_uid_grid(d, f);
 	(!(S_ISCHR(f->st->st_mode)) && !(S_ISBLK(f->st->st_mode))) ?
-		ft_printf(" %*lld ", d->len[_SIZE], f->st->st_size) : major_minor(d, f);
+		ft_printf(" %*ld ", d->len[_SIZE], f->st->st_size) : major_minor(d, f);
 	print_time(d, f);
 	(d->options & _G) ? print_color(f, f->st->st_mode) :
 		ft_printf("%s", f->name);
