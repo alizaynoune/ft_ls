@@ -84,12 +84,13 @@
 # define C_BLK		    "\e[1;33m"
 # define C_CHR		    "\e[1;33m"
 # define C_DIR		    "\e[1;34m"
-# define C_FIFO		    "\e[1;90m"
+# define C_FIFO		    "\e[0;33m"
 # define C_LNK		    "\e[1;96m"
 # define C_SOCK		    "\e[1;35m"
 # define C_EXE		    "\e[1;32m"
 # define C_DEF		    "\e[1;0m"
 # define C_ERROR	    "\e[1;32m"
+# define C_BDEF         "\e[1m"
 
 /*
 *** permission

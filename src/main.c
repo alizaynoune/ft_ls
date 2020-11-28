@@ -51,9 +51,12 @@ void		help_ls(t_all *d)
 	int		i;
 
 	i = -1;
-	ft_dprintf(_OUT, "./ft_ls :[options] [file ...]\n");
+	ft_printf("./ft_ls :[options] [file ...]\n");
 	while (++i < _MAX_OP)
-		ft_printf("\t-%c\t%-13s\t:%s\n", g_op[i].c, g_op[i].str, g_op[i].desc);
+    {
+        ft_printf("%s\t-%c, %s%s\n", C_BDEF, g_op[i].c, g_op[i].str, C_DEF);
+		ft_printf("\t\t%s\n", g_op[i].desc);
+    }
 	free_all(d);
 	exit(_SUCCESS);
 }
