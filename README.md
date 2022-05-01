@@ -1,3 +1,5 @@
+   [![alzaynou's 42 ft_ls Score](https://badge42.vercel.app/api/v2/cl2mjk5oo009709i7yb0upwvb/project/2406516)](https://github.com/alizaynoune)
+   # ft_ls
     WARNNEN : this project has two branches for two different system
         
         linux system : clone master branch
